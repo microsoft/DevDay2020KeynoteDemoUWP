@@ -1,0 +1,31 @@
+﻿<Page x:Class="DevDay2020KeynoteDemoUWP.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <Grid>
+        <winui:NavigationView x:Name="MainNav"
+                              IsBackButtonVisible="Collapsed"
+                              IsSettingsVisible="False"
+                              ItemInvoked="OnMainNavItemInvoked"
+                              PaneDisplayMode="Top">
+            <winui:NavigationView.MenuItems>
+                <winui:NavigationViewItem Content="Destinations" Tag="DestinationsPage" />
+                <winui:NavigationViewItem Content="Explore" Tag="ExplorePage" />
+                <winui:NavigationViewItem Content="About" Tag="AboutPage" />
+            </winui:NavigationView.MenuItems>
+
+            <winui:NavigationView.PaneCustomContent>
+                <Border HorizontalAlignment="Right">
+                    <Button />
+                </Border>
+            </winui:NavigationView.PaneCustomContent>
+
+            <Frame x:Name="ContentFrame" />
+        </winui:NavigationView>
+    </Grid>
+</Page>

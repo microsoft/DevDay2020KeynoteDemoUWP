@@ -119,9 +119,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Model\GroupInfoList.cs" />
+    <Compile Include="Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DestinationsPage.xaml.cs">
+      <DependentUpon>DestinationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExplorePage.xaml.cs">
+      <DependentUpon>ExplorePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PlaceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WonderbarPage.xaml.cs">
       <DependentUpon>WonderbarPage.xaml</DependentUpon>
@@ -133,6 +148,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\annie-spratt-tB4Gf7ddcJY-unsplash.png" />
+    <Content Include="Assets\Images\ashim-d-silva-WeYamle9fDM-unsplash.png" />
+    <Content Include="Assets\Images\bantersnaps-wPMvPMD9KBI-unsplash.png" />
+    <Content Include="Assets\Images\damian-patkowski-QeC4oPdKu7c-unsplash.png" />
+    <Content Include="Assets\Images\eva-dang-EXdXLrZXS9Q-unsplash.png" />
+    <Content Include="Assets\Images\felix-NAytNmKtyiU-unsplash.png" />
+    <Content Include="Assets\Images\tomas-nozina-UP22zkjJGZo-unsplash.png" />
+    <Content Include="Assets\Images\willian-west-TVyjcTEKHLU-unsplash.png" />
+    <Content Include="Assets\Images\willian-west-YpKiwlvhOpI-unsplash.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -147,7 +171,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DestinationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ExplorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
