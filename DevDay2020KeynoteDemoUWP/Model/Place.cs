@@ -2,7 +2,7 @@
 
 namespace DevDay2020KeynoteDemoUWP.Model
 {
-    public class Place
+    public class Place : Base
     {
         public Place(string placeName, string imageUriString)
         {
@@ -17,5 +17,12 @@ namespace DevDay2020KeynoteDemoUWP.Model
         public string ImageUri { get; set; }
         public string ImageAuthor { get; set; }
         public string ImageAuthorUrl { get; set; }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => Set(ref _isSelected, value);
+        }
     }
 }

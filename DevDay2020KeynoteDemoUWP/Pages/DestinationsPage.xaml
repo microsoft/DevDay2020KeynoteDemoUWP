@@ -10,7 +10,7 @@
     <Page.Resources>
         <CollectionViewSource x:Name="PlacesSource" IsSourceGrouped="True" />
 
-        <Style x:Key="GridViewItemContainerStyle" TargetType="GridViewItem">
+        <Style TargetType="GridViewItem">
             <Setter Property="Margin" Value="0,0,70,44" />
         </Style>
 
@@ -42,15 +42,20 @@
     </Page.Resources>
 
     <Grid Padding="103,84,0,0">
-        <GridView IsItemClickEnabled="True"
-                  ItemContainerStyle="{StaticResource GridViewItemContainerStyle}"
+        <GridView x:Name="MainGridView"
+                  IsItemClickEnabled="True"
                   ItemsSource="{x:Bind PlacesSource.View}"
                   SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Place">
-                    <Image Width="256"
-                           Height="172"
-                           Source="{x:Bind ImageUri}" />
+                    <Grid Width="256" Height="172">
+                        <Image Source="{x:Bind ImageUri}" />
+                        <ToggleButton Margin="12"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Bottom"
+                                      IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
+                                      Style="{StaticResource Style-ToggleButton-Icon-Circle-PlusMinus}" />
+                    </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
 

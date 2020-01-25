@@ -1,5 +1,7 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
@@ -7,6 +9,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
     public sealed partial class DestinationsPage : Page
     {
         private readonly ObservableCollection<GroupInfoList> _list = GetGroupedPlaces();
+        private readonly ObservableCollection<Place> _selectedPlaces = new ObservableCollection<Place>();
 
         public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
         {
@@ -35,6 +38,51 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             InitializeComponent();
 
             PlacesSource.Source = _list;
+
+            ManageGridViewItemSelections();
+        }
+
+        private void ManageGridViewItemSelections()
+        {
+            foreach (var place in _list.SelectMany(p => p))
+            {
+                place.PropertyChanged += (s, e) =>
+                {
+                    if (place.IsSelected)
+                    {
+                        _selectedPlaces.Add(place);
+                    }
+                    else
+                    {
+                        _selectedPlaces.Remove(place);
+                    }
+
+                    if (_selectedPlaces.Count >= 2)
+                    {
+                        foreach (var item in MainGridView.Items)
+                        {
+                            if (item is Place p && !p.IsSelected)
+                            {
+                                if (MainGridView.ContainerFromItem(item) is GridViewItem element)
+                                {
+                                    element.IsEnabled = false;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in MainGridView.Items)
+                        {
+                            if (MainGridView.ContainerFromItem(item) is GridViewItem element)
+                            {
+                                element.IsEnabled = true;
+                            }
+                        }
+                    }
+                };
+
+            }
         }
     }
 }
