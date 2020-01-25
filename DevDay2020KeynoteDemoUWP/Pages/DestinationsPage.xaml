@@ -9,10 +9,43 @@
 
     <Page.Resources>
         <CollectionViewSource x:Name="PlacesSource" IsSourceGrouped="True" />
+
+        <Style x:Key="GridViewItemContainerStyle" TargetType="GridViewItem">
+            <Setter Property="Margin" Value="0,0,70,44" />
+        </Style>
+
+        <Style TargetType="GridViewHeaderItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Margin" Value="0,0,0,16" />
+            <Setter Property="Padding" Value="0,8,0,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}" />
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewHeaderItem">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
-    <Grid>
-        <GridView ItemsSource="{x:Bind PlacesSource.View}">
+    <Grid Padding="103,84,0,0">
+        <GridView IsItemClickEnabled="True"
+                  ItemContainerStyle="{StaticResource GridViewItemContainerStyle}"
+                  ItemsSource="{x:Bind PlacesSource.View}"
+                  SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Place">
                     <Image Width="256"
@@ -22,7 +55,7 @@
             </GridView.ItemTemplate>
 
             <GridView.GroupStyle>
-                <GroupStyle>
+                <GroupStyle HidesIfEmpty="True">
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate x:DataType="model:GroupInfoList">
                             <TextBlock Text="{x:Bind Key}" />
