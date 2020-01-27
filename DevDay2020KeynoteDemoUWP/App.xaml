@@ -1,7 +1,8 @@
 ﻿<winui:Application x:Class="DevDay2020KeynoteDemoUWP.App"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                   xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                   xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   RequestedTheme="Light">
 
     <winui:Application.Resources>
         <winui:ResourceDictionary>

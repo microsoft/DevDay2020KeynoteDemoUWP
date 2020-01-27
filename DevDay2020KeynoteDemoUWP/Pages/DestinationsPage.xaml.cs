@@ -7,13 +7,14 @@ using Windows.UI.Xaml;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Animation;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
     public sealed partial class DestinationsPage : Page
     {
         private readonly ObservableCollection<GroupInfoList> _list = GetGroupedPlaces();
-        private readonly ObservableCollection<Place> _selectedPlaces = new ObservableCollection<Place>();
+        private readonly ObservableCollection<Place> _placesToCompare = new ObservableCollection<Place>();
         private Place _selectedPlace;
 
         public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
@@ -55,14 +56,14 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 {
                     if (place.IsSelected)
                     {
-                        _selectedPlaces.Add(place);
+                        _placesToCompare.Add(place);
                     }
                     else
                     {
-                        _selectedPlaces.Remove(place);
+                        _placesToCompare.Remove(place);
                     }
 
-                    if (_selectedPlaces.Count >= 2)
+                    if (_placesToCompare.Count >= 2)
                     {
                         foreach (var item in MainGridView.Items)
                         {
@@ -89,6 +90,8 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
                         CommandBar.Visibility = Visibility.Collapsed;
                     }
+
+                    MainGridView.IsItemClickEnabled = _placesToCompare.Count == 0;
                 };
 
             }
@@ -96,7 +99,14 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
         private void OnCompareClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ComparisonPage));
+            var place1 = _placesToCompare[0];
+            var place2 = _placesToCompare[1];
+            var place1Image = MainGridView.ContainerFromItem(place1).FindDescendant<Image>();
+            var place2Image = MainGridView.ContainerFromItem(place2).FindDescendant<Image>();
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Forward", place1Image);
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Forward", place2Image);
+
+            Frame.Navigate(typeof(ComparisonPage), new Place[] { place1, place2 });
         }
 
         private void OnMainGridViewItemClick(object sender, ItemClickEventArgs e)

@@ -21,8 +21,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var animation = ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("backwardToMain", HeroImage);
-                //animation.Configuration = new DirectConnectedAnimationConfiguration();
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("backwardToMain", HeroImage);
             }
         }
 

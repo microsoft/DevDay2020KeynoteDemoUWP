@@ -55,7 +55,7 @@
             <winui:TextBlock HorizontalAlignment="Center"
                              FontFamily="{StaticResource MontserratSemiBold}"
                              FontSize="18"
-                             Text="Japan" />
+                             Text="{x:Bind Place1.CountryName}" />
 
             <winui:Grid Margin="0,48,0,16" winui:Grid.Row="1">
                 <winui:Grid.ColumnDefinitions>
@@ -70,12 +70,13 @@
                                  Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
                                  TextAlignment="Right"
                                  TextWrapping="Wrap" />
-                <winui:Image Grid.Column="1"
+                <winui:Image x:Name="Place1Image"
+                             Grid.Column="1"
                              Width="206"
                              Height="144"
                              Margin="51,0,0,0"
                              HorizontalAlignment="Left"
-                             Source="/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"
+                             Source="{x:Bind Place1.ImageUri}"
                              Stretch="UniformToFill" />
             </winui:Grid>
 
@@ -187,7 +188,7 @@
                              FontFamily="{winui:StaticResource MontserratSemiBold}"
                              FontSize="18"
                              Foreground="#FFF8F8F8"
-                             Text="Germany" />
+                             Text="{x:Bind Place2.CountryName}" />
 
             <winui:Grid Margin="0,48,0,16" winui:Grid.Row="1">
                 <winui:Grid.ColumnDefinitions>
@@ -203,12 +204,13 @@
                                  Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
                                  TextAlignment="Right"
                                  TextWrapping="Wrap" />
-                <winui:Image Width="206"
+                <winui:Image x:Name="Place2Image"
+                             Width="206"
                              Height="144"
                              Margin="51,0,0,0"
                              HorizontalAlignment="Left"
                              winui:Grid.Column="1"
-                             Source="/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"
+                             Source="{x:Bind Place2.ImageUri}"
                              Stretch="UniformToFill" />
             </winui:Grid>
 
