@@ -22,6 +22,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             if (e.NavigationMode == NavigationMode.Back)
             {
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("backwardToMain", HeroImage);
+                //animation.Configuration = new DirectConnectedAnimationConfiguration();
             }
         }
 
@@ -32,7 +33,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             SelectedPlace = e.Parameter as Place;
 
             var aniamtion = ConnectedAnimationService.GetForCurrentView().GetAnimation("forwardToDetail");
-            aniamtion?.TryStart(HeroImage, new UIElement[] { Header, Pane2Panel });
+            aniamtion?.TryStart(HeroImage, new UIElement[] { Header });
         }
 
         private void OnBackClick(object sender, RoutedEventArgs e)

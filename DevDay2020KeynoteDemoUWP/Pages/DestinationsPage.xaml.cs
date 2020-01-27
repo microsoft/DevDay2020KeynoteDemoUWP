@@ -101,10 +101,13 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         {
             var place1 = _placesToCompare[0];
             var place2 = _placesToCompare[1];
-            var place1Image = MainGridView.ContainerFromItem(place1).FindDescendant<Image>();
-            var place2Image = MainGridView.ContainerFromItem(place2).FindDescendant<Image>();
-            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Forward", place1Image);
-            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Forward", place2Image);
+            //var place1Image = MainGridView.ContainerFromItem(place1).FindDescendant<Image>();
+            //var place2Image = MainGridView.ContainerFromItem(place2).FindDescendant<Image>();
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Forward", place1Image);
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Forward", place2Image);
+
+            MainGridView.PrepareConnectedAnimation("place1Forward", place1, "PlaceImage");
+            MainGridView.PrepareConnectedAnimation("place2Forward", place2, "PlaceImage");
 
             Frame.Navigate(typeof(ComparisonPage), new Place[] { place1, place2 });
         }
@@ -114,7 +117,8 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             _selectedPlace = e.ClickedItem as Place;
             MainGridView.PrepareConnectedAnimation("forwardToDetail", e.ClickedItem, "PlaceImage");
 
-            Frame.Navigate(typeof(DetailPage), _selectedPlace, new SuppressNavigationTransitionInfo());
+            //Frame.Navigate(typeof(DetailPage), _selectedPlace, new SuppressNavigationTransitionInfo());
+            Frame.Navigate(typeof(DetailPage), _selectedPlace);
         }
 
         private async void OnMainGridViewLoaded(object sender, RoutedEventArgs e)
@@ -128,6 +132,24 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 if (animation != null)
                 {
                     await MainGridView.TryStartConnectedAnimationAsync(animation, _selectedPlace, "PlaceImage");
+                    _selectedPlace = null;
+                }
+            }
+            else if (_placesToCompare.Count == 2)
+            {
+                MainGridView.ScrollIntoView(_placesToCompare[1]);
+                MainGridView.UpdateLayout();
+
+                var animation1 = ConnectedAnimationService.GetForCurrentView().GetAnimation("place1Backward");
+                if (animation1 != null)
+                {
+                    await MainGridView.TryStartConnectedAnimationAsync(animation1, _placesToCompare[0], "PlaceImage");
+                }
+
+                var animation2 = ConnectedAnimationService.GetForCurrentView().GetAnimation("place2Backward");
+                if (animation1 != null)
+                {
+                    await MainGridView.TryStartConnectedAnimationAsync(animation2, _placesToCompare[1], "PlaceImage");
                 }
             }
         }

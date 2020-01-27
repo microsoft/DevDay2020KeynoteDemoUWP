@@ -24,6 +24,17 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
         }
 
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Backward", Place1Image);
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Backward", Place2Image);
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
