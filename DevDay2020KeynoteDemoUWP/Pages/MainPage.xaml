@@ -22,7 +22,7 @@
             <winui:NavigationView.MenuItemContainerStyle>
                 <Style TargetType="winui:NavigationViewItem">
                     <Setter Property="FontSize" Value="15" />
-                    <Setter Property="FontWeight" Value="SemiBold" />
+                    <Setter Property="FontFamily" Value="{StaticResource RobotoMonoMedium}" />
                     <Setter Property="Margin" Value="6,0" />
                 </Style>
             </winui:NavigationView.MenuItemContainerStyle>
@@ -35,8 +35,12 @@
             </winui:NavigationView.MenuItems>
 
             <winui:NavigationView.PaneCustomContent>
-                <Border HorizontalAlignment="Right">
-                    <Button />
+                <Border Margin="0,0,98,0" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource Style-Button-Icon-Circle}">
+                        <ContentControl Width="15"
+                                        Foreground="#FF373238"
+                                        Style="{StaticResource Style-Icon-search}" />
+                    </Button>
                 </Border>
             </winui:NavigationView.PaneCustomContent>
 
@@ -65,79 +69,79 @@
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="1"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="2"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="3"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="4"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="5"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="6"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="7"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="8"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="9"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="10"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="11"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
             <Rectangle Grid.Column="12"
                        Width="2"
                        Margin="0,0,-1,0"
                        HorizontalAlignment="Right"
                        Fill="Red"
-                       Opacity="0.2" />
+                       Opacity="0.1" />
         </Grid>
     </Grid>
 </Page>

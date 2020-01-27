@@ -2,7 +2,6 @@
 using WinUI = Microsoft.UI.Xaml.Controls;
 using Windows.UI.ViewManagement;
 using Windows.Foundation;
-using Windows.UI.Xaml.Shapes;
 
 namespace DevDay2020KeynoteDemoUWP
 {

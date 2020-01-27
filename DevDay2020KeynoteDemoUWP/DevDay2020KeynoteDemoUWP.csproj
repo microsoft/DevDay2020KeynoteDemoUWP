@@ -127,6 +127,9 @@
     <Compile Include="Pages\DestinationsPage.xaml.cs">
       <DependentUpon>DestinationsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ComparisonPage.xaml.cs">
+      <DependentUpon>ComparisonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
@@ -149,15 +152,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Images\annie-spratt-tB4Gf7ddcJY-unsplash.png" />
-    <Content Include="Assets\Images\ashim-d-silva-WeYamle9fDM-unsplash.png" />
-    <Content Include="Assets\Images\bantersnaps-wPMvPMD9KBI-unsplash.png" />
-    <Content Include="Assets\Images\damian-patkowski-QeC4oPdKu7c-unsplash.png" />
-    <Content Include="Assets\Images\eva-dang-EXdXLrZXS9Q-unsplash.png" />
-    <Content Include="Assets\Images\felix-NAytNmKtyiU-unsplash.png" />
-    <Content Include="Assets\Images\tomas-nozina-UP22zkjJGZo-unsplash.png" />
-    <Content Include="Assets\Images\willian-west-TVyjcTEKHLU-unsplash.png" />
-    <Content Include="Assets\Images\willian-west-YpKiwlvhOpI-unsplash.png" />
+    <Content Include="Assets\Images\annie-spratt-tB4Gf7ddcJY-unsplash.jpg" />
+    <Content Include="Assets\Images\ashim-d-silva-WeYamle9fDM-unsplash.jpg" />
+    <Content Include="Assets\Images\bantersnaps-wPMvPMD9KBI-unsplash.jpg" />
+    <Content Include="Assets\Images\damian-patkowski-QeC4oPdKu7c-unsplash.jpg" />
+    <Content Include="Assets\Images\eva-dang-EXdXLrZXS9Q-unsplash.jpg" />
+    <Content Include="Assets\Images\felix-NAytNmKtyiU-unsplash.jpg" />
+    <Content Include="Assets\Images\tomas-nozina-UP22zkjJGZo-unsplash.jpg" />
+    <Content Include="Assets\Images\willian-west-TVyjcTEKHLU-unsplash.jpg" />
+    <Content Include="Assets\Images\willian-west-YpKiwlvhOpI-unsplash.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -179,6 +182,10 @@
     <Page Include="Pages\DestinationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ComparisonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\DetailPage.xaml">
       <SubType>Designer</SubType>
@@ -207,6 +214,41 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.3.191211002</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\RobotoMono-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\RobotoMono-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\RobotoMono-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Montserrat-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Montserrat-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Montserrat-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Montserrat-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

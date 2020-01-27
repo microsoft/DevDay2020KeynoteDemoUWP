@@ -8,21 +8,81 @@
             mc:Ignorable="d">
 
     <winui:Grid>
-        <winui:TwoPaneView PanePriority="Pane2">
+        <winui:TwoPaneView Pane1Length="*" Pane2Length="*">
             <winui:TwoPaneView.Pane1>
-                <winui:Grid Padding="20" Background="LightCoral">
-                    <winui:Button HorizontalAlignment="Center"
-                                  Click="Button_Click"
-                                  Content="Open Wonderbar" />
+                <winui:Grid>
+                    <winui:Grid.RowDefinitions>
+                        <winui:RowDefinition Height="Auto" />
+                        <winui:RowDefinition />
+                    </winui:Grid.RowDefinitions>
+
+                    <winui:StackPanel Margin="56,40,0,40"
+                                      Orientation="Horizontal"
+                                      Spacing="16">
+                        <winui:Button x:Name="Back"
+                                      Click="OnBackClick"
+                                      Style="{StaticResource Style-Button-Icon-Circle}">
+                            <winui:ContentControl Width="18"
+                                                  Foreground="Black"
+                                                  Style="{StaticResource Style-Icon-Arrow}" />
+                        </winui:Button>
+                        <winui:TextBlock VerticalAlignment="Center"
+                                         FontFamily="{StaticResource MontserratSemiBold}"
+                                         FontSize="18"
+                                         Opacity="0.8"
+                                         Text="Japan"
+                                         TextLineBounds="Tight" />
+                    </winui:StackPanel>
+
+                    <winui:Image Grid.Row="1"
+                                 Margin="64,0,64,64"
+                                 Source="/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"
+                                 Stretch="UniformToFill" />
                 </winui:Grid>
             </winui:TwoPaneView.Pane1>
             <winui:TwoPaneView.Pane2>
-                <winui:Grid Background="LightSkyBlue">
-                    <winui:TextBlock HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     FontSize="32"
-                                     Text="Content" />
-                </winui:Grid>
+                <winui:StackPanel Margin="103,120,0,0" Spacing="36">
+                    <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
+                                     Opacity="0.4"
+                                     Text="Details" />
+                    <winui:TextBlock MaxWidth="412"
+                                     Margin="0,0,0,24"
+                                     HorizontalAlignment="Left"
+                                     FontFamily="{StaticResource RobotoMonoMedium}"
+                                     FontSize="36"
+                                     Foreground="#FF121111"
+                                     LineHeight="48"
+                                     Text="Ornare eu massa turpis viverra"
+                                     TextLineBounds="Tight"
+                                     TextWrapping="Wrap" />
+                    <winui:TextBlock MaxWidth="412"
+                                     Margin="0,0,0,56"
+                                     HorizontalAlignment="Left"
+                                     FontSize="16"
+                                     LineHeight="40"
+                                     Opacity="0.8"
+                                     Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique. Urna facilisis justo enim, nec viverra pellentesque. Aliquam magna leo, dolor ultrices quis metus, massa euismod."
+                                     TextWrapping="Wrap" />
+                    <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
+                                     Opacity="0.4"
+                                     Text="Similar places" />
+                    <winui:StackPanel Height="80"
+                                      Orientation="Horizontal"
+                                      Spacing="24">
+                        <winui:Image Width="88"
+                                     Source="/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"
+                                     Stretch="UniformToFill" />
+                        <winui:Image Width="88"
+                                     Source="/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"
+                                     Stretch="UniformToFill" />
+                        <winui:Image Width="88"
+                                     Source="/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"
+                                     Stretch="UniformToFill" />
+                        <winui:Image Width="88"
+                                     Source="/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"
+                                     Stretch="UniformToFill" />
+                    </winui:StackPanel>
+                </winui:StackPanel>
             </winui:TwoPaneView.Pane2>
         </winui:TwoPaneView>
     </winui:Grid>

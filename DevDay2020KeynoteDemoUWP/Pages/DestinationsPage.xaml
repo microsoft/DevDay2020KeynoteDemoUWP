@@ -1,73 +1,1069 @@
-﻿<Page x:Class="DevDay2020KeynoteDemoUWP.Pages.DestinationsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      mc:Ignorable="d">
+﻿<winui:Page x:Class="DevDay2020KeynoteDemoUWP.Pages.DestinationsPage"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
+            xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            mc:Ignorable="d">
 
-    <Page.Resources>
-        <CollectionViewSource x:Name="PlacesSource" IsSourceGrouped="True" />
+    <winui:Page.Resources>
+        <winui:CollectionViewSource x:Name="PlacesSource" IsSourceGrouped="True" />
 
-        <Style TargetType="GridViewItem">
-            <Setter Property="Margin" Value="0,0,70,44" />
-        </Style>
+        <x:Double x:Key="ListViewItemDisabledThemeOpacity">0.25</x:Double>
+        <winui:Style TargetType="GridViewItem">
+            <winui:Setter Property="Margin" Value="0,0,70,44" />
+        </winui:Style>
 
-        <Style TargetType="GridViewHeaderItem">
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Background" Value="Black" />
-            <Setter Property="Margin" Value="0,0,0,16" />
-            <Setter Property="Padding" Value="0,8,0,0" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Top" />
-            <Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}" />
-            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="GridViewHeaderItem">
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
+        <winui:Style TargetType="GridViewHeaderItem">
+            <winui:Setter Property="FontFamily" Value="{StaticResource MontserratSemiBold}" />
+            <winui:Setter Property="FontSize" Value="18" />
+            <winui:Setter Property="FontWeight" Value="SemiBold" />
+            <winui:Setter Property="Background" Value="Black" />
+            <winui:Setter Property="Margin" Value="0,0,0,16" />
+            <winui:Setter Property="Padding" Value="0,8,0,0" />
+            <winui:Setter Property="HorizontalContentAlignment" Value="Left" />
+            <winui:Setter Property="VerticalContentAlignment" Value="Top" />
+            <winui:Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}" />
+            <winui:Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+            <winui:Setter Property="Template">
+                <winui:Setter.Value>
+                    <winui:ControlTemplate TargetType="GridViewHeaderItem">
+                        <winui:ContentPresenter x:Name="ContentPresenter"
+                                                Margin="{TemplateBinding Padding}"
+                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                ContentTransitions="{TemplateBinding ContentTransitions}" />
+                    </winui:ControlTemplate>
+                </winui:Setter.Value>
+            </winui:Setter>
+        </winui:Style>
 
-    <Grid Padding="103,84,0,0">
-        <GridView x:Name="MainGridView"
-                  IsItemClickEnabled="True"
-                  ItemsSource="{x:Bind PlacesSource.View}"
-                  SelectionMode="None">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="model:Place">
-                    <Grid Width="256" Height="172">
-                        <Image Source="{x:Bind ImageUri}" />
-                        <ToggleButton Margin="12"
-                                      HorizontalAlignment="Right"
-                                      VerticalAlignment="Bottom"
-                                      IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
-                                      Style="{StaticResource Style-ToggleButton-Icon-Circle-PlusMinus}" />
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
+        <winui:Style x:Key="CommandBarRevealStyle" TargetType="CommandBar">
+            <winui:Setter Property="Background" Value="Black" />
+            <winui:Setter Property="Foreground" Value="{ThemeResource CommandBarForeground}" />
+            <winui:Setter Property="Height" Value="72" />
+            <winui:Setter Property="IsTabStop" Value="False" />
+            <winui:Setter Property="VerticalAlignment" Value="Top" />
+            <winui:Setter Property="HorizontalAlignment" Value="Right" />
+            <winui:Setter Property="HorizontalContentAlignment" Value="Right" />
+            <winui:Setter Property="VerticalContentAlignment" Value="Center" />
+            <winui:Setter Property="ClosedDisplayMode" Value="Compact" />
+            <winui:Setter Property="ExitDisplayModeOnAccessKeyInvoked" Value="False" />
+            <winui:Setter Property="Template">
+                <winui:Setter.Value>
+                    <winui:ControlTemplate TargetType="CommandBar">
+                        <winui:Grid x:Name="LayoutRoot">
+                            <winui:Grid.Resources>
+                                <winui:Style BasedOn="{StaticResource AppBarButtonRevealStyle}" TargetType="AppBarButton" />
+                                <winui:Style BasedOn="{StaticResource AppBarToggleButtonRevealStyle}" TargetType="AppBarToggleButton" />
+                                <winui:Storyboard x:Key="OverlayOpeningAnimation">
+                                    <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                        <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                        <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                    KeyTime="0:0:0.467"
+                                                                    Value="1" />
+                                    </winui:DoubleAnimationUsingKeyFrames>
+                                </winui:Storyboard>
+                                <winui:Storyboard x:Key="OverlayClosingAnimation">
+                                    <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                        <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                        <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                    KeyTime="0:0:0.167"
+                                                                    Value="0" />
+                                    </winui:DoubleAnimationUsingKeyFrames>
+                                </winui:Storyboard>
+                            </winui:Grid.Resources>
+                            <!--<Grid.Clip>
+                                <RectangleGeometry Rect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.ClipRect}">
+                                    <RectangleGeometry.Transform>
+                                        <TranslateTransform x:Name="ClipGeometryTransform" Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </Grid.Clip>-->
 
-            <GridView.GroupStyle>
-                <GroupStyle HidesIfEmpty="True">
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate x:DataType="model:GroupInfoList">
-                            <TextBlock Text="{x:Bind Key}" />
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>
-    </Grid>
-</Page>
+                            <winui:VisualStateManager.VisualStateGroups>
+                                <winui:VisualStateGroup x:Name="CommonStates">
+                                    <winui:VisualState x:Name="Normal" />
+
+                                    <winui:VisualState x:Name="Disabled">
+
+                                        <winui:Storyboard>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="EllipsisIcon" Storyboard.TargetProperty="Foreground">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CommandBarEllipsisIconForegroundDisabled}" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+
+                                </winui:VisualStateGroup>
+                                <winui:VisualStateGroup x:Name="DisplayModeStates">
+
+                                    <winui:VisualStateGroup.Transitions>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="CompactClosed"
+                                                                To="CompactOpenUp">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentCompactYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeCompactVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="CompactOpenUp"
+                                                                To="CompactClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentCompactYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeCompactVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="CompactClosed"
+                                                                To="CompactOpenDown">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeCompactHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="CompactOpenDown"
+                                                                To="CompactClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{ThemeResource AppBarThemeCompactHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="MinimalClosed"
+                                                                To="MinimalOpenUp">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMinimalYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeMinimalVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="MinimalOpenUp"
+                                                                To="MinimalClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMinimalYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeMinimalVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="MinimalClosed"
+                                                                To="MinimalOpenDown">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="MinimalOpenDown"
+                                                                To="MinimalClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="HiddenClosed"
+                                                                To="HiddenOpenUp">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHiddenYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeHiddenVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="HiddenOpenUp"
+                                                                To="HiddenClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHiddenYTranslation}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootClipTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeHiddenVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.467"
+                                                                From="HiddenClosed"
+                                                                To="HiddenOpenDown">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.1,0.9 0.2,1.0"
+                                                                                KeyTime="0:0:0.467"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                        <winui:VisualTransition GeneratedDuration="0:0:0.167"
+                                                                From="HiddenOpenDown"
+                                                                To="HiddenClosed">
+
+                                            <winui:Storyboard>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                    <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                                </winui:ObjectAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="0" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                                <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentTransform" Storyboard.TargetProperty="Y">
+                                                    <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                                    <winui:SplineDoubleKeyFrame KeySpline="0.2,0 0,1"
+                                                                                KeyTime="0:0:0.167"
+                                                                                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.NegativeOverflowContentHeight}" />
+                                                </winui:DoubleAnimationUsingKeyFrames>
+                                            </winui:Storyboard>
+                                        </winui:VisualTransition>
+                                    </winui:VisualStateGroup.Transitions>
+                                    <winui:VisualState x:Name="CompactClosed" />
+                                    <winui:VisualState x:Name="CompactOpenUp">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CompactVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentCompactYTranslation}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="CompactOpenDown">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="MinimalClosed">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="IsEnabled">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="IsEnabled">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="MinimalOpenUp">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.MinimalVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMinimalYTranslation}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="MinimalOpenDown">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Padding">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="14,11,14,0" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="MinHeight">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{ThemeResource AppBarThemeMinimalHeight}" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="HiddenClosed">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="IsTabStop">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentControl" Storyboard.TargetProperty="IsEnabled">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="IsEnabled">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="HiddenOpenUp">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.HiddenVerticalDelta}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHiddenYTranslation}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootMarginOffsetTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="HiddenOpenDown">
+
+                                        <winui:Storyboard>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClipGeometryTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="VerticalAlignment">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Stretch" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighContrastBorder" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Opacity">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                            <winui:DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRootTransform" Storyboard.TargetProperty="Y">
+                                                <winui:DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                            </winui:DoubleAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+
+                                </winui:VisualStateGroup>
+                                <winui:VisualStateGroup x:Name="AvailableCommandsStates">
+                                    <winui:VisualState x:Name="BothCommands" />
+                                    <winui:VisualState x:Name="PrimaryCommandsOnly">
+
+                                        <winui:Storyboard>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverflowContentRoot" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+                                    <winui:VisualState x:Name="SecondaryCommandsOnly">
+
+                                        <winui:Storyboard>
+                                            <winui:ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryItemsControl" Storyboard.TargetProperty="Visibility">
+                                                <winui:DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
+                                            </winui:ObjectAnimationUsingKeyFrames>
+                                        </winui:Storyboard>
+                                    </winui:VisualState>
+
+                                </winui:VisualStateGroup>
+                                <winui:VisualStateGroup x:Name="DynamicOverflowStates">
+                                    <winui:VisualState x:Name="DynamicOverflowDisabled" />
+                                    <winui:VisualState x:Name="DynamicOverflowEnabled">
+                                        <winui:VisualState.Setters>
+                                            <winui:Setter Target="ContentControlColumnDefinition.Width" Value="Auto" />
+                                            <winui:Setter Target="PrimaryItemsControlColumnDefinition.Width" Value="*" />
+                                        </winui:VisualState.Setters>
+                                    </winui:VisualState>
+
+                                </winui:VisualStateGroup>
+
+                            </winui:VisualStateManager.VisualStateGroups>
+
+                            <winui:Grid x:Name="ContentRoot"
+                                        Height="{TemplateBinding Height}"
+                                        MinHeight="{ThemeResource AppBarThemeCompactHeight}"
+                                        Margin="{TemplateBinding Padding}"
+                                        XYFocusKeyboardNavigation="Enabled">
+
+                                <winui:Grid.ColumnDefinitions>
+                                    <winui:ColumnDefinition Width="*" />
+                                    <winui:ColumnDefinition Width="Auto" />
+                                </winui:Grid.ColumnDefinitions>
+                                <winui:Grid.RenderTransform>
+                                    <winui:TranslateTransform x:Name="ContentTransform" />
+                                </winui:Grid.RenderTransform>
+
+                                <winui:Rectangle Grid.ColumnSpan="2" Fill="{TemplateBinding Background}" />
+
+                                <winui:Grid>
+                                    <winui:Grid.ColumnDefinitions>
+                                        <winui:ColumnDefinition x:Name="ContentControlColumnDefinition" Width="*" />
+                                        <winui:ColumnDefinition x:Name="PrimaryItemsControlColumnDefinition" Width="Auto" />
+                                    </winui:Grid.ColumnDefinitions>
+                                    <!--
+                                        Use a ContentControl rather than a ContentPresenter so that IsEnabled can be set to false
+                                        in the Minimal/HiddenClosed states to remove it from being a tab-stop candidate.
+                                    -->
+                                    <winui:ContentControl x:Name="ContentControl"
+                                                          Grid.ColumnSpan="2"
+                                                          MinHeight="{ThemeResource AppBarThemeCompactHeight}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          IsTabStop="False" />
+                                    <winui:ItemsControl x:Name="PrimaryItemsControl"
+                                                        Grid.Column="1"
+                                                        MinHeight="{ThemeResource AppBarThemeCompactHeight}"
+                                                        HorizontalAlignment="Right"
+                                                        IsTabStop="False">
+                                        <winui:ItemsControl.ItemsPanel>
+                                            <winui:ItemsPanelTemplate>
+                                                <winui:StackPanel Orientation="Horizontal" />
+                                            </winui:ItemsPanelTemplate>
+                                        </winui:ItemsControl.ItemsPanel>
+                                    </winui:ItemsControl>
+                                </winui:Grid>
+                                <winui:Button x:Name="MoreButton"
+                                              Grid.Column="1"
+                                              MinHeight="{ThemeResource AppBarThemeCompactHeight}"
+                                              Padding="{ThemeResource CommandBarMoreButtonMargin}"
+                                              VerticalAlignment="Top"
+                                              Control.IsTemplateKeyTipTarget="True"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              IsAccessKeyScope="True"
+                                              Style="{StaticResource EllipsisButtonRevealStyle}"
+                                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.EffectiveOverflowButtonVisibility}">
+                                    <winui:FontIcon x:Name="EllipsisIcon"
+                                                    Height="{ThemeResource AppBarExpandButtonCircleDiameter}"
+                                                    VerticalAlignment="Center"
+                                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                    FontSize="20"
+                                                    Glyph="&#xE10C;" />
+                                </winui:Button>
+                                <winui:Rectangle x:Name="HighContrastBorder"
+                                                 Grid.ColumnSpan="2"
+                                                 VerticalAlignment="Stretch"
+                                                 x:DeferLoadStrategy="Lazy"
+                                                 Stroke="{ThemeResource CommandBarHighContrastBorder}"
+                                                 StrokeThickness="1"
+                                                 Visibility="Collapsed" />
+                            </winui:Grid>
+                            <winui:Popup x:Name="OverflowPopup">
+                                <winui:Popup.RenderTransform>
+                                    <winui:TransformGroup>
+                                        <winui:TranslateTransform x:Name="OverflowContentRootMarginOffsetTransform" />
+                                        <winui:TranslateTransform x:Name="OverflowContentRootTransform" X="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentHorizontalOffset}" />
+                                    </winui:TransformGroup>
+                                </winui:Popup.RenderTransform>
+                                <winui:Grid x:Name="OverflowContentRoot"
+                                            MinWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMinWidth}"
+                                            MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMaxWidth}"
+                                            MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentMaxHeight}"
+                                            Opacity="0">
+
+                                    <winui:Grid.RowDefinitions>
+                                        <winui:RowDefinition />
+                                        <winui:RowDefinition Height="Auto" />
+                                    </winui:Grid.RowDefinitions>
+                                    <winui:Grid.Clip>
+                                        <winui:RectangleGeometry Rect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.OverflowContentClipRect}">
+                                            <winui:RectangleGeometry.Transform>
+                                                <winui:TransformGroup>
+                                                    <winui:TranslateTransform x:Name="OverflowContentRootClipTransform" />
+                                                </winui:TransformGroup>
+                                            </winui:RectangleGeometry.Transform>
+                                        </winui:RectangleGeometry>
+                                    </winui:Grid.Clip>
+                                    <winui:CommandBarOverflowPresenter x:Name="SecondaryItemsControl"
+                                                                       IsTabStop="False"
+                                                                       Style="{TemplateBinding CommandBarOverflowPresenterStyle}">
+                                        <winui:CommandBarOverflowPresenter.RenderTransform>
+                                            <winui:TranslateTransform x:Name="OverflowContentTransform" />
+                                        </winui:CommandBarOverflowPresenter.RenderTransform>
+                                        <winui:CommandBarOverflowPresenter.ItemContainerStyle>
+                                            <winui:Style TargetType="FrameworkElement">
+                                                <winui:Setter Property="HorizontalAlignment" Value="Stretch" />
+                                                <winui:Setter Property="Width" Value="NaN" />
+                                            </winui:Style>
+                                        </winui:CommandBarOverflowPresenter.ItemContainerStyle>
+                                    </winui:CommandBarOverflowPresenter>
+                                    <!--
+                                        In order to give us extra space in the windowed popup to translate things down,
+                                        we add a rectangle to make the HWND taller than it otherwise would be.
+                                    -->
+                                    <winui:Rectangle x:Name="WindowedPopupPadding"
+                                                     Grid.Row="1"
+                                                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CommandBarTemplateSettings.ContentHeight}" />
+                                </winui:Grid>
+                            </winui:Popup>
+                        </winui:Grid>
+                    </winui:ControlTemplate>
+                </winui:Setter.Value>
+            </winui:Setter>
+        </winui:Style>
+    </winui:Page.Resources>
+
+    <winui:Page.BottomAppBar>
+        <winui:CommandBar x:Name="CommandBar"
+                          Height="72"
+                          Style="{StaticResource CommandBarRevealStyle}"
+                          Visibility="Collapsed">
+            <animations:Implicit.ShowAnimations>
+                <animations:TranslationAnimation From="0,72,0"
+                                                 To="0,0,0"
+                                                 Duration="0:0:0.6" />
+            </animations:Implicit.ShowAnimations>
+            <animations:Implicit.HideAnimations>
+                <animations:TranslationAnimation From="0,0,0"
+                                                 To="0,72,0"
+                                                 Duration="0:0:0.4" />
+            </animations:Implicit.HideAnimations>
+
+            <winui:CommandBar.Content>
+                <winui:Border Margin="0,0,54,0">
+                    <winui:Button x:Name="Compare"
+                                  Click="OnCompareClick"
+                                  Content="COMPARE" />
+                </winui:Border>
+            </winui:CommandBar.Content>
+        </winui:CommandBar>
+    </winui:Page.BottomAppBar>
+
+    <winui:Grid Padding="103,84,0,0">
+        <winui:GridView x:Name="MainGridView"
+                        IsItemClickEnabled="True"
+                        ItemClick="OnMainGridViewItemClick"
+                        ItemsSource="{x:Bind PlacesSource.View}"
+                        SelectionMode="None">
+            <winui:GridView.ItemTemplate>
+                <winui:DataTemplate x:DataType="model:Place">
+                    <winui:Grid Width="256" Height="172">
+                        <winui:Image Source="{x:Bind ImageUri}" Stretch="UniformToFill" />
+                        <winui:ToggleButton Margin="12"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
+                                            Style="{StaticResource Style-ToggleButton-Icon-Circle-PlusMinus}" />
+                    </winui:Grid>
+                </winui:DataTemplate>
+            </winui:GridView.ItemTemplate>
+
+            <winui:GridView.GroupStyle>
+                <winui:GroupStyle HidesIfEmpty="True">
+                    <winui:GroupStyle.HeaderTemplate>
+                        <winui:DataTemplate x:DataType="model:GroupInfoList">
+                            <winui:TextBlock Text="{x:Bind Key}" />
+                        </winui:DataTemplate>
+                    </winui:GroupStyle.HeaderTemplate>
+                </winui:GroupStyle>
+            </winui:GridView.GroupStyle>
+        </winui:GridView>
+
+        <winui:Button Margin="40"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Click="OnOpenWunderbarClick"
+                      Style="{StaticResource Style-Button-Icon-Circle}"
+                      Visibility="Collapsed">
+            <winui:ContentControl Width="15"
+                                  Foreground="#FF373238"
+                                  Style="{StaticResource Style-Icon-search}" />
+        </winui:Button>
+    </winui:Grid>
+</winui:Page>
