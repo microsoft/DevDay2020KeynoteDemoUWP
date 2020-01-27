@@ -7,6 +7,7 @@
             xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
             xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            NavigationCacheMode="Enabled"
             mc:Ignorable="d">
 
     <winui:Page.Resources>
@@ -1030,11 +1031,14 @@
                         IsItemClickEnabled="True"
                         ItemClick="OnMainGridViewItemClick"
                         ItemsSource="{x:Bind PlacesSource.View}"
+                        Loaded="OnMainGridViewLoaded"
                         SelectionMode="None">
             <winui:GridView.ItemTemplate>
                 <winui:DataTemplate x:DataType="model:Place">
                     <winui:Grid Width="256" Height="172">
-                        <winui:Image Source="{x:Bind ImageUri}" Stretch="UniformToFill" />
+                        <winui:Image x:Name="PlaceImage"
+                                     Source="{x:Bind ImageUri}"
+                                     Stretch="UniformToFill" />
                         <winui:ToggleButton Margin="12"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Bottom"

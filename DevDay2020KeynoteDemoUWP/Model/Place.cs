@@ -4,15 +4,15 @@ namespace DevDay2020KeynoteDemoUWP.Model
 {
     public class Place : Base
     {
-        public Place(string placeName, string imageUriString)
+        public Place(string countryName, string imageUriString)
         {
-            PlaceName = placeName;
+            CountryName = countryName;
             ImageUri = imageUriString;
         }
 
         public string PlaceName { get; set; }
         public string PlaceDescription { get; set; }
-        public string CityName { get; set; }
+        public string CountryName { get; set; }
         public PlaceType PlaceType { get; set; }
         public string ImageUri { get; set; }
         public string ImageAuthor { get; set; }

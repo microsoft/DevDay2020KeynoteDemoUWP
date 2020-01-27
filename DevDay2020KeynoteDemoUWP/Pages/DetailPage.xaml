@@ -10,13 +10,14 @@
     <winui:Grid>
         <winui:TwoPaneView Pane1Length="*" Pane2Length="*">
             <winui:TwoPaneView.Pane1>
-                <winui:Grid>
+                <winui:Grid x:Name="Pane1Panel">
                     <winui:Grid.RowDefinitions>
                         <winui:RowDefinition Height="Auto" />
                         <winui:RowDefinition />
                     </winui:Grid.RowDefinitions>
 
-                    <winui:StackPanel Margin="56,40,0,40"
+                    <winui:StackPanel x:Name="Header"
+                                      Margin="56,40,0,40"
                                       Orientation="Horizontal"
                                       Spacing="16">
                         <winui:Button x:Name="Back"
@@ -30,18 +31,21 @@
                                          FontFamily="{StaticResource MontserratSemiBold}"
                                          FontSize="18"
                                          Opacity="0.8"
-                                         Text="Japan"
+                                         Text="{x:Bind SelectedPlace.CountryName}"
                                          TextLineBounds="Tight" />
                     </winui:StackPanel>
 
-                    <winui:Image Grid.Row="1"
+                    <winui:Image x:Name="HeroImage"
+                                 Grid.Row="1"
                                  Margin="64,0,64,64"
-                                 Source="/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"
+                                 Source="{x:Bind SelectedPlace.ImageUri}"
                                  Stretch="UniformToFill" />
                 </winui:Grid>
             </winui:TwoPaneView.Pane1>
             <winui:TwoPaneView.Pane2>
-                <winui:StackPanel Margin="103,120,0,0" Spacing="36">
+                <winui:StackPanel x:Name="Pane2Panel"
+                                  Margin="103,120,0,0"
+                                  Spacing="36">
                     <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
                                      Opacity="0.4"
                                      Text="Details" />

@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -13,21 +14,22 @@ namespace DevDay2020KeynoteDemoUWP.Pages
     {
         private readonly ObservableCollection<GroupInfoList> _list = GetGroupedPlaces();
         private readonly ObservableCollection<Place> _selectedPlaces = new ObservableCollection<Place>();
+        private Place _selectedPlace;
 
         public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
         {
             var group1 = new GroupInfoList { Key = "Architecture" };
-            group1.Add(new Place("", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"));
-            group1.Add(new Place("", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"));
-            group1.Add(new Place("", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg"));
+            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"));
+            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"));
+            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg"));
 
             var group2 = new GroupInfoList { Key = "Outdoor" };
-            group2.Add(new Place("", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg"));
-            group2.Add(new Place("", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"));
-            group2.Add(new Place("", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"));
-            group2.Add(new Place("", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"));
-            group2.Add(new Place("", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"));
-            group2.Add(new Place("", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg"));
+            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg"));
+            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"));
+            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"));
+            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"));
+            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"));
+            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg"));
 
             var groups = new ObservableCollection<GroupInfoList>();
             groups.Add(group1);
@@ -99,7 +101,25 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
         private void OnMainGridViewItemClick(object sender, ItemClickEventArgs e)
         {
-            Frame.Navigate(typeof(DetailPage));
+            _selectedPlace = e.ClickedItem as Place;
+            MainGridView.PrepareConnectedAnimation("forwardToDetail", e.ClickedItem, "PlaceImage");
+
+            Frame.Navigate(typeof(DetailPage), _selectedPlace, new SuppressNavigationTransitionInfo());
+        }
+
+        private async void OnMainGridViewLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_selectedPlace != null)
+            {
+                MainGridView.ScrollIntoView(_selectedPlace);
+                MainGridView.UpdateLayout();
+
+                var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("backwardToMain");
+                if (animation != null)
+                {
+                    await MainGridView.TryStartConnectedAnimationAsync(animation, _selectedPlace, "PlaceImage");
+                }
+            }
         }
 
         private async void OnOpenWunderbarClick(object sender, RoutedEventArgs e)
