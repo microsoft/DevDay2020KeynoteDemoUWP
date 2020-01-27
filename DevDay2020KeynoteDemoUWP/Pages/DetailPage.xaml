@@ -8,43 +8,44 @@
             mc:Ignorable="d">
 
     <winui:Grid>
-        <winui:TwoPaneView Pane1Length="*" Pane2Length="*">
+        <winui:Grid.RowDefinitions>
+            <winui:RowDefinition Height="Auto" />
+            <winui:RowDefinition />
+        </winui:Grid.RowDefinitions>
+
+        <winui:StackPanel x:Name="Header"
+                          Margin="56,40,0,40"
+                          Orientation="Horizontal"
+                          Spacing="16">
+            <winui:Button x:Name="Back"
+                          Click="OnBackClick"
+                          Style="{StaticResource Style-Button-Icon-Circle}">
+                <winui:ContentControl Width="18"
+                                      Foreground="Black"
+                                      Style="{StaticResource Style-Icon-Arrow}" />
+            </winui:Button>
+            <winui:TextBlock VerticalAlignment="Center"
+                             FontFamily="{StaticResource MontserratSemiBold}"
+                             FontSize="18"
+                             Opacity="0.8"
+                             Text="{x:Bind SelectedPlace.CountryName}"
+                             TextLineBounds="Tight" />
+        </winui:StackPanel>
+
+        <winui:TwoPaneView Grid.Row="1"
+                           Pane1Length="*"
+                           Pane2Length="*">
             <winui:TwoPaneView.Pane1>
-                <winui:Grid x:Name="Pane1Panel">
-                    <winui:Grid.RowDefinitions>
-                        <winui:RowDefinition Height="Auto" />
-                        <winui:RowDefinition />
-                    </winui:Grid.RowDefinitions>
-
-                    <winui:StackPanel x:Name="Header"
-                                      Margin="56,40,0,40"
-                                      Orientation="Horizontal"
-                                      Spacing="16">
-                        <winui:Button x:Name="Back"
-                                      Click="OnBackClick"
-                                      Style="{StaticResource Style-Button-Icon-Circle}">
-                            <winui:ContentControl Width="18"
-                                                  Foreground="Black"
-                                                  Style="{StaticResource Style-Icon-Arrow}" />
-                        </winui:Button>
-                        <winui:TextBlock VerticalAlignment="Center"
-                                         FontFamily="{StaticResource MontserratSemiBold}"
-                                         FontSize="18"
-                                         Opacity="0.8"
-                                         Text="{x:Bind SelectedPlace.CountryName}"
-                                         TextLineBounds="Tight" />
-                    </winui:StackPanel>
-
+                <winui:Border x:Name="Pane1Panel">
                     <winui:Image x:Name="HeroImage"
-                                 Grid.Row="1"
                                  Margin="64,0,64,64"
                                  Source="{x:Bind SelectedPlace.ImageUri}"
                                  Stretch="UniformToFill" />
-                </winui:Grid>
+                </winui:Border>
             </winui:TwoPaneView.Pane1>
             <winui:TwoPaneView.Pane2>
                 <winui:StackPanel x:Name="Pane2Panel"
-                                  Margin="103,120,0,0"
+                                  Margin="103,0,0,0"
                                   Spacing="36">
                     <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
                                      Opacity="0.4"
