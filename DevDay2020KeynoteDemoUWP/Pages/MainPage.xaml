@@ -4,7 +4,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -36,10 +35,12 @@
 
             <winui:NavigationView.PaneCustomContent>
                 <Border Margin="0,0,98,0" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource Style-Button-Icon-Circle}">
+                    <Button Width="52"
+                            Height="52"
+                            Style="{StaticResource Style-Button-Icon-Circle}">
                         <ContentControl Width="15"
                                         Foreground="#FF373238"
-                                        Style="{StaticResource Style-Icon-search}" />
+                                        Style="{StaticResource Style-Icon-Search}" />
                     </Button>
                 </Border>
             </winui:NavigationView.PaneCustomContent>

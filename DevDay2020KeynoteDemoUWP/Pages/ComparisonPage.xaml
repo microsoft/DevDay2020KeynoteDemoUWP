@@ -4,323 +4,394 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            d:DesignHeight="1440"
+            d:DesignWidth="960"
             mc:Ignorable="d">
 
     <winui:Grid>
-        <winui:Grid.RowDefinitions>
-            <winui:RowDefinition Height="Auto" />
-            <winui:RowDefinition />
-        </winui:Grid.RowDefinitions>
-        <winui:Grid.ColumnDefinitions>
-            <winui:ColumnDefinition />
-            <winui:ColumnDefinition />
-        </winui:Grid.ColumnDefinitions>
+        <winui:VisualStateManager.VisualStateGroups>
+            <winui:VisualStateGroup>
+                <winui:VisualState>
+                    <winui:VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window width is >=960 effective pixels.  -->
+                        <winui:AdaptiveTrigger MinWindowWidth="960" />
+                    </winui:VisualState.StateTriggers>
 
-        <winui:StackPanel Margin="56,40,0,64"
-                          Orientation="Horizontal"
-                          Spacing="16">
-            <winui:Button x:Name="Back"
-                          Click="OnBackClick"
-                          Style="{StaticResource Style-Button-Icon-Circle}">
-                <winui:ContentControl Width="18"
-                                      Foreground="Black"
-                                      Style="{StaticResource Style-Icon-Arrow}" />
-            </winui:Button>
-            <winui:TextBlock VerticalAlignment="Center"
-                             FontFamily="{StaticResource MontserratMedium}"
-                             FontSize="24"
-                             Opacity="0.8"
-                             Text="Pick your destination"
-                             TextLineBounds="Tight" />
-        </winui:StackPanel>
+                    <winui:VisualState.Setters>
+                        <winui:Setter Target="MainScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+                        <winui:Setter Target="TwoPaneView.Pane1Length" Value="*" />
+                        <winui:Setter Target="TwoPaneView.Pane2Length" Value="*" />
+                        <winui:Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
+                        <winui:Setter Target="ImageGrid1.Visibility" Value="Collapsed" />
+                        <winui:Setter Target="ImageGrid2.Visibility" Value="Collapsed" />
+                    </winui:VisualState.Setters>
+                </winui:VisualState>
 
-        <winui:Grid x:Name="RightBg"
-                    Grid.RowSpan="4"
-                    Grid.Column="1"
-                    Margin="0,-72,0,0"
-                    Background="#FF121111" />
+                <winui:VisualState>
+                    <winui:VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window height is >=1440 and window width is >=960 effective pixels.  -->
+                        <winui:AdaptiveTrigger MinWindowHeight="1384" MinWindowWidth="960" />
+                    </winui:VisualState.StateTriggers>
 
-        <winui:Grid x:Name="LeftGrid" Grid.Row="1">
-            <winui:Grid.RowDefinitions>
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition />
-            </winui:Grid.RowDefinitions>
+                    <winui:VisualState.Setters>
+                        <winui:Setter Target="MainScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+                        <winui:Setter Target="TwoPaneView.Pane1Length" Value="*" />
+                        <winui:Setter Target="TwoPaneView.Pane2Length" Value="*" />
+                        <winui:Setter Target="Pane2Panel.Padding" Value="0,200,0,0" />
+                        <winui:Setter Target="CountryName1.Margin" Value="0,0,0,24" />
+                        <winui:Setter Target="CountryName2.Margin" Value="0,0,0,24" />
+                    </winui:VisualState.Setters>
+                </winui:VisualState>
 
-            <winui:TextBlock HorizontalAlignment="Center"
-                             FontFamily="{StaticResource MontserratSemiBold}"
-                             FontSize="18"
-                             Text="{x:Bind Place1.CountryName}" />
+                <winui:VisualState>
+                    <winui:VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window width is >=1440 effective pixels.  -->
+                        <winui:AdaptiveTrigger MinWindowWidth="1440" />
+                    </winui:VisualState.StateTriggers>
 
-            <winui:Grid Margin="0,48,0,16" winui:Grid.Row="1">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock MaxWidth="220"
-                                 Margin="0,8,51,0"
-                                 HorizontalAlignment="Right"
-                                 LineHeight="24"
-                                 Opacity="0.6"
-                                 Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
-                                 TextAlignment="Right"
-                                 TextWrapping="Wrap" />
-                <winui:Image x:Name="Place1Image"
-                             Grid.Column="1"
-                             Width="206"
-                             Height="144"
-                             Margin="51,0,0,0"
-                             HorizontalAlignment="Left"
-                             Source="{x:Bind Place1.ImageUri}"
-                             Stretch="UniformToFill" />
-            </winui:Grid>
+                    <winui:VisualState.Setters>
+                        <winui:Setter Target="MainScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+                        <winui:Setter Target="TwoPaneView.Pane1Length" Value="*" />
+                        <winui:Setter Target="TwoPaneView.Pane2Length" Value="*" />
+                        <winui:Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
+                        <winui:Setter Target="ImageGrid1.Visibility" Value="Visible" />
+                        <winui:Setter Target="ImageGrid2.Visibility" Value="Visible" />
+                        <winui:Setter Target="CountryName1.Margin" Value="0" />
+                        <winui:Setter Target="CountryName2.Margin" Value="0" />
+                    </winui:VisualState.Setters>
+                </winui:VisualState>
+            </winui:VisualStateGroup>
+        </winui:VisualStateManager.VisualStateGroups>
 
-            <winui:Grid Height="72" winui:Grid.Row="2">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource MontserratMedium}"
-                                 Opacity="0.6"
-                                 Text="Distance from home" />
-                <winui:TextBlock Grid.Column="1"
-                                 Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Text="4336 km" />
-                <winui:Ellipse Grid.Column="1"
-                               Width="6"
-                               Height="6"
-                               Margin="32,0,0,0"
-                               HorizontalAlignment="Left"
-                               Fill="#FF3A8C46" />
-            </winui:Grid>
+        <winui:ScrollViewer x:Name="MainScrollViewer"
+                            Grid.Row="1"
+                            Margin="0,-144,0,0">
+            <winui:TwoPaneView x:Name="TwoPaneView"
+                               MinWideModeWidth="959"
+                               Pane2Length="Auto">
+                <winui:TwoPaneView.Pane1>
+                    <winui:Grid x:Name="Pane1Panel" Margin="0,144,0,0">
+                        <winui:Grid.RowDefinitions>
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition />
+                        </winui:Grid.RowDefinitions>
 
-            <winui:Grid Height="72" winui:Grid.Row="3">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource MontserratMedium}"
-                                 Opacity="0.6"
-                                 Text="Estimated Cost" />
-                <winui:TextBlock Grid.Column="1"
-                                 Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Text="3,700 USD" />
-            </winui:Grid>
+                        <winui:StackPanel Margin="56,40,0,64"
+                                          Orientation="Horizontal"
+                                          Spacing="16">
+                            <winui:Button x:Name="Back"
+                                          Width="52"
+                                          Height="52"
+                                          Click="OnBackClick"
+                                          Style="{StaticResource Style-Button-Icon-Circle}">
+                                <winui:ContentControl Width="18"
+                                                      Foreground="Black"
+                                                      Style="{StaticResource Style-Icon-Arrow}" />
+                            </winui:Button>
+                            <winui:TextBlock VerticalAlignment="Center"
+                                             FontFamily="{StaticResource MontserratMedium}"
+                                             FontSize="24"
+                                             Opacity="0.8"
+                                             Text="Pick your destination"
+                                             TextLineBounds="Tight" />
+                        </winui:StackPanel>
 
-            <winui:Grid Height="72" winui:Grid.Row="4">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource MontserratMedium}"
-                                 Opacity="0.6"
-                                 Text="Temperature" />
-                <winui:TextBlock Grid.Column="1"
-                                 Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Text="45 - 70 F°" />
-            </winui:Grid>
+                        <winui:TextBlock x:Name="CountryName1"
+                                         Grid.Row="1"
+                                         Margin="0,0,0,24"
+                                         HorizontalAlignment="Center"
+                                         FontFamily="{StaticResource MontserratSemiBold}"
+                                         FontSize="18"
+                                         Text="{x:Bind Place1.CountryName}" />
 
-            <winui:Grid Height="72" winui:Grid.Row="5">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource MontserratMedium}"
-                                 Opacity="0.6"
-                                 Text="Estimated no. of visitors" />
-                <winui:TextBlock Grid.Column="1"
-                                 Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Text="300,000" />
-            </winui:Grid>
+                        <winui:Grid x:Name="ImageGrid1"
+                                    Margin="40,48,40,16"
+                                    winui:Grid.Row="2"
+                                    Visibility="Collapsed">
+                            <winui:Grid.RowDefinitions>
+                                <winui:RowDefinition />
+                                <winui:RowDefinition />
+                            </winui:Grid.RowDefinitions>
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock MaxWidth="220"
+                                             Margin="0,8,51,0"
+                                             HorizontalAlignment="Right"
+                                             LineHeight="24"
+                                             Opacity="0.6"
+                                             Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor mattis sit sed dolor diam laoreet tristique."
+                                             TextAlignment="Right"
+                                             TextWrapping="Wrap" />
+                            <winui:Image x:Name="Place1Image"
+                                         Grid.Column="1"
+                                         Width="206"
+                                         Height="144"
+                                         Margin="51,0,0,0"
+                                         HorizontalAlignment="Left"
+                                         Source="{x:Bind Place1.ImageUri}"
+                                         Stretch="UniformToFill" />
+                        </winui:Grid>
 
-            <winui:Button Margin="0,0,0,40"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Bottom"
-                          winui:Grid.Row="6"
-                          Background="#FFF8F8F8"
-                          BorderBrush="#FF121111"
-                          Content="Select"
-                          Foreground="#FF121111" />
-        </winui:Grid>
-        <winui:Grid x:Name="RightGrid"
-                    Grid.Column="1"
-                    winui:Grid.Row="1">
-            <winui:Grid.RowDefinitions>
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition Height="Auto" />
-                <winui:RowDefinition />
-            </winui:Grid.RowDefinitions>
+                        <winui:Grid Height="72" winui:Grid.Row="3">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource MontserratMedium}"
+                                             Opacity="0.6"
+                                             Text="Distance from home" />
+                            <winui:TextBlock Grid.Column="1"
+                                             Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Text="4336 km" />
+                            <winui:Ellipse Grid.Column="1"
+                                           Width="6"
+                                           Height="6"
+                                           Margin="32,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           Fill="#FF3A8C46" />
+                        </winui:Grid>
 
-            <winui:TextBlock HorizontalAlignment="Center"
-                             FontFamily="{winui:StaticResource MontserratSemiBold}"
-                             FontSize="18"
-                             Foreground="#FFF8F8F8"
-                             Text="{x:Bind Place2.CountryName}" />
+                        <winui:Grid Height="72" winui:Grid.Row="4">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource MontserratMedium}"
+                                             Opacity="0.6"
+                                             Text="Estimated Cost" />
+                            <winui:TextBlock Grid.Column="1"
+                                             Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Text="3,700 USD" />
+                        </winui:Grid>
 
-            <winui:Grid Margin="0,48,0,16" winui:Grid.Row="1">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock MaxWidth="220"
-                                 Margin="0,8,51,0"
-                                 HorizontalAlignment="Right"
-                                 Foreground="#FFF8F8F8"
-                                 LineHeight="24"
-                                 Opacity="0.6"
-                                 Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
-                                 TextAlignment="Right"
-                                 TextWrapping="Wrap" />
-                <winui:Image x:Name="Place2Image"
-                             Width="206"
-                             Height="144"
-                             Margin="51,0,0,0"
-                             HorizontalAlignment="Left"
-                             winui:Grid.Column="1"
-                             Source="{x:Bind Place2.ImageUri}"
-                             Stretch="UniformToFill" />
-            </winui:Grid>
+                        <winui:Grid Height="72" winui:Grid.Row="5">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource MontserratMedium}"
+                                             Opacity="0.6"
+                                             Text="Temperature" />
+                            <winui:TextBlock Grid.Column="1"
+                                             Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Text="45 - 70 F°" />
+                        </winui:Grid>
 
-            <winui:Grid Height="72" winui:Grid.Row="2">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{winui:StaticResource MontserratMedium}"
-                                 Foreground="#FFF8F8F8"
-                                 Opacity="0.6"
-                                 Text="Distance from home" />
-                <winui:TextBlock Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 winui:Grid.Column="1"
-                                 FontFamily="{winui:StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Foreground="#FFF8F8F8"
-                                 Text="7684 km" />
-            </winui:Grid>
+                        <winui:Grid Height="72" winui:Grid.Row="6">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource MontserratMedium}"
+                                             Opacity="0.6"
+                                             Text="Estimated no. of visitors" />
+                            <winui:TextBlock Grid.Column="1"
+                                             Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Text="300,000" />
+                        </winui:Grid>
 
-            <winui:Grid Height="72" winui:Grid.Row="3">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{winui:StaticResource MontserratMedium}"
-                                 Foreground="#FFF8F8F8"
-                                 Opacity="0.6"
-                                 Text="Estimated Cost" />
-                <winui:TextBlock Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 winui:Grid.Column="1"
-                                 FontFamily="{winui:StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Foreground="#FFF8F8F8"
-                                 Text="2,900 USD" />
-                <winui:Ellipse Grid.Column="1"
-                               Width="6"
-                               Height="6"
-                               Margin="32,0,0,0"
-                               HorizontalAlignment="Left"
-                               Fill="#FF3A8C46" />
-            </winui:Grid>
+                        <winui:Button Margin="0,0,0,40"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Bottom"
+                                      winui:Grid.Row="7"
+                                      Background="#FFF8F8F8"
+                                      BorderBrush="#FF121111"
+                                      Content="Select"
+                                      Foreground="#FF121111" />
+                    </winui:Grid>
+                </winui:TwoPaneView.Pane1>
 
-            <winui:Grid Height="72" winui:Grid.Row="4">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{winui:StaticResource MontserratMedium}"
-                                 Foreground="#FFF8F8F8"
-                                 Opacity="0.6"
-                                 Text="Temperature" />
-                <winui:TextBlock Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 winui:Grid.Column="1"
-                                 FontFamily="{winui:StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Foreground="#FFF8F8F8"
-                                 Text="33 - 48 F°" />
-                <winui:Ellipse Grid.Column="1"
-                               Width="6"
-                               Height="6"
-                               Margin="32,0,0,0"
-                               HorizontalAlignment="Left"
-                               Fill="#FF3A8C46" />
-            </winui:Grid>
+                <winui:TwoPaneView.Pane2>
+                    <winui:Grid x:Name="Pane2Panel"
+                                Padding="0,144,0,0"
+                                Background="#FF121111">
+                        <winui:Grid.RowDefinitions>
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition Height="Auto" />
+                            <winui:RowDefinition />
+                        </winui:Grid.RowDefinitions>
 
-            <winui:Grid Height="72" winui:Grid.Row="5">
-                <winui:Grid.ColumnDefinitions>
-                    <winui:ColumnDefinition />
-                    <winui:ColumnDefinition />
-                </winui:Grid.ColumnDefinitions>
-                <winui:TextBlock Margin="0,0,51,0"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 FontFamily="{winui:StaticResource MontserratMedium}"
-                                 Foreground="#FFF8F8F8"
-                                 Opacity="0.6"
-                                 Text="Estimated no. of visitors" />
-                <winui:TextBlock Margin="51,0,0,0"
-                                 VerticalAlignment="Center"
-                                 winui:Grid.Column="1"
-                                 FontFamily="{winui:StaticResource RobotoMonoBold}"
-                                 FontSize="18"
-                                 Foreground="#FFF8F8F8"
-                                 Text="250,000" />
-                <winui:Ellipse Grid.Column="1"
-                               Width="6"
-                               Height="6"
-                               Margin="32,0,0,0"
-                               HorizontalAlignment="Left"
-                               Fill="#FF3A8C46" />
-            </winui:Grid>
+                        <winui:TextBlock x:Name="CountryName2"
+                                         Margin="0,0,0,24"
+                                         HorizontalAlignment="Center"
+                                         FontFamily="{winui:StaticResource MontserratSemiBold}"
+                                         FontSize="18"
+                                         Foreground="#FFF8F8F8"
+                                         Text="{x:Bind Place2.CountryName}" />
 
-            <winui:Button Margin="0,0,0,40"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Bottom"
-                          winui:Grid.Row="6"
-                          Content="Select" />
-        </winui:Grid>
+                        <winui:Grid x:Name="ImageGrid2"
+                                    Margin="40,48,40,16"
+                                    winui:Grid.Row="1"
+                                    Visibility="Collapsed">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock MaxWidth="220"
+                                             Margin="0,8,51,0"
+                                             HorizontalAlignment="Right"
+                                             Foreground="#FFF8F8F8"
+                                             LineHeight="24"
+                                             Opacity="0.6"
+                                             Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
+                                             TextAlignment="Right"
+                                             TextWrapping="Wrap" />
+                            <winui:Image x:Name="Place2Image"
+                                         Width="206"
+                                         Height="144"
+                                         Margin="51,0,0,0"
+                                         HorizontalAlignment="Left"
+                                         winui:Grid.Column="1"
+                                         Source="{x:Bind Place2.ImageUri}"
+                                         Stretch="UniformToFill" />
+                        </winui:Grid>
+
+                        <winui:Grid Height="72" winui:Grid.Row="2">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{winui:StaticResource MontserratMedium}"
+                                             Foreground="#FFF8F8F8"
+                                             Opacity="0.6"
+                                             Text="Distance from home" />
+                            <winui:TextBlock Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             winui:Grid.Column="1"
+                                             FontFamily="{winui:StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Foreground="#FFF8F8F8"
+                                             Text="7684 km" />
+                        </winui:Grid>
+
+                        <winui:Grid Height="72" winui:Grid.Row="3">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{winui:StaticResource MontserratMedium}"
+                                             Foreground="#FFF8F8F8"
+                                             Opacity="0.6"
+                                             Text="Estimated Cost" />
+                            <winui:TextBlock Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             winui:Grid.Column="1"
+                                             FontFamily="{winui:StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Foreground="#FFF8F8F8"
+                                             Text="2,900 USD" />
+                            <winui:Ellipse Grid.Column="1"
+                                           Width="6"
+                                           Height="6"
+                                           Margin="32,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           Fill="#FF3A8C46" />
+                        </winui:Grid>
+
+                        <winui:Grid Height="72" winui:Grid.Row="4">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{winui:StaticResource MontserratMedium}"
+                                             Foreground="#FFF8F8F8"
+                                             Opacity="0.6"
+                                             Text="Temperature" />
+                            <winui:TextBlock Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             winui:Grid.Column="1"
+                                             FontFamily="{winui:StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Foreground="#FFF8F8F8"
+                                             Text="33 - 48 F°" />
+                            <winui:Ellipse Grid.Column="1"
+                                           Width="6"
+                                           Height="6"
+                                           Margin="32,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           Fill="#FF3A8C46" />
+                        </winui:Grid>
+
+                        <winui:Grid Height="72" winui:Grid.Row="5">
+                            <winui:Grid.ColumnDefinitions>
+                                <winui:ColumnDefinition />
+                                <winui:ColumnDefinition />
+                            </winui:Grid.ColumnDefinitions>
+                            <winui:TextBlock Margin="0,0,51,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             FontFamily="{winui:StaticResource MontserratMedium}"
+                                             Foreground="#FFF8F8F8"
+                                             Opacity="0.6"
+                                             Text="Estimated no. of visitors" />
+                            <winui:TextBlock Margin="51,0,0,0"
+                                             VerticalAlignment="Center"
+                                             winui:Grid.Column="1"
+                                             FontFamily="{winui:StaticResource RobotoMonoBold}"
+                                             FontSize="18"
+                                             Foreground="#FFF8F8F8"
+                                             Text="250,000" />
+                            <winui:Ellipse Grid.Column="1"
+                                           Width="6"
+                                           Height="6"
+                                           Margin="32,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           Fill="#FF3A8C46" />
+                        </winui:Grid>
+
+                        <winui:Button Margin="0,0,0,40"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Bottom"
+                                      winui:Grid.Row="6"
+                                      Content="Select" />
+                    </winui:Grid>
+                </winui:TwoPaneView.Pane2>
+            </winui:TwoPaneView>
+        </winui:ScrollViewer>
     </winui:Grid>
 </winui:Page>

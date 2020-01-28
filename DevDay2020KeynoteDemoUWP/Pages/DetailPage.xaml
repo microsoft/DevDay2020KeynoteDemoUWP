@@ -4,7 +4,6 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             mc:Ignorable="d">
 
     <winui:Grid>
@@ -48,6 +47,8 @@
                           Orientation="Horizontal"
                           Spacing="16">
             <winui:Button x:Name="Back"
+                          Width="52"
+                          Height="52"
                           Click="OnBackClick"
                           Style="{StaticResource Style-Button-Icon-Circle}">
                 <winui:ContentControl Width="18"
@@ -75,6 +76,7 @@
                                      Stretch="UniformToFill" />
                     </winui:Grid>
                 </winui:TwoPaneView.Pane1>
+
                 <winui:TwoPaneView.Pane2>
                     <winui:StackPanel x:Name="Pane2Panel"
                                       Margin="103,24,103,40"

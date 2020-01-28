@@ -3,15 +3,18 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
+            xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
             xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             NavigationCacheMode="Enabled"
             mc:Ignorable="d">
 
     <winui:Page.Resources>
-        <winui:CollectionViewSource x:Name="PlacesSource" IsSourceGrouped="True" />
+        <winui:CollectionViewSource x:Name="PlacesSource"
+                                    IsSourceGrouped="True"
+                                    Source="{x:Bind _places}" />
 
         <x:Double x:Key="ListViewItemDisabledThemeOpacity">0.25</x:Double>
         <winui:Style TargetType="GridViewItem">
@@ -1074,15 +1077,52 @@
             </winui:GridView.GroupStyle>
         </winui:GridView>
 
-        <winui:Button Margin="40"
-                      HorizontalAlignment="Right"
-                      VerticalAlignment="Bottom"
-                      Click="OnOpenWunderbarClick"
-                      Style="{StaticResource Style-Button-Icon-Circle}"
-                      Visibility="Collapsed">
-            <winui:ContentControl Width="15"
-                                  Foreground="#FF373238"
-                                  Style="{StaticResource Style-Icon-search}" />
-        </winui:Button>
+        <winui:Grid x:Name="Wunderbar"
+                    Margin="0,0,64,40"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0">
+            <animations:Implicit.ShowAnimations>
+                <animations:TranslationAnimation From="0,32,0"
+                                                 To="0,0,0"
+                                                 Duration="0:0:0.6" />
+                <animations:ScaleAnimation From="0.6"
+                                           To="1"
+                                           Duration="0:0:0.6" />
+                <animations:OpacityAnimation From="0"
+                                             To="1"
+                                             Duration="0:0:0.6" />
+            </animations:Implicit.ShowAnimations>
+            <animations:Implicit.HideAnimations>
+                <animations:TranslationAnimation From="0,0,0"
+                                                 To="0,32,0"
+                                                 Duration="0:0:0.4" />
+                <animations:ScaleAnimation From="1"
+                                           To="0.6"
+                                           Duration="0:0:0.4" />
+                <animations:OpacityAnimation From="1"
+                                             To="0"
+                                             Duration="0:0:0.4" />
+            </animations:Implicit.HideAnimations>
+
+            <toolkit:DropShadowPanel HorizontalContentAlignment="Stretch"
+                                     VerticalContentAlignment="Stretch"
+                                     BlurRadius="36"
+                                     ShadowOpacity="0.3">
+                <winui:Ellipse Fill="White" />
+            </toolkit:DropShadowPanel>
+
+            <winui:Button Width="64"
+                          Height="64"
+                          Padding="0"
+                          Background="White"
+                          Click="OnWunderbarClick"
+                          Style="{StaticResource Style-Button-Icon-Circle}"
+                          Tag="1">
+                <winui:ContentControl Width="18"
+                                      Foreground="#FF0477BF"
+                                      Style="{StaticResource Style-Icon-Wunderbar}" />
+            </winui:Button>
+        </winui:Grid>
     </winui:Grid>
 </winui:Page>

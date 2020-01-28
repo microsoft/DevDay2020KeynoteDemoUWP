@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DevDay2020KeynoteDemoUWP.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,6 +24,28 @@ namespace DevDay2020KeynoteDemoUWP
     /// </summary>
     sealed partial class App : Application
     {
+        public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
+        {
+            var group1 = new GroupInfoList { Key = "Architecture" };
+            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"));
+            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"));
+            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg"));
+
+            var group2 = new GroupInfoList { Key = "Outdoor" };
+            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg"));
+            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"));
+            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"));
+            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"));
+            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"));
+            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg"));
+
+            var groups = new ObservableCollection<GroupInfoList>();
+            groups.Add(group1);
+            groups.Add(group2);
+
+            return groups;
+        }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

@@ -98,7 +98,7 @@
                 </winui:Setter>
             </winui:Style>
 
-            <winui:Style x:Key="Style-Icon-search"
+            <winui:Style x:Key="Style-Icon-Search"
                          BasedOn="{StaticResource Style-Icon-Base}"
                          TargetType="ContentControl">
                 <winui:Setter Property="Template">
@@ -108,6 +108,27 @@
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Data="M16.4629 16.5L12.8379 12.875M14.7962 8.16667C14.7962 11.8486 11.8115 14.8333 8.12956 14.8333C4.44766 14.8333 1.46289 11.8486 1.46289 8.16667C1.46289 4.48477 4.44766 1.5 8.12956 1.5C11.8115 1.5 14.7962 4.48477 14.7962 8.16667Z"
+                                        Stretch="Uniform"
+                                        Stroke="{TemplateBinding Foreground}"
+                                        StrokeEndLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        StrokeStartLineCap="Round"
+                                        StrokeThickness="2" />
+                        </winui:ControlTemplate>
+                    </winui:Setter.Value>
+                </winui:Setter>
+            </winui:Style>
+
+            <winui:Style x:Key="Style-Icon-Wunderbar"
+                         BasedOn="{StaticResource Style-Icon-Base}"
+                         TargetType="ContentControl">
+                <winui:Setter Property="Template">
+                    <winui:Setter.Value>
+                        <winui:ControlTemplate TargetType="ContentControl">
+                            <winui:Path Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Data="M9 16H3C2.46957 16 1.96086 15.7893 1.58579 15.4142C1.21071 15.0391 1 14.5304 1 14L1 3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1L14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3L16 9M19 13V19M19 19H13M19 19L8 8"
                                         Stretch="Uniform"
                                         Stroke="{TemplateBinding Foreground}"
                                         StrokeEndLineCap="Round"
@@ -134,7 +155,8 @@
                 <winui:Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
                 <winui:Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
                 <winui:Setter Property="FocusVisualMargin" Value="-3" />
-                <winui:Setter Property="CornerRadius" Value="24" />
+                <winui:Setter Property="CornerRadius" Value="40" />
+                <winui:Setter Property="Tag" Value="0.25" />
                 <winui:Setter Property="Template">
                     <winui:Setter.Value>
                         <winui:ControlTemplate TargetType="Button">
@@ -180,7 +202,7 @@
                                 <winui:Border x:Name="BackgroundVisual"
                                               Background="{TemplateBinding Background}"
                                               CornerRadius="{TemplateBinding CornerRadius}"
-                                              Opacity="0.25" />
+                                              Opacity="{TemplateBinding Tag}" />
                                 <winui:Border x:Name="BorderVisual"
                                               BorderBrush="{TemplateBinding BorderBrush}"
                                               BorderThickness="{TemplateBinding BorderThickness}"

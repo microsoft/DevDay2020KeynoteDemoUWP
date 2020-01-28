@@ -7,51 +7,26 @@ using Windows.UI.Xaml;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Animation;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
     public sealed partial class DestinationsPage : Page
     {
-        private readonly ObservableCollection<GroupInfoList> _list = GetGroupedPlaces();
+        private readonly ObservableCollection<GroupInfoList> _places = App.GetGroupedPlaces();
         private readonly ObservableCollection<Place> _placesToCompare = new ObservableCollection<Place>();
         private Place _selectedPlace;
-
-        public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
-        {
-            var group1 = new GroupInfoList { Key = "Architecture" };
-            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"));
-            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"));
-            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg"));
-
-            var group2 = new GroupInfoList { Key = "Outdoor" };
-            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg"));
-            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"));
-            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"));
-            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"));
-            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"));
-            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg"));
-
-            var groups = new ObservableCollection<GroupInfoList>();
-            groups.Add(group1);
-            groups.Add(group2);
-
-            return groups;
-        }
 
         public DestinationsPage()
         {
             InitializeComponent();
-
-            PlacesSource.Source = _list;
 
             ManageGridViewItemSelections();
         }
 
         private void ManageGridViewItemSelections()
         {
-            foreach (var place in _list.SelectMany(p => p))
+            foreach (var place in _places.SelectMany(p => p))
             {
                 place.PropertyChanged += (s, e) =>
                 {
@@ -93,6 +68,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                     }
 
                     MainGridView.IsItemClickEnabled = _placesToCompare.Count == 0;
+                    Wunderbar.Visibility = _placesToCompare.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
                 };
 
             }
@@ -102,10 +78,6 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         {
             var place1 = _placesToCompare[0];
             var place2 = _placesToCompare[1];
-            //var place1Image = MainGridView.ContainerFromItem(place1).FindDescendant<Image>();
-            //var place2Image = MainGridView.ContainerFromItem(place2).FindDescendant<Image>();
-            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Forward", place1Image);
-            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Forward", place2Image);
 
             MainGridView.PrepareConnectedAnimation("place1Forward", place1, "PlaceImage");
             MainGridView.PrepareConnectedAnimation("place2Forward", place2, "PlaceImage");
@@ -155,21 +127,21 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
         }
 
-        private async void OnOpenWunderbarClick(object sender, RoutedEventArgs e)
+        private async void OnWunderbarClick(object sender, RoutedEventArgs e)
         {
-            // 1. Create a new Window
+            // 1. Create a new Window.
             var appWindow = await AppWindow.TryCreateAsync();
 
-            // 2. Create the pageand set the new window's content
+            // 2. Create the pageand set the new window's content..
             ElementCompositionPreview.SetAppWindowContent(appWindow, new WonderbarPage());
 
             // 3. Check if you can leverage the compact overlay APIs
             if (appWindow.Presenter.IsPresentationSupported(AppWindowPresentationKind.CompactOverlay))
             {
-                // 4. Show the window
+                // 4. Show the window.
                 await appWindow.TryShowAsync();
 
-                // 5. If so, change that window to be inside the compact overlay region
+                // 5. If so, change that window to be inside the compact overlay region.
                 appWindow.Presenter.RequestPresentation(AppWindowPresentationKind.CompactOverlay);
             }
         }
