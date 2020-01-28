@@ -140,6 +140,27 @@
                 </winui:Setter>
             </winui:Style>
 
+            <winui:Style x:Key="Style-Icon-Globe"
+                         BasedOn="{StaticResource Style-Icon-Base}"
+                         TargetType="ContentControl">
+                <winui:Setter Property="Template">
+                    <winui:Setter.Value>
+                        <winui:ControlTemplate TargetType="ContentControl">
+                            <winui:Path Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Data="M21.8984 11.5645C21.8984 17.0873 17.4213 21.5645 11.8984 21.5645M21.8984 11.5645C21.8984 6.04161 17.4213 1.56445 11.8984 1.56445M21.8984 11.5645H1.89844M11.8984 21.5645C6.37559 21.5645 1.89844 17.0873 1.89844 11.5645M11.8984 21.5645C14.3997 18.8261 15.8212 15.2724 15.8984 11.5645C15.8212 7.85649 14.3997 4.30281 11.8984 1.56445M11.8984 21.5645C9.39716 18.8261 7.97568 15.2724 7.89844 11.5645C7.97568 7.85649 9.39716 4.30281 11.8984 1.56445M1.89844 11.5645C1.89844 6.04161 6.37559 1.56445 11.8984 1.56445"
+                                        Stretch="Uniform"
+                                        Stroke="{TemplateBinding Foreground}"
+                                        StrokeEndLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        StrokeStartLineCap="Round"
+                                        StrokeThickness="2" />
+                        </winui:ControlTemplate>
+                    </winui:Setter.Value>
+                </winui:Setter>
+            </winui:Style>
+
             <winui:Style x:Key="Style-Button-Icon-Circle" TargetType="Button">
                 <winui:Setter Property="Background" Value="Transparent" />
                 <winui:Setter Property="Foreground" Value="White" />

@@ -34,7 +34,9 @@
             </winui:NavigationView.MenuItems>
 
             <winui:NavigationView.PaneCustomContent>
-                <Border Margin="0,0,98,0" HorizontalAlignment="Right">
+                <StackPanel Margin="0,0,98,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
                     <Button Width="52"
                             Height="52"
                             Style="{StaticResource Style-Button-Icon-Circle}">
@@ -42,7 +44,15 @@
                                         Foreground="#FF373238"
                                         Style="{StaticResource Style-Icon-Search}" />
                     </Button>
-                </Border>
+
+                    <Button Width="52"
+                            Height="52"
+                            Style="{StaticResource Style-Button-Icon-Circle}">
+                        <ContentControl Width="16"
+                                        Foreground="#FF373238"
+                                        Style="{StaticResource Style-Icon-Globe}" />
+                    </Button>
+                </StackPanel>
             </winui:NavigationView.PaneCustomContent>
 
             <Frame x:Name="ContentFrame" />

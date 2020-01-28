@@ -85,7 +85,7 @@
                                          Opacity="0.4"
                                          Text="Details" />
                         <winui:TextBlock MaxWidth="412"
-                                         Margin="0,0,0,24"
+                                         Margin="0,0,0,12"
                                          HorizontalAlignment="Left"
                                          FontFamily="{StaticResource RobotoMonoMedium}"
                                          FontSize="36"
@@ -95,13 +95,20 @@
                                          TextLineBounds="Tight"
                                          TextWrapping="Wrap" />
                         <winui:TextBlock MaxWidth="412"
-                                         Margin="0,0,0,56"
+                                         Margin="0,0,0,40"
                                          HorizontalAlignment="Left"
                                          FontSize="16"
                                          LineHeight="40"
                                          Opacity="0.8"
                                          Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique. Urna facilisis justo enim, nec viverra pellentesque. Aliquam magna leo, dolor ultrices quis metus, massa euismod."
                                          TextWrapping="Wrap" />
+
+                        <winui:Button Margin="0,0,0,80"
+                                      Background="#FFF8F8F8"
+                                      BorderBrush="#FF121111"
+                                      Content="Plan trip"
+                                      Foreground="#FF121111" />
+
                         <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
                                          Opacity="0.4"
                                          Text="Similar places" />
