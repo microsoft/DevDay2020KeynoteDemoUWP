@@ -1,6 +1,7 @@
 ﻿<winui:Application x:Class="DevDay2020KeynoteDemoUWP.App"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
                    xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    RequestedTheme="Light">
 
@@ -16,6 +17,10 @@
             <winui:FontFamily x:Key="RobotoMonoRegular">/Assets/Fonts/RobotoMono-Regular.ttf#Roboto Mono</winui:FontFamily>
 
             <x:Boolean x:Key="UseSystemFocusVisuals">False</x:Boolean>
+
+            <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
+                <animations:OffsetAnimation Duration="0:0:0.3" />
+            </animations:AnimationCollection>
 
             <winui:Style TargetType="TextBlock">
                 <winui:Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />

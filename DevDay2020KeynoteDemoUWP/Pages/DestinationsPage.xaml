@@ -1026,8 +1026,23 @@
         </winui:CommandBar>
     </winui:Page.BottomAppBar>
 
-    <winui:Grid Padding="103,84,0,0">
+    <winui:Grid x:Name="LayoutRoot" Padding="64,48,0,0">
+        <winui:VisualStateManager.VisualStateGroups>
+            <winui:VisualStateGroup>
+                <winui:VisualState>
+                    <winui:VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window width is >720 effective pixels.  -->
+                        <winui:AdaptiveTrigger MinWindowWidth="721" />
+                    </winui:VisualState.StateTriggers>
+
+                    <winui:VisualState.Setters>
+                        <winui:Setter Target="LayoutRoot.Padding" Value="103,84,0,0" />
+                    </winui:VisualState.Setters>
+                </winui:VisualState>
+            </winui:VisualStateGroup>
+        </winui:VisualStateManager.VisualStateGroups>
         <winui:GridView x:Name="MainGridView"
+                        ContainerContentChanging="OnMainGridViewContainerContentChanging"
                         IsItemClickEnabled="True"
                         ItemClick="OnMainGridViewItemClick"
                         ItemsSource="{x:Bind PlacesSource.View}"

@@ -36,12 +36,12 @@
                            Pane1Length="*"
                            Pane2Length="*">
             <winui:TwoPaneView.Pane1>
-                <winui:Border x:Name="Pane1Panel">
+                <winui:Grid x:Name="Pane1Panel">
                     <winui:Image x:Name="HeroImage"
                                  Margin="64,0,64,64"
                                  Source="{x:Bind SelectedPlace.ImageUri}"
                                  Stretch="UniformToFill" />
-                </winui:Border>
+                </winui:Grid>
             </winui:TwoPaneView.Pane1>
             <winui:TwoPaneView.Pane2>
                 <winui:StackPanel x:Name="Pane2Panel"
