@@ -6,6 +6,7 @@
             xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             d:DesignHeight="1440"
             d:DesignWidth="960"
+            NavigationCacheMode="Enabled"
             mc:Ignorable="d">
 
     <winui:Grid>
@@ -222,12 +223,14 @@
                                              Text="300,000" />
                         </winui:Grid>
 
-                        <winui:Button Margin="0,0,0,40"
+                        <winui:Button x:Name="SelectPlace1"
+                                      Margin="0,0,0,40"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Bottom"
                                       winui:Grid.Row="7"
                                       Background="#FFF8F8F8"
                                       BorderBrush="#FF121111"
+                                      Click="OnSelectPlace1Click"
                                       Content="Select"
                                       Foreground="#FF121111" />
                     </winui:Grid>
@@ -384,10 +387,12 @@
                                            Fill="#FF3A8C46" />
                         </winui:Grid>
 
-                        <winui:Button Margin="0,0,0,40"
+                        <winui:Button x:Name="SelectPlace2"
+                                      Margin="0,0,0,40"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Bottom"
                                       winui:Grid.Row="6"
+                                      Click="OnSelectPlace2Click"
                                       Content="Select" />
                     </winui:Grid>
                 </winui:TwoPaneView.Pane2>

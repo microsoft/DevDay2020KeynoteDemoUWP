@@ -88,7 +88,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         private void OnMainGridViewItemClick(object sender, ItemClickEventArgs e)
         {
             _selectedPlace = e.ClickedItem as Place;
-            MainGridView.PrepareConnectedAnimation("forwardToDetail", e.ClickedItem, "PlaceImage");
+            MainGridView.PrepareConnectedAnimation("mainToDetail", e.ClickedItem, "PlaceImage");
 
             //Frame.Navigate(typeof(DetailPage), _selectedPlace, new SuppressNavigationTransitionInfo());
             Frame.Navigate(typeof(DetailPage), _selectedPlace);

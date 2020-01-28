@@ -21,8 +21,15 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             if (e.NavigationMode == NavigationMode.Back)
             {
-                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("backwardToMain", HeroImage);
-                //animation.Configuration = new DirectConnectedAnimationConfiguration();
+                if (e.SourcePageType == typeof(DestinationsPage))
+                {
+                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("backwardToMain", HeroImage);
+                    //animation.Configuration = new DirectConnectedAnimationConfiguration();
+                }
+                else if (e.SourcePageType == typeof(ComparisonPage))
+                {
+                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("detailToComparison", HeroImage);
+                }
             }
         }
 
@@ -32,8 +39,11 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             SelectedPlace = e.Parameter as Place;
 
-            var aniamtion = ConnectedAnimationService.GetForCurrentView().GetAnimation("forwardToDetail");
-            aniamtion?.TryStart(HeroImage, new UIElement[] { Header });
+            var aniamtion1 = ConnectedAnimationService.GetForCurrentView().GetAnimation("mainToDetail");
+            aniamtion1?.TryStart(HeroImage, new UIElement[] { Header });
+
+            var aniamtion2 = ConnectedAnimationService.GetForCurrentView().GetAnimation("comparisonToDetail");
+            aniamtion2?.TryStart(HeroImage, new UIElement[] { Header });
         }
 
         private void OnBackClick(object sender, RoutedEventArgs e)
