@@ -11,7 +11,7 @@ namespace DevDay2020KeynoteDemoUWP
         {
             InitializeComponent();
 
-            ApplicationView.PreferredLaunchViewSize = new Size(1440, 936);
+            ApplicationView.PreferredLaunchViewSize = new Size(720, 936);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             if (MainNav.MenuItems[0] is WinUI.NavigationViewItemBase item)
