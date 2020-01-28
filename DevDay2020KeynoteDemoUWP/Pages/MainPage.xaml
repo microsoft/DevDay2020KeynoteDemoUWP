@@ -48,9 +48,17 @@
                     <Button Width="52"
                             Height="52"
                             Style="{StaticResource Style-Button-Icon-Circle}">
-                        <ContentControl Width="16"
-                                        Foreground="#FF373238"
-                                        Style="{StaticResource Style-Icon-Globe}" />
+                        <Grid>
+                            <ContentControl Width="16"
+                                            Foreground="#FF373238"
+                                            Style="{StaticResource Style-Icon-Globe}" />
+                            <Ellipse Width="6"
+                                     Height="6"
+                                     Margin="0,-5,-5,0"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Top"
+                                     Fill="#FFD90404" />
+                        </Grid>
                     </Button>
                 </StackPanel>
             </winui:NavigationView.PaneCustomContent>

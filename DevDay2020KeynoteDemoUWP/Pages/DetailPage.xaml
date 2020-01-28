@@ -1,136 +1,135 @@
-﻿<winui:Page x:Class="DevDay2020KeynoteDemoUWP.Pages.DetailPage"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            mc:Ignorable="d">
+﻿<Page x:Class="DevDay2020KeynoteDemoUWP.Pages.DetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
-    <winui:Grid>
-        <winui:Grid.RowDefinitions>
-            <winui:RowDefinition Height="Auto" />
-            <winui:RowDefinition />
-        </winui:Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <winui:VisualStateManager.VisualStateGroups>
-            <winui:VisualStateGroup>
-                <winui:VisualState>
-                    <winui:VisualState.StateTriggers>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
                         <!--  VisualState to be triggered when window width is >960 effective pixels.  -->
-                        <winui:AdaptiveTrigger MinWindowWidth="961" />
-                    </winui:VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="961" />
+                    </VisualState.StateTriggers>
 
-                    <winui:VisualState.Setters>
-                        <winui:Setter Target="Pane2Panel.Margin" Value="0,24,64,40" />
-                        <winui:Setter Target="ContentView.Pane1Length" Value="*" />
-                        <winui:Setter Target="ContentView.Pane2Length" Value="*" />
-                    </winui:VisualState.Setters>
-                </winui:VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="Pane2Panel.Margin" Value="0,24,64,40" />
+                        <Setter Target="ContentView.Pane1Length" Value="*" />
+                        <Setter Target="ContentView.Pane2Length" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
 
-                <winui:VisualState>
-                    <winui:VisualState.StateTriggers>
+                <VisualState>
+                    <VisualState.StateTriggers>
                         <!--  VisualState to be triggered when window width is >=1440 effective pixels.  -->
-                        <winui:AdaptiveTrigger MinWindowWidth="1440" />
-                    </winui:VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1440" />
+                    </VisualState.StateTriggers>
 
-                    <winui:VisualState.Setters>
-                        <winui:Setter Target="Pane2Panel.Margin" Value="103,0,103,40" />
-                        <winui:Setter Target="ContentView.Pane1Length" Value="*" />
-                        <winui:Setter Target="ContentView.Pane2Length" Value="*" />
-                    </winui:VisualState.Setters>
-                </winui:VisualState>
-            </winui:VisualStateGroup>
-        </winui:VisualStateManager.VisualStateGroups>
+                    <VisualState.Setters>
+                        <Setter Target="Pane2Panel.Margin" Value="103,0,103,40" />
+                        <Setter Target="ContentView.Pane1Length" Value="*" />
+                        <Setter Target="ContentView.Pane2Length" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
-        <winui:StackPanel x:Name="Header"
-                          Margin="56,40,0,40"
-                          Orientation="Horizontal"
-                          Spacing="16">
-            <winui:Button x:Name="Back"
-                          Width="52"
-                          Height="52"
-                          Click="OnBackClick"
-                          Style="{StaticResource Style-Button-Icon-Circle}">
-                <winui:ContentControl Width="18"
-                                      Foreground="Black"
-                                      Style="{StaticResource Style-Icon-Arrow}" />
-            </winui:Button>
-            <winui:TextBlock VerticalAlignment="Center"
-                             FontFamily="{StaticResource MontserratSemiBold}"
-                             FontSize="18"
-                             Opacity="0.8"
-                             Text="{x:Bind SelectedPlace.CountryName}"
-                             TextLineBounds="Tight" />
-        </winui:StackPanel>
+        <StackPanel x:Name="Header"
+                    Margin="56,40,0,40"
+                    Orientation="Horizontal"
+                    Spacing="16">
+            <Button x:Name="Back"
+                    Width="52"
+                    Height="52"
+                    Click="OnBackClick"
+                    Style="{StaticResource Style-Button-Icon-Circle}">
+                <ContentControl Width="18"
+                                Foreground="Black"
+                                Style="{StaticResource Style-Icon-Arrow}" />
+            </Button>
+            <TextBlock VerticalAlignment="Center"
+                       FontFamily="{StaticResource MontserratSemiBold}"
+                       FontSize="18"
+                       Opacity="0.8"
+                       Text="{x:Bind SelectedPlace.CountryName}"
+                       TextLineBounds="Tight" />
+        </StackPanel>
 
-        <winui:ScrollViewer Grid.Row="1">
-            <winui:TwoPaneView x:Name="ContentView"
-                               MinWideModeWidth="960"
-                               Pane1Length="480"
-                               Pane2Length="*">
-                <winui:TwoPaneView.Pane1>
-                    <winui:Grid x:Name="Pane1Panel">
-                        <winui:Image x:Name="HeroImage"
-                                     Margin="64,0,64,40"
-                                     Source="{x:Bind SelectedPlace.ImageUri}"
-                                     Stretch="UniformToFill" />
-                    </winui:Grid>
-                </winui:TwoPaneView.Pane1>
+        <ScrollViewer Grid.Row="1">
+            <TwoPaneView x:Name="ContentView"
+                         MinWideModeWidth="960"
+                         Pane1Length="480"
+                         Pane2Length="*">
+                <TwoPaneView.Pane1>
+                    <Grid x:Name="Pane1Panel">
+                        <Image x:Name="HeroImage"
+                               Margin="64,0,64,40"
+                               Source="{x:Bind SelectedPlace.ImageUri}"
+                               Stretch="UniformToFill" />
+                    </Grid>
+                </TwoPaneView.Pane1>
 
-                <winui:TwoPaneView.Pane2>
-                    <winui:StackPanel x:Name="Pane2Panel"
-                                      Margin="103,24,103,40"
-                                      Spacing="36">
-                        <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
-                                         Opacity="0.4"
-                                         Text="Details" />
-                        <winui:TextBlock MaxWidth="412"
-                                         Margin="0,0,0,12"
-                                         HorizontalAlignment="Left"
-                                         FontFamily="{StaticResource RobotoMonoMedium}"
-                                         FontSize="36"
-                                         Foreground="#FF121111"
-                                         LineHeight="48"
-                                         Text="Ornare eu massa turpis viverra"
-                                         TextLineBounds="Tight"
-                                         TextWrapping="Wrap" />
-                        <winui:TextBlock MaxWidth="412"
-                                         Margin="0,0,0,40"
-                                         HorizontalAlignment="Left"
-                                         FontSize="16"
-                                         LineHeight="40"
-                                         Opacity="0.8"
-                                         Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique. Urna facilisis justo enim, nec viverra pellentesque. Aliquam magna leo, dolor ultrices quis metus, massa euismod."
-                                         TextWrapping="Wrap" />
+                <TwoPaneView.Pane2>
+                    <StackPanel x:Name="Pane2Panel"
+                                Margin="103,24,103,40"
+                                Spacing="36">
+                        <TextBlock FontFamily="{StaticResource MontserratSemiBold}"
+                                   Opacity="0.4"
+                                   Text="Details" />
+                        <TextBlock MaxWidth="412"
+                                   Margin="0,0,0,12"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="{StaticResource RobotoMonoMedium}"
+                                   FontSize="36"
+                                   Foreground="#FF121111"
+                                   LineHeight="48"
+                                   Text="Ornare eu massa turpis viverra"
+                                   TextLineBounds="Tight"
+                                   TextWrapping="Wrap" />
+                        <TextBlock MaxWidth="412"
+                                   Margin="0,0,0,40"
+                                   HorizontalAlignment="Left"
+                                   FontSize="16"
+                                   LineHeight="40"
+                                   Opacity="0.8"
+                                   Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique. Urna facilisis justo enim, nec viverra pellentesque. Aliquam magna leo, dolor ultrices quis metus, massa euismod."
+                                   TextWrapping="Wrap" />
 
-                        <winui:Button Margin="0,0,0,80"
-                                      Background="#FFF8F8F8"
-                                      BorderBrush="#FF121111"
-                                      Content="Plan trip"
-                                      Foreground="#FF121111" />
+                        <Button Margin="0,0,0,80"
+                                Background="#FFF8F8F8"
+                                BorderBrush="#FF121111"
+                                Content="Plan trip"
+                                Foreground="#FF121111" />
 
-                        <winui:TextBlock FontFamily="{StaticResource MontserratSemiBold}"
-                                         Opacity="0.4"
-                                         Text="Similar places" />
-                        <winui:StackPanel Height="80"
-                                          Orientation="Horizontal"
-                                          Spacing="24">
-                            <winui:Image Width="88"
-                                         Source="/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"
-                                         Stretch="UniformToFill" />
-                            <winui:Image Width="88"
-                                         Source="/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"
-                                         Stretch="UniformToFill" />
-                            <winui:Image Width="88"
-                                         Source="/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"
-                                         Stretch="UniformToFill" />
-                            <winui:Image Width="88"
-                                         Source="/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"
-                                         Stretch="UniformToFill" />
-                        </winui:StackPanel>
-                    </winui:StackPanel>
-                </winui:TwoPaneView.Pane2>
-            </winui:TwoPaneView>
-        </winui:ScrollViewer>
-    </winui:Grid>
-</winui:Page>
+                        <TextBlock FontFamily="{StaticResource MontserratSemiBold}"
+                                   Opacity="0.4"
+                                   Text="Similar places" />
+                        <StackPanel Height="80"
+                                    Orientation="Horizontal"
+                                    Spacing="24">
+                            <Image Width="88"
+                                   Source="/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"
+                                   Stretch="UniformToFill" />
+                            <Image Width="88"
+                                   Source="/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"
+                                   Stretch="UniformToFill" />
+                            <Image Width="88"
+                                   Source="/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"
+                                   Stretch="UniformToFill" />
+                            <Image Width="88"
+                                   Source="/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"
+                                   Stretch="UniformToFill" />
+                        </StackPanel>
+                    </StackPanel>
+                </TwoPaneView.Pane2>
+            </TwoPaneView>
+        </ScrollViewer>
+    </Grid>
+</Page>
