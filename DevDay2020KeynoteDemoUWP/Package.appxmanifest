@@ -14,7 +14,7 @@
   <mp:PhoneIdentity PhoneProductId="04bcdaf2-cead-430d-8e31-ab221f323324" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DevDay2020KeynoteDemoUWP</DisplayName>
+    <DisplayName>Contoso Travel</DisplayName>
     <PublisherDisplayName>Microsoft</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,10 +32,10 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="DevDay2020KeynoteDemoUWP.App">
       <uap:VisualElements
-        DisplayName="DevDay2020KeynoteDemoUWP"
+        DisplayName="Contoso Travel"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="DevDay2020KeynoteDemoUWP"
+        Description="A Contoso travel app for Microsoft 365 Developer Day 2020"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
