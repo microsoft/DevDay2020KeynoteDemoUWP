@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       d:DesignHeight="1440"
       d:DesignWidth="960"
       NavigationCacheMode="Enabled"
@@ -66,10 +67,10 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       Margin="0,-144,0,0">
-            <TwoPaneView x:Name="TwoPaneView"
-                         MinWideModeWidth="959"
-                         Pane2Length="Auto">
-                <TwoPaneView.Pane1>
+            <winui:TwoPaneView x:Name="TwoPaneView"
+                               MinWideModeWidth="959"
+                               Pane2Length="Auto">
+                <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Margin="0,144,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -233,9 +234,9 @@
                                 Content="Select"
                                 Foreground="#FF121111" />
                     </Grid>
-                </TwoPaneView.Pane1>
+                </winui:TwoPaneView.Pane1>
 
-                <TwoPaneView.Pane2>
+                <winui:TwoPaneView.Pane2>
                     <Grid x:Name="Pane2Panel"
                           Padding="0,144,0,0"
                           Background="#FF121111">
@@ -394,8 +395,8 @@
                                 Click="OnSelectPlace2Click"
                                 Content="Select" />
                     </Grid>
-                </TwoPaneView.Pane2>
-            </TwoPaneView>
+                </winui:TwoPaneView.Pane2>
+            </winui:TwoPaneView>
         </ScrollViewer>
     </Grid>
 </Page>

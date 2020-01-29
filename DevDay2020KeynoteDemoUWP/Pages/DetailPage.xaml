@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
 
     <Grid>
@@ -63,20 +64,20 @@
         </StackPanel>
 
         <ScrollViewer x:Name="DetailContent" Grid.Row="1">
-            <TwoPaneView x:Name="ContentView"
-                         MinWideModeWidth="960"
-                         Pane1Length="480"
-                         Pane2Length="*">
-                <TwoPaneView.Pane1>
+            <winui:TwoPaneView x:Name="ContentView"
+                               MinWideModeWidth="960"
+                               Pane1Length="480"
+                               Pane2Length="*">
+                <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Padding="64,0,64,40">
                         <Image x:Name="HeroImage"
                                Source="{x:Bind SelectedPlace.ImageUri}"
                                Stretch="UniformToFill" />
                         <Image x:Name="HeroImageMirror" Stretch="UniformToFill" />
                     </Grid>
-                </TwoPaneView.Pane1>
+                </winui:TwoPaneView.Pane1>
 
-                <TwoPaneView.Pane2>
+                <winui:TwoPaneView.Pane2>
                     <StackPanel x:Name="Pane2Panel"
                                 Margin="103,24,103,40"
                                 Spacing="36">
@@ -130,8 +131,8 @@
                                    Stretch="UniformToFill" />
                         </StackPanel>
                     </StackPanel>
-                </TwoPaneView.Pane2>
-            </TwoPaneView>
+                </winui:TwoPaneView.Pane2>
+            </winui:TwoPaneView>
         </ScrollViewer>
     </Grid>
 </Page>
