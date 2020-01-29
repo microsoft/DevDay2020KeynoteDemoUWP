@@ -27,9 +27,12 @@
                 <VisualState x:Name="CompactOverlay">
                     <VisualState.Setters>
                         <Setter Target="MainNav.Visibility" Value="Collapsed" />
-                        <Setter Target="ContentArea.Height" Value="Auto" />
-                        <Setter Target="Header.Margin" Value="40,32,40,0" />
                         <Setter Target="BookAll.Visibility" Value="Collapsed" />
+                        <Setter Target="DismissTouchArea.Visibility" Value="Collapsed" />
+                        <Setter Target="ContentArea.Height" Value="Auto" />
+                        <Setter Target="ContentArea.VerticalAlignment" Value="Stretch" />
+                        <Setter Target="ContentArea.(Grid.Row)" Value="0" />
+                        <Setter Target="Header.Margin" Value="40,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -172,7 +175,6 @@
                                 <Grid HorizontalAlignment="Left">
                                     <Image x:Name="PlaceImage"
                                            Width="200"
-                                           Height="144"
                                            Source="{x:Bind ImageUri}"
                                            Stretch="UniformToFill" />
                                     <Rectangle Fill="#66000000" />

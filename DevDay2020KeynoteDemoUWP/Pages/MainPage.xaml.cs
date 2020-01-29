@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using DevDay2020KeynoteDemoUWP.Model;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Xaml.Controls;
+using System.Linq;
 
 namespace DevDay2020KeynoteDemoUWP
 {
@@ -66,7 +67,7 @@ namespace DevDay2020KeynoteDemoUWP
         {
             bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
 
-            if (modeSwitched)
+            if (PickedPlaces.Any() && modeSwitched)
             {
                 VisualStateManager.GoToState(this, ApplicationViewMode.CompactOverlay.ToString(), false);
             }

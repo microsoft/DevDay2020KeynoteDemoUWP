@@ -119,7 +119,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions.cs" />
     <Compile Include="Model\Base.cs" />
     <Compile Include="Model\GroupInfoList.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
