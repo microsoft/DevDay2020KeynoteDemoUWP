@@ -1,20 +1,10 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace DevDay2020KeynoteDemoUWP
@@ -27,17 +17,17 @@ namespace DevDay2020KeynoteDemoUWP
         public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
         {
             var group1 = new GroupInfoList { Key = "Architecture" };
-            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg"));
-            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg"));
-            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg"));
+            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg", "Eget", "Scelerisque nunc laoreet viverra dictum sodales integer tincidunt."));
+            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg", "Imperdiet", "Velit amet fermentum lectus in scelerisque nullam urna, sit."));
+            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg", "Donec", "Pharetra, ultrices ut magna risus pellentesque at aliquet."));
 
             var group2 = new GroupInfoList { Key = "Outdoor" };
-            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg"));
-            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg"));
-            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg"));
-            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg"));
-            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg"));
-            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg"));
+            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg", "Elementum", "Non placerat vestibulum viverra in tellus sem."));
+            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg", "Morbi", "Mi ipsum vitae phasellus egestas mi varius mauris."));
+            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg", "Iaculis", "Quis neque sed scelerisque risus magnis quam ut."));
+            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg", "Nunc", "Porttitor nunc, sed tincidunt bibendum rutrum."));
+            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg", "Vitae", "Volutpat suspendisse tortor, nisi ullamcorper ut."));
+            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg", "Diam", "Maecenas cursus eu aenean in eget."));
 
             var groups = new ObservableCollection<GroupInfoList>();
             groups.Add(group1);
@@ -52,8 +42,8 @@ namespace DevDay2020KeynoteDemoUWP
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -63,7 +53,7 @@ namespace DevDay2020KeynoteDemoUWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

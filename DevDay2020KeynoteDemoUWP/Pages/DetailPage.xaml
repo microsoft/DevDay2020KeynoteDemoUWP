@@ -62,17 +62,17 @@
                        TextLineBounds="Tight" />
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer x:Name="DetailContent" Grid.Row="1">
             <TwoPaneView x:Name="ContentView"
                          MinWideModeWidth="960"
                          Pane1Length="480"
                          Pane2Length="*">
                 <TwoPaneView.Pane1>
-                    <Grid x:Name="Pane1Panel">
+                    <Grid x:Name="Pane1Panel" Padding="64,0,64,40">
                         <Image x:Name="HeroImage"
-                               Margin="64,0,64,40"
                                Source="{x:Bind SelectedPlace.ImageUri}"
                                Stretch="UniformToFill" />
+                        <Image x:Name="HeroImageMirror" Stretch="UniformToFill" />
                     </Grid>
                 </TwoPaneView.Pane1>
 
@@ -102,9 +102,11 @@
                                    Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique. Urna facilisis justo enim, nec viverra pellentesque. Aliquam magna leo, dolor ultrices quis metus, massa euismod."
                                    TextWrapping="Wrap" />
 
-                        <Button Margin="0,0,0,80"
+                        <Button x:Name="PlanTrip"
+                                Margin="0,0,0,80"
                                 Background="#FFF8F8F8"
                                 BorderBrush="#FF121111"
+                                Click="OnPlanTripClick"
                                 Content="Plan trip"
                                 Foreground="#FF121111" />
 

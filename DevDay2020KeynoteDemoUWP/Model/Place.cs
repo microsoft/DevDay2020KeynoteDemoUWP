@@ -4,12 +4,16 @@ namespace DevDay2020KeynoteDemoUWP.Model
 {
     public class Place : Base
     {
-        public Place(string countryName, string imageUriString)
+        public Place(string countryName, string imageUriString, string placeName, string placeDescription)
         {
+            Id = Guid.NewGuid();
             CountryName = countryName;
             ImageUri = imageUriString;
+            PlaceName = placeName;
+            PlaceDescription = placeDescription;
         }
 
+        public Guid Id { get; set; }
         public string PlaceName { get; set; }
         public string PlaceDescription { get; set; }
         public string CountryName { get; set; }

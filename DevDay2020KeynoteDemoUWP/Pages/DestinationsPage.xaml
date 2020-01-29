@@ -1111,8 +1111,8 @@
                 <Ellipse Fill="White" />
             </toolkit:DropShadowPanel>
 
-            <Button Width="64"
-                    Height="64"
+            <Button Width="56"
+                    Height="56"
                     Padding="0"
                     Background="White"
                     Click="OnWunderbarClick"

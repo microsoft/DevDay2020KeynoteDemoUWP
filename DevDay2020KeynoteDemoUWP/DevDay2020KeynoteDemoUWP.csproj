@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Model\Base.cs" />
     <Compile Include="Model\GroupInfoList.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
@@ -141,6 +142,7 @@
     </Compile>
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\PlaceType.cs" />
+    <Compile Include="Pages\Navigationview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\WonderbarPage.xaml.cs">
       <DependentUpon>WonderbarPage.xaml</DependentUpon>

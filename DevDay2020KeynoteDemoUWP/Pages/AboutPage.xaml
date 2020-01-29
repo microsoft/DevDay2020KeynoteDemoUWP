@@ -5,21 +5,5 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <Grid>
-        <Button Width="52"
-                Height="52"
-                Style="{StaticResource Style-Button-Icon-Circle}">
-            <Grid>
-                <ContentControl Width="16"
-                                Foreground="#FF373238"
-                                Style="{StaticResource Style-Icon-Globe}" />
-                <Ellipse Width="6"
-                         Height="6"
-                         Margin="0,-5,-5,0"
-                         HorizontalAlignment="Right"
-                         VerticalAlignment="Top"
-                         Fill="#FFD90404" />
-            </Grid>
-        </Button>
-    </Grid>
+    <Grid />
 </Page>
