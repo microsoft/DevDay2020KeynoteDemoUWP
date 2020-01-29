@@ -1,4 +1,5 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
+using DevDay2020KeynoteDemoUWP.Pages;
 using System;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel;

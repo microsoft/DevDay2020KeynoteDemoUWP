@@ -12,7 +12,7 @@ using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
 
-namespace DevDay2020KeynoteDemoUWP
+namespace DevDay2020KeynoteDemoUWP.Pages
 {
     public sealed partial class MainPage
     {
