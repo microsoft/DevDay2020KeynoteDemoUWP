@@ -7,7 +7,6 @@ using Windows.UI.Xaml;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Animation;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -144,12 +143,6 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 // 5. If so, change that window to be inside the compact overlay region.
                 appWindow.Presenter.RequestPresentation(AppWindowPresentationKind.CompactOverlay);
             }
-        }
-
-        private void OnMainGridViewContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
-        {
-            var animations = (AnimationCollection)App.Current.Resources["ImplicitOffsetAnimation"];
-            Implicit.SetAnimations(args.ItemContainer, animations);
         }
     }
 }

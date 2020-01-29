@@ -1044,6 +1044,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <GridView x:Name="MainGridView"
+                  animations:ReorderGridAnimation.Duration="300"
                   ContainerContentChanging="OnMainGridViewContainerContentChanging"
                   IsItemClickEnabled="True"
                   ItemClick="OnMainGridViewItemClick"
