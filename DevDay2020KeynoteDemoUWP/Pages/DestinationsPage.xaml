@@ -1045,12 +1045,17 @@
         </VisualStateManager.VisualStateGroups>
         <GridView x:Name="MainGridView"
                   animations:ReorderGridAnimation.Duration="300"
-                  ContainerContentChanging="OnMainGridViewContainerContentChanging"
                   IsItemClickEnabled="True"
                   ItemClick="OnMainGridViewItemClick"
                   ItemsSource="{x:Bind PlacesSource.View}"
                   Loaded="OnMainGridViewLoaded"
                   SelectionMode="None">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromVerticalOffset="200" IsStaggeringEnabled="True" />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
+
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Place">
                     <Grid Width="256" Height="172">
