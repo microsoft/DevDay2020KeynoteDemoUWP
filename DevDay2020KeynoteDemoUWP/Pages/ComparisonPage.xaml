@@ -82,8 +82,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                        <StackPanel Margin="56,40,0,64"
+                        <StackPanel Grid.ColumnSpan="2"
+                                    Margin="56,40,0,64"
                                     Orientation="Horizontal"
                                     Spacing="16">
                             <Button x:Name="Back"
@@ -105,6 +110,7 @@
 
                         <TextBlock x:Name="CountryName1"
                                    Grid.Row="1"
+                                   Grid.ColumnSpan="2"
                                    Margin="0,0,0,12"
                                    HorizontalAlignment="Center"
                                    FontFamily="{StaticResource MontserratSemiBold}"
@@ -113,6 +119,7 @@
 
                         <Grid x:Name="ImagePanel1"
                               Grid.Row="2"
+                              Grid.ColumnSpan="2"
                               Margin="40,48,40,16"
                               HorizontalAlignment="Center"
                               Visibility="Collapsed">
@@ -143,7 +150,9 @@
                                    Stretch="UniformToFill" />
                         </Grid>
 
-                        <Grid Grid.Row="3" Height="72">
+                        <Grid Grid.Row="3"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -168,7 +177,9 @@
                                      Fill="#FF3A8C46" />
                         </Grid>
 
-                        <Grid Grid.Row="4" Height="72">
+                        <Grid Grid.Row="4"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -187,7 +198,9 @@
                                        Text="3,700 USD" />
                         </Grid>
 
-                        <Grid Grid.Row="5" Height="72">
+                        <Grid Grid.Row="5"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -206,7 +219,9 @@
                                        Text="45 - 70 F°" />
                         </Grid>
 
-                        <Grid Grid.Row="6" Height="72">
+                        <Grid Grid.Row="6"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -227,6 +242,7 @@
 
                         <Button x:Name="SelectPlace1"
                                 Grid.Row="7"
+                                Grid.ColumnSpan="2"
                                 Margin="0,0,0,40"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom"
@@ -251,8 +267,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
                         <TextBlock x:Name="CountryName2"
+                                   Grid.ColumnSpan="2"
                                    Margin="0,0,0,24"
                                    HorizontalAlignment="Center"
                                    FontFamily="{StaticResource MontserratSemiBold}"
@@ -262,6 +283,7 @@
 
                         <Grid x:Name="ImagePanel2"
                               Grid.Row="1"
+                              Grid.ColumnSpan="2"
                               Margin="40,48,40,16"
                               HorizontalAlignment="Center"
                               Visibility="Collapsed">
@@ -293,7 +315,9 @@
                                    Stretch="UniformToFill" />
                         </Grid>
 
-                        <Grid Grid.Row="2" Height="72">
+                        <Grid Grid.Row="2"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -314,7 +338,9 @@
                                        Text="7684 km" />
                         </Grid>
 
-                        <Grid Grid.Row="3" Height="72">
+                        <Grid Grid.Row="3"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -341,7 +367,9 @@
                                      Fill="#FF3A8C46" />
                         </Grid>
 
-                        <Grid Grid.Row="4" Height="72">
+                        <Grid Grid.Row="4"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -368,7 +396,9 @@
                                      Fill="#FF3A8C46" />
                         </Grid>
 
-                        <Grid Grid.Row="5" Height="72">
+                        <Grid Grid.Row="5"
+                              Grid.Column="1"
+                              Height="72">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -397,6 +427,7 @@
 
                         <Button x:Name="SelectPlace2"
                                 Grid.Row="6"
+                                Grid.ColumnSpan="2"
                                 Margin="0,0,0,40"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom"
