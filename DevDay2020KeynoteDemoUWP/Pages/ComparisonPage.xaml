@@ -111,12 +111,19 @@
                                    FontSize="18"
                                    Text="{x:Bind Place1.CountryName}" />
 
-                        <StackPanel x:Name="ImagePanel1"
-                                    Grid.Row="2"
-                                    Margin="40,48,40,16"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Visibility="Collapsed">
+                        <Grid x:Name="ImagePanel1"
+                              Grid.Row="2"
+                              Margin="40,48,40,16"
+                              HorizontalAlignment="Center"
+                              Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
                             <TextBlock MaxWidth="220"
                                        Margin="0,8,51,0"
@@ -127,13 +134,14 @@
                                        TextAlignment="Right"
                                        TextWrapping="Wrap" />
                             <Image x:Name="Place1Image"
+                                   Grid.Column="1"
                                    Width="206"
                                    Height="144"
                                    Margin="51,0,0,0"
                                    HorizontalAlignment="Left"
                                    Source="{x:Bind Place1.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </StackPanel>
+                        </Grid>
 
                         <Grid Grid.Row="3" Height="72">
                             <Grid.ColumnDefinitions>
@@ -252,12 +260,19 @@
                                    Foreground="#FFF8F8F8"
                                    Text="{x:Bind Place2.CountryName}" />
 
-                        <StackPanel x:Name="ImagePanel2"
-                                    Grid.Row="1"
-                                    Margin="40,48,40,16"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Visibility="Collapsed">
+                        <Grid x:Name="ImagePanel2"
+                              Grid.Row="1"
+                              Margin="40,48,40,16"
+                              HorizontalAlignment="Center"
+                              Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
                             <TextBlock MaxWidth="220"
                                        Margin="0,8,51,0"
@@ -276,7 +291,7 @@
                                    HorizontalAlignment="Left"
                                    Source="{x:Bind Place2.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </StackPanel>
+                        </Grid>
 
                         <Grid Grid.Row="2" Height="72">
                             <Grid.ColumnDefinitions>
