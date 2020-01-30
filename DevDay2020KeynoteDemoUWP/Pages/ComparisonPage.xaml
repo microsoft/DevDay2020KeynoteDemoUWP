@@ -40,6 +40,26 @@
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
                         <Setter Target="Pane2Panel.Padding" Value="0,200,0,0" />
+                        <Setter Target="ImagePanel1.Visibility" Value="Visible" />
+                        <Setter Target="ImagePanel2.Visibility" Value="Visible" />
+                        <Setter Target="ImagePanel1.Margin" Value="0,24,64,16" />
+                        <Setter Target="ImagePanel2.Margin" Value="0,24,64,16" />
+                        <Setter Target="ImagePanel1.(Grid.Column)" Value="1" />
+                        <Setter Target="ImagePanel2.(Grid.Column)" Value="1" />
+                        <Setter Target="Image1Desc.TextAlignment" Value="Left" />
+                        <Setter Target="Image2Desc.TextAlignment" Value="Left" />
+                        <Setter Target="Place1Image.Margin" Value="0,0,0,12" />
+                        <Setter Target="Place2Image.Margin" Value="0,0,0,12" />
+                        <Setter Target="Image1Desc.(RelativePanel.Below)" Value="Place1Image" />
+                        <Setter Target="Place1Image.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="Image2Desc.(RelativePanel.Below)" Value="Place2Image" />
+                        <Setter Target="Place2Image.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="Place1DetailPane.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="Place2DetailPane.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="Place1DetailPane.(Grid.Row)" Value="2" />
+                        <Setter Target="Place2DetailPane.(Grid.Row)" Value="1" />
+                        <Setter Target="Pane1Separator.Visibility" Value="Visible" />
+                        <Setter Target="Pane2Separator.Visibility" Value="Visible" />
                         <Setter Target="CountryName1.Margin" Value="0,0,0,24" />
                         <Setter Target="CountryName2.Margin" Value="0,0,0,24" />
                     </VisualState.Setters>
@@ -115,22 +135,14 @@
                                    FontSize="18"
                                    Text="{x:Bind Place1.CountryName}" />
 
-                        <Grid x:Name="ImagePanel1"
-                              Grid.Row="2"
-                              Grid.ColumnSpan="2"
-                              Margin="40,48,40,16"
-                              HorizontalAlignment="Center"
-                              Visibility="Collapsed">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock MaxWidth="220"
+                        <RelativePanel x:Name="ImagePanel1"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       Margin="40,48,40,16"
+                                       HorizontalAlignment="Center"
+                                       Visibility="Collapsed">
+                            <TextBlock x:Name="Image1Desc"
+                                       MaxWidth="220"
                                        Margin="0,8,51,0"
                                        HorizontalAlignment="Right"
                                        LineHeight="24"
@@ -139,16 +151,18 @@
                                        TextAlignment="Right"
                                        TextWrapping="Wrap" />
                             <Image x:Name="Place1Image"
-                                   Grid.Column="1"
                                    Width="206"
                                    Height="144"
                                    Margin="51,0,0,0"
                                    HorizontalAlignment="Left"
+                                   RelativePanel.RightOf="Image1Desc"
                                    Source="{x:Bind Place1.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </Grid>
+                        </RelativePanel>
 
-                        <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="Place1DetailPane"
+                                    Grid.Row="3"
+                                    Grid.ColumnSpan="2">
                             <Grid Height="72">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -232,13 +246,14 @@
                             </Grid>
                         </StackPanel>
 
-                        <Line Grid.Row="3"
-                              Height="288"
-                              Margin="0,0,12,0"
+                        <Line x:Name="Pane1Separator"
+                              Grid.Row="2"
+                              Height="264"
+                              Margin="0,0,80,0"
                               HorizontalAlignment="Right"
-                              VerticalAlignment="Top"
+                              VerticalAlignment="Center"
                               Stretch="Fill"
-                              Stroke="Black"
+                              Stroke="#FFF0F0F2"
                               Visibility="Collapsed"
                               Y2="1" />
 
@@ -280,22 +295,15 @@
                                    Foreground="#FFF8F8F8"
                                    Text="{x:Bind Place2.CountryName}" />
 
-                        <Grid x:Name="ImagePanel2"
-                              Grid.Row="1"
-                              Grid.ColumnSpan="2"
-                              Margin="40,48,40,16"
-                              HorizontalAlignment="Center"
-                              Visibility="Collapsed">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <RelativePanel x:Name="ImagePanel2"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="40,48,40,16"
+                                       HorizontalAlignment="Center"
+                                       Visibility="Collapsed">
 
-                            <TextBlock MaxWidth="220"
+                            <TextBlock x:Name="Image2Desc"
+                                       MaxWidth="220"
                                        Margin="0,8,51,0"
                                        HorizontalAlignment="Right"
                                        Foreground="#FFF8F8F8"
@@ -305,16 +313,18 @@
                                        TextAlignment="Right"
                                        TextWrapping="Wrap" />
                             <Image x:Name="Place2Image"
-                                   Grid.Column="1"
                                    Width="206"
                                    Height="144"
                                    Margin="51,0,0,0"
                                    HorizontalAlignment="Left"
+                                   RelativePanel.RightOf="Image2Desc"
                                    Source="{x:Bind Place2.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </Grid>
+                        </RelativePanel>
 
-                        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="Place2DetailPane"
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2">
                             <Grid Height="72">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -418,13 +428,14 @@
                             </Grid>
                         </StackPanel>
 
-                        <Line Grid.Row="2"
-                              Height="288"
-                              Margin="0,0,12,0"
+                        <Line x:Name="Pane2Separator"
+                              Grid.Row="1"
+                              Height="264"
+                              Margin="0,0,80,0"
                               HorizontalAlignment="Right"
-                              VerticalAlignment="Top"
+                              VerticalAlignment="Center"
                               Stretch="Fill"
-                              Stroke="White"
+                              Stroke="#FF2F2A25"
                               Visibility="Collapsed"
                               Y2="1" />
 
