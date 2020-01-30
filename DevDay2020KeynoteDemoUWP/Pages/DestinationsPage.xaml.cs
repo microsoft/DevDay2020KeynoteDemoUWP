@@ -7,6 +7,9 @@ using Windows.UI.Xaml;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Animation;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
+using Microsoft.Toolkit.Uwp.UI.Animations;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -29,13 +32,26 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             {
                 place.PropertyChanged += (s, e) =>
                 {
+                    var gridViewItem = (GridViewItem)MainGridView.ContainerFromItem(place);
+                    var selectionToggle = gridViewItem.FindDescendant<ToggleButton>();
+                    var centerX = (float)selectionToggle.ActualWidth / 2;
+                    var centerY = (float)selectionToggle.ActualHeight / 2;
+            
                     if (place.IsSelected)
                     {
                         _placesToCompare.Add(place);
+                        selectionToggle
+                            .Offset(offsetX: -92.0f, offsetY: -50.0f)
+                            .Scale(scaleX: 1.5f, scaleY: 1.5f, centerX: centerX, centerY: centerY)
+                            .Start();
                     }
                     else
                     {
                         _placesToCompare.Remove(place);
+                        selectionToggle
+                            .Offset(offsetX: 0.0f, offsetY: 0.0f)
+                            .Scale(scaleX: 1.0f, scaleY: 1.0f, centerX: centerX, centerY: centerY)
+                            .Start();
                     }
 
                     if (_placesToCompare.Count >= 2)

@@ -50,7 +50,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             PickedPlacesPane.Visibility = Visibility.Visible;
             ContentFrame
                 .Fade(0.5f)
-                .Scale(scaleX: 0.97f, scaleY: 0.97f, centerX: (float)ContentFrame.ActualWidth, centerY: (float)ContentFrame.ActualHeight)
+                .Scale(scaleX: 0.95f, scaleY: 0.95f, centerX: (float)ContentFrame.ActualWidth / 2, centerY: (float)ContentFrame.ActualHeight / 2)
                 .Start();
         }
 
@@ -59,7 +59,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             PickedPlacesPane.Visibility = Visibility.Collapsed;
             ContentFrame
                 .Fade(1.0f)
-                .Scale(scaleX: 1.0f, scaleY: 1.0f, centerX: (float)ContentFrame.ActualWidth, centerY: (float)ContentFrame.ActualHeight)
+                .Scale(scaleX: 1.0f, scaleY: 1.0f, centerX: (float)ContentFrame.ActualWidth / 2, centerY: (float)ContentFrame.ActualHeight / 2)
                 .Start();
         }
 

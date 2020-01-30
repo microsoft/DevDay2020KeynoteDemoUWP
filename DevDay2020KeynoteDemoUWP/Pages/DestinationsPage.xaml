@@ -1062,7 +1062,8 @@
                         <Image x:Name="PlaceImage"
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />
-                        <ToggleButton Margin="12"
+                        <ToggleButton x:Name="SelectionToggle"
+                                      Margin="12"
                                       HorizontalAlignment="Right"
                                       VerticalAlignment="Bottom"
                                       IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
