@@ -23,8 +23,8 @@
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
                         <Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
-                        <Setter Target="ImageGrid1.Visibility" Value="Collapsed" />
-                        <Setter Target="ImageGrid2.Visibility" Value="Collapsed" />
+                        <Setter Target="ImagePanel1.Visibility" Value="Collapsed" />
+                        <Setter Target="ImagePanel2.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -55,8 +55,8 @@
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
                         <Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
-                        <Setter Target="ImageGrid1.Visibility" Value="Visible" />
-                        <Setter Target="ImageGrid2.Visibility" Value="Visible" />
+                        <Setter Target="ImagePanel1.Visibility" Value="Visible" />
+                        <Setter Target="ImagePanel2.Visibility" Value="Visible" />
                         <Setter Target="CountryName1.Margin" Value="0" />
                         <Setter Target="CountryName2.Margin" Value="0" />
                     </VisualState.Setters>
@@ -111,18 +111,13 @@
                                    FontSize="18"
                                    Text="{x:Bind Place1.CountryName}" />
 
-                        <Grid x:Name="ImageGrid1"
-                              Grid.Row="2"
-                              Margin="40,48,40,16"
-                              Visibility="Collapsed">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="ImagePanel1"
+                                    Grid.Row="2"
+                                    Margin="40,48,40,16"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Visibility="Collapsed">
+
                             <TextBlock MaxWidth="220"
                                        Margin="0,8,51,0"
                                        HorizontalAlignment="Right"
@@ -132,14 +127,13 @@
                                        TextAlignment="Right"
                                        TextWrapping="Wrap" />
                             <Image x:Name="Place1Image"
-                                   Grid.Column="1"
                                    Width="206"
                                    Height="144"
                                    Margin="51,0,0,0"
                                    HorizontalAlignment="Left"
                                    Source="{x:Bind Place1.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </Grid>
+                        </StackPanel>
 
                         <Grid Grid.Row="3" Height="72">
                             <Grid.ColumnDefinitions>
@@ -258,14 +252,13 @@
                                    Foreground="#FFF8F8F8"
                                    Text="{x:Bind Place2.CountryName}" />
 
-                        <Grid x:Name="ImageGrid2"
-                              Grid.Row="1"
-                              Margin="40,48,40,16"
-                              Visibility="Collapsed">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="ImagePanel2"
+                                    Grid.Row="1"
+                                    Margin="40,48,40,16"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Visibility="Collapsed">
+
                             <TextBlock MaxWidth="220"
                                        Margin="0,8,51,0"
                                        HorizontalAlignment="Right"
@@ -283,7 +276,7 @@
                                    HorizontalAlignment="Left"
                                    Source="{x:Bind Place2.ImageUri}"
                                    Stretch="UniformToFill" />
-                        </Grid>
+                        </StackPanel>
 
                         <Grid Grid.Row="2" Height="72">
                             <Grid.ColumnDefinitions>
