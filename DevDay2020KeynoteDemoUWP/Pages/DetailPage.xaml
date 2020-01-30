@@ -7,11 +7,6 @@
       mc:Ignorable="d">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -42,29 +37,9 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <StackPanel x:Name="Header"
-                    Margin="56,40,0,40"
-                    Orientation="Horizontal"
-                    Spacing="16">
-            <Button x:Name="Back"
-                    Width="52"
-                    Height="52"
-                    Click="OnBackClick"
-                    Style="{StaticResource Style-Button-Icon-Circle}">
-                <ContentControl Width="18"
-                                Foreground="Black"
-                                Style="{StaticResource Style-Icon-Arrow}" />
-            </Button>
-            <TextBlock VerticalAlignment="Center"
-                       FontFamily="{StaticResource MontserratSemiBold}"
-                       FontSize="18"
-                       Opacity="0.8"
-                       Text="{x:Bind SelectedPlace.CountryName}"
-                       TextLineBounds="Tight" />
-        </StackPanel>
-
-        <ScrollViewer x:Name="DetailContent" Grid.Row="1">
+        <ScrollViewer x:Name="DetailContent">
             <winui:TwoPaneView x:Name="ContentView"
+                               Margin="0,132,0,0"
                                MinWideModeWidth="960"
                                Pane1Length="480"
                                Pane2Length="*">
@@ -85,7 +60,7 @@
                                             Foreground="White"
                                             Style="{StaticResource Style-Icon-Info}" />
                             <Button.Flyout>
-                                <Flyout>
+                                <Flyout Placement="Right">
                                     <TextBlock FontFamily="{StaticResource MontserratMedium}" FontSize="12">
                                         <Run Text="Photo by" />
                                         <Run FontFamily="{StaticResource MontserratSemiBold}" Text="{x:Bind SelectedPlace.ImageAuthor}" />
@@ -155,5 +130,27 @@
                 </winui:TwoPaneView.Pane2>
             </winui:TwoPaneView>
         </ScrollViewer>
+
+        <StackPanel x:Name="Header"
+                    Margin="56,40,0,40"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    Spacing="16">
+            <Button x:Name="Back"
+                    Width="52"
+                    Height="52"
+                    Click="OnBackClick"
+                    Style="{StaticResource Style-Button-Icon-Circle}">
+                <ContentControl Width="18"
+                                Foreground="Black"
+                                Style="{StaticResource Style-Icon-Arrow}" />
+            </Button>
+            <TextBlock VerticalAlignment="Center"
+                       FontFamily="{StaticResource MontserratSemiBold}"
+                       FontSize="18"
+                       Opacity="0.8"
+                       Text="{x:Bind SelectedPlace.CountryName}"
+                       TextLineBounds="Tight" />
+        </StackPanel>
     </Grid>
 </Page>
