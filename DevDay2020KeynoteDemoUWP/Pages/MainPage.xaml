@@ -185,7 +185,7 @@
                                                FontSize="12"
                                                Foreground="White"
                                                Opacity="0.6"
-                                               Text="{x:Bind PlaceName}"
+                                               Text="{x:Bind CityName}"
                                                TextLineBounds="Tight" />
                                     <TextBlock FontFamily="{StaticResource MontserratBold}"
                                                FontSize="15"

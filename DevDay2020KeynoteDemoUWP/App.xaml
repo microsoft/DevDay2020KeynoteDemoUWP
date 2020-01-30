@@ -156,6 +156,27 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="Style-Icon-Info"
+                   BasedOn="{StaticResource Style-Icon-Base}"
+                   TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Path Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Data="M11.9395 7.25684V11.2568M11.9395 15.2568H11.9495M21.9395 11.2568C21.9395 16.7797 17.4623 21.2568 11.9395 21.2568C6.41661 21.2568 1.93945 16.7797 1.93945 11.2568C1.93945 5.73399 6.41661 1.25684 11.9395 1.25684C17.4623 1.25684 21.9395 5.73399 21.9395 11.2568Z"
+                                  Stretch="Uniform"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeThickness="2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style x:Key="Style-Button-Icon-Circle" TargetType="Button">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="White" />

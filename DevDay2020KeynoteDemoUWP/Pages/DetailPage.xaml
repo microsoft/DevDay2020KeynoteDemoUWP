@@ -74,6 +74,27 @@
                                Source="{x:Bind SelectedPlace.ImageUri}"
                                Stretch="UniformToFill" />
                         <Image x:Name="HeroImageMirror" Stretch="UniformToFill" />
+                        <Button x:Name="Credit"
+                                Width="48"
+                                Height="48"
+                                Margin="24"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Style="{StaticResource Style-Button-Icon-Circle}">
+                            <ContentControl Width="20"
+                                            Foreground="White"
+                                            Style="{StaticResource Style-Icon-Info}" />
+                            <Button.Flyout>
+                                <Flyout>
+                                    <TextBlock FontFamily="{StaticResource MontserratMedium}" FontSize="12">
+                                        <Run Text="Photo by" />
+                                        <Run FontFamily="{StaticResource MontserratSemiBold}" Text="{x:Bind SelectedPlace.ImageAuthor}" />
+                                        <Run Text="on" />
+                                        <Hyperlink NavigateUri="{x:Bind SelectedPlace.ImageAuthorUrl}">Unsplash</Hyperlink>
+                                    </TextBlock>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                     </Grid>
                 </winui:TwoPaneView.Pane1>
 

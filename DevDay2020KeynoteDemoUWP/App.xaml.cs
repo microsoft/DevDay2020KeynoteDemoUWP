@@ -10,25 +10,96 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DevDay2020KeynoteDemoUWP
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     sealed partial class App : Application
     {
         public static ObservableCollection<GroupInfoList> GetGroupedPlaces()
         {
             var group1 = new GroupInfoList { Key = "Architecture" };
-            group1.Add(new Place("Japan", "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg", "Eget", "Scelerisque nunc laoreet viverra dictum sodales integer tincidunt."));
-            group1.Add(new Place("United Kingdom", "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg", "Imperdiet", "Velit amet fermentum lectus in scelerisque nullam urna, sit."));
-            group1.Add(new Place("Spain", "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg", "Donec", "Pharetra, ultrices ut magna risus pellentesque at aliquet."));
+
+            group1.Add(new Place
+            {
+                PlaceDescription = "Scelerisque nunc laoreet viverra dictum sodales integer tincidunt.",
+                CountryName = "Japan",
+                CityName = "Hiroshima",
+                ImageUri = "/Assets/Images/bantersnaps-wPMvPMD9KBI-unsplash.jpg",
+                ImageAuthor = "bantersnaps",
+                ImageAuthorUrl = "https://unsplash.com/photos/wPMvPMD9KBI"
+            });
+            group1.Add(new Place
+            {
+                PlaceDescription = "Velit amet fermentum lectus in scelerisque nullam urna, sit.",
+                CountryName = "United Kingdom",
+                CityName = "London",
+                ImageUri = "/Assets/Images/eva-dang-EXdXLrZXS9Q-unsplash.jpg",
+                ImageAuthor = "Eva Dang",
+                ImageAuthorUrl = "https://unsplash.com/photos/EXdXLrZXS9Q"
+            });
+            group1.Add(new Place
+            {
+                PlaceDescription = "Velit amet fermentum lectus in scelerisque nullam urna, sit.",
+                CountryName = "Spain",
+                CityName = "Barcelona",
+                ImageUri = "/Assets/Images/tomas-nozina-UP22zkjJGZo-unsplash.jpg",
+                ImageAuthor = "Tomáš Nožina",
+                ImageAuthorUrl = "https://unsplash.com/photos/UP22zkjJGZo"
+            });
 
             var group2 = new GroupInfoList { Key = "Outdoor" };
-            group2.Add(new Place("United States", "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg", "Elementum", "Non placerat vestibulum viverra in tellus sem."));
-            group2.Add(new Place("Australia", "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg", "Morbi", "Mi ipsum vitae phasellus egestas mi varius mauris."));
-            group2.Add(new Place("South Africa", "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg", "Iaculis", "Quis neque sed scelerisque risus magnis quam ut."));
-            group2.Add(new Place("Italy", "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg", "Nunc", "Porttitor nunc, sed tincidunt bibendum rutrum."));
-            group2.Add(new Place("Germany", "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg", "Vitae", "Volutpat suspendisse tortor, nisi ullamcorper ut."));
-            group2.Add(new Place("France", "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg", "Diam", "Maecenas cursus eu aenean in eget."));
+
+            group2.Add(new Place
+            {
+                PlaceDescription = "Non placerat vestibulum viverra in tellus sem.",
+                CountryName = "United States",
+                CityName = "Page",
+                ImageUri = "/Assets/Images/ashim-d-silva-WeYamle9fDM-unsplash.jpg",
+                ImageAuthor = "Ashim D’Silva",
+                ImageAuthorUrl = "https://unsplash.com/photos/WeYamle9fDM"
+            });
+            group2.Add(new Place
+            {
+                PlaceDescription = "Mi ipsum vitae phasellus egestas mi varius mauris.",
+                CountryName = "Australia",
+                CityName = "Melbourne",
+                ImageUri = "/Assets/Images/annie-spratt-tB4Gf7ddcJY-unsplash.jpg",
+                ImageAuthor = "Annie Spratt",
+                ImageAuthorUrl = "https://unsplash.com/photos/tB4Gf7ddcJY"
+            });
+            group2.Add(new Place
+            {
+                PlaceDescription = "Quis neque sed scelerisque risus magnis quam ut.",
+                CountryName = "South Africa",
+                CityName = "Wild",
+                ImageUri = "/Assets/Images/damian-patkowski-QeC4oPdKu7c-unsplash.jpg",
+                ImageAuthor = "Damian Patkowski",
+                ImageAuthorUrl = "https://unsplash.com/photos/QeC4oPdKu7c"
+            });
+            group2.Add(new Place
+            {
+                PlaceDescription = "Porttitor nunc, sed tincidunt bibendum rutrum.",
+                CountryName = "Italy",
+                CityName = "Rome",
+                ImageUri = "/Assets/Images/willian-west-YpKiwlvhOpI-unsplash.jpg",
+                ImageAuthor = "Willian West",
+                ImageAuthorUrl = "https://unsplash.com/photos/YpKiwlvhOpI"
+            });
+            group2.Add(new Place
+            {
+                PlaceDescription = "Volutpat suspendisse tortor, nisi ullamcorper ut.",
+                CountryName = "Germany",
+                CityName = "Schwangau",
+                ImageUri = "/Assets/Images/felix-NAytNmKtyiU-unsplash.jpg",
+                ImageAuthor = "Felix",
+                ImageAuthorUrl = "https://unsplash.com/photos/NAytNmKtyiU"
+            });
+            group2.Add(new Place
+            {
+                PlaceDescription = "Maecenas cursus eu aenean in eget.",
+                CountryName = "France",
+                CityName = "Paris",
+                ImageUri = "/Assets/Images/willian-west-TVyjcTEKHLU-unsplash.jpg",
+                ImageAuthor = "Willian West",
+                ImageAuthorUrl = "https://unsplash.com/photos/TVyjcTEKHLU"
+            });
 
             var groups = new ObservableCollection<GroupInfoList>();
             groups.Add(group1);
