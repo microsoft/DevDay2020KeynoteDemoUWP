@@ -1043,6 +1043,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+
         <GridView x:Name="MainGridView"
                   animations:ReorderGridAnimation.Duration="300"
                   IsItemClickEnabled="True"

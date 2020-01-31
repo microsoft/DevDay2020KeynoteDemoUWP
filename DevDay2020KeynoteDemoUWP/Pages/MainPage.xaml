@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -14,14 +13,44 @@
         <x:Double x:Key="NavigationViewTopPaneHeight">72</x:Double>
         <StaticResource x:Key="NavigationViewTopPaneBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
 
+
         <Style TargetType="ListViewItem">
             <Setter Property="Padding" Value="8" />
             <Setter Property="Margin" Value="0,0,40,0" />
+        </Style>
+
+        <Style x:Key="Style-NavigationViewItem-Base" TargetType="winui:NavigationViewItem">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="{StaticResource RobotoMonoMedium}" />
+            <Setter Property="Margin" Value="2,0" />
+        </Style>
+
+        <Style BasedOn="{StaticResource Style-NavigationViewItem-Base}" TargetType="winui:NavigationViewItem" />
+
+        <Style x:Key="Style-NavigationViewItem-Wide"
+               BasedOn="{StaticResource Style-NavigationViewItem-Base}"
+               TargetType="winui:NavigationViewItem">
+            <Setter Property="Margin" Value="6,0" />
         </Style>
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot">
         <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window width is >720 effective pixels.  -->
+                        <AdaptiveTrigger MinWindowWidth="721" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Logo.Margin" Value="103,0,51,0" />
+                        <Setter Target="RightMenu.Margin" Value="0,0,98,0" />
+                        <Setter Target="MainNav.MenuItemContainerStyle" Value="{StaticResource Style-NavigationViewItem-Wide}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+
             <VisualStateGroup x:Name="ViewModeStates">
                 <VisualState x:Name="Default" />
                 <VisualState x:Name="CompactOverlay">
@@ -43,23 +72,22 @@
                               IsSettingsVisible="False"
                               ItemInvoked="OnMainNavItemInvoked"
                               PaneDisplayMode="Top">
-            <winui:NavigationView.MenuItemContainerStyle>
-                <Style TargetType="winui:NavigationViewItem">
-                    <Setter Property="FontSize" Value="15" />
-                    <Setter Property="FontFamily" Value="{StaticResource RobotoMonoMedium}" />
-                    <Setter Property="Margin" Value="6,0" />
-                </Style>
-            </winui:NavigationView.MenuItemContainerStyle>
             <winui:NavigationView.MenuItems>
-                <winui:NavigationViewItem Margin="45,0,6,0"
-                                          Content="Destinations"
-                                          Tag="DestinationsPage" />
+                <winui:NavigationViewItem Content="Destinations" Tag="DestinationsPage" />
                 <winui:NavigationViewItem Content="Explore" Tag="ExplorePage" />
                 <winui:NavigationViewItem Content="About" Tag="AboutPage" />
             </winui:NavigationView.MenuItems>
 
+            <winui:NavigationView.PaneHeader>
+                <Image x:Name="Logo"
+                       Width="40"
+                       Margin="63,0,24,0"
+                       Source="/Assets/Images/logo.png" />
+            </winui:NavigationView.PaneHeader>
+
             <winui:NavigationView.PaneCustomContent>
-                <StackPanel Margin="0,0,98,0"
+                <StackPanel x:Name="RightMenu"
+                            Margin="0,0,58,0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                     <Button Width="52"
