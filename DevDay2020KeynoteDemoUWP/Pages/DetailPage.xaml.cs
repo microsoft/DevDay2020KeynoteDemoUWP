@@ -6,9 +6,9 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
-using WinUI = Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Shapes;
 using System.Threading.Tasks;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -85,7 +85,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 animation?.TryStart(dot);
                 dot.Visibility = Visibility.Visible;
 
-                // TODO: Need to figutre out why the first time the animation doesn't run although animation returns true.
+                // JL: Need to figutre out why the first time the animation doesn't run although animation returns true.
                 if (_firstTimeAnimation)
                 {
                     _firstTimeAnimation = false;

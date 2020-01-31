@@ -1,8 +1,10 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -72,6 +74,42 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         {
             _selectedPlaceImage = Place2Image;
             Frame.Navigate(typeof(DetailPage), Place2);
+        }
+
+        private void ArrangeForDualScreenTall()
+        {
+        }
+
+        private void ArrangeForDualScreenWide()
+        {
+        }
+
+        private void ArrangeForSingleScreen()
+        {
+        }
+
+        /// <summary>
+        /// STEP 2.2: For complex layouts, manually switch between UI based on postures.
+        /// </summary>
+        private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
+        {
+            switch (sender.Mode)
+            {
+                // Update layout for viewing on a Single display.
+                case WinUI.TwoPaneViewMode.SinglePane:
+                    ArrangeForSingleScreen();
+                    break;
+
+                // Update layout for viewing on a Double Portrait display
+                case WinUI.TwoPaneViewMode.Wide:
+                    ArrangeForDualScreenWide();
+                    break;
+
+                // Update layout for viewing on a Double Landscape display
+                case WinUI.TwoPaneViewMode.Tall:
+                    ArrangeForDualScreenTall();
+                    break;
+            }
         }
     }
 }

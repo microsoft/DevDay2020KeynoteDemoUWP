@@ -38,6 +38,10 @@
         </VisualStateManager.VisualStateGroups>
 
         <ScrollViewer x:Name="DetailContent">
+            <!--
+                STEP 1.1:
+                TwoPaneView that uses all the built-in responsiveness design.
+            -->
             <winui:TwoPaneView x:Name="ContentView"
                                Margin="0,132,0,0"
                                MinWideModeWidth="960"

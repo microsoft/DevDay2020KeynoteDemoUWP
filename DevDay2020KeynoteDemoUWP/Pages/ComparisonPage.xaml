@@ -88,8 +88,15 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       Margin="0,-144,0,0">
+
+            <!--
+                STEP 2.1:
+                TwoPaneView that leverages ModeChanged event that updates the UI based on view modes
+                (Single, Double Portrait or Double Landscape diplay).
+            -->
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
+                               ModeChanged="OnTwoPaneViewModeChanged"
                                Pane2Length="Auto">
                 <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Margin="0,144,0,0">
