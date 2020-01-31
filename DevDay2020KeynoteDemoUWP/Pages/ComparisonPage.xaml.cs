@@ -1,5 +1,6 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
 using System;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -76,38 +77,44 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             Frame.Navigate(typeof(DetailPage), Place2);
         }
 
-        private void ArrangeForDualScreenTall()
+        private void ArrangeForDoublePaneTall()
         {
         }
 
-        private void ArrangeForDualScreenWide()
+        private void ArrangeForDoublePaneWide()
         {
         }
 
-        private void ArrangeForSingleScreen()
+        private void ArrangeForSinglePane()
         {
+            // In this particular case, we are not doing anything here
+            // because we always displays both Panes.
         }
 
         /// <summary>
-        /// STEP 2.2: For complex layouts, manually switch between UI based on postures.
+        /// STEP 2.2: 
+        /// Set the UI based on how Pane1 and/or Pane2 are stacked together.
+        /// Do this when you want a very customized experience.
         /// </summary>
         private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
         {
+            //Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
+
             switch (sender.Mode)
             {
                 // Update layout for viewing on a Single display.
                 case WinUI.TwoPaneViewMode.SinglePane:
-                    ArrangeForSingleScreen();
+                    ArrangeForSinglePane();
                     break;
 
-                // Update layout for viewing on a Double Portrait display
+                // Update layout for viewing when two Panes are stacked horizontally.
                 case WinUI.TwoPaneViewMode.Wide:
-                    ArrangeForDualScreenWide();
+                    ArrangeForDoublePaneWide();
                     break;
 
-                // Update layout for viewing on a Double Landscape display
+                // Update layout for viewing when two Panes are stacked vertically.
                 case WinUI.TwoPaneViewMode.Tall:
-                    ArrangeForDualScreenTall();
+                    ArrangeForDoublePaneTall();
                     break;
             }
         }

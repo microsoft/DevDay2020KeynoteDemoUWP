@@ -42,11 +42,11 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             {
                 await Task.Delay(1200);
 
-                var displayRegionCount = ApplicationView.GetForCurrentView().GetDisplayRegions().Count;
-                Debug.WriteLine($"GetDisplayRegions().Count: {displayRegionCount}");
+                //var displayRegionCount = ApplicationView.GetForCurrentView().GetDisplayRegions().Count;
+                //Debug.WriteLine($"GetDisplayRegions().Count: {displayRegionCount}");
 
                 var windowWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
-                Debug.WriteLine($"Window width: {windowWidth}");
+                //Debug.WriteLine($"Window width: {windowWidth}");
 
                 if (windowWidth == 1440)
                 {
