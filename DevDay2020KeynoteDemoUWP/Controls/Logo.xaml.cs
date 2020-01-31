@@ -48,5 +48,8 @@ namespace DevDay2020KeynoteDemoUWP.Controls
             AnimatedBlueTriangle.Visibility = Visibility.Collapsed;
             AnimatedGreyTriangle.Visibility = Visibility.Collapsed;
         }
+
+        public void SetAngle(double angle) => 
+            GreyTriangleProjection.RotationX = BlueTriangleProjection.RotationX = angle;
     }
 }

@@ -9,16 +9,19 @@ using Windows.UI.Xaml.Input;
 using System.Collections.ObjectModel;
 using DevDay2020KeynoteDemoUWP.Model;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
-using Windows.UI.Xaml.Controls;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Devices.Sensors;
+using Windows.UI.Core;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
     public sealed partial class MainPage
     {
         public ObservableCollection<Place> PickedPlaces { get; } = new ObservableCollection<Place>();
+
+        private HingeAngleSensor _sensor;
 
         public MainPage()
         {
@@ -63,7 +66,40 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 //    Logo.GoToSingleScreenState();
                 //}
             };
-        }
+
+            Loaded += async (s, e) =>
+            {
+                _sensor = await HingeAngleSensor.GetDefaultAsync();
+
+                if (_sensor != null)
+                {
+                    _sensor.ReportThresholdInDegrees = _sensor.MinReportThresholdInDegrees;
+
+                    _sensor.ReadingChanged += OnSensorReadingChanged;
+                    var current = (await _sensor.GetCurrentReadingAsync()).AngleInDegrees;
+                }
+
+                async void OnSensorReadingChanged(HingeAngleSensor sender, HingeAngleSensorReadingChangedEventArgs args)
+                {
+                    // Event is invoked from a different thread.
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                    {
+                        // Range is between 90 and 270.
+                        var angle = args.Reading.AngleInDegrees / 2 + 90;
+                        if (angle < 100)
+                        {
+                            angle = 100;
+                        }
+                        else if (angle > 260)
+                        {
+                            angle = 260;
+                        }
+
+                        Logo.SetAngle(angle);
+                    });
+                }
+            };
+        } 
 
         private void OnMainNavItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args) =>
             NavigateToPage(args.InvokedItemContainer.Tag);

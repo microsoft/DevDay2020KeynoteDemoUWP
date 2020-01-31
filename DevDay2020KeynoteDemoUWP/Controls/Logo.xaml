@@ -13,14 +13,9 @@
             <CompositeTransform />
         </Grid.RenderTransform>
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="LogoStates">
+            <VisualStateGroup x:Name="ScreenStates">
                 <VisualStateGroup.Transitions>
                     <VisualTransition GeneratedDuration="00:00:00.8000000">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CubicEase EasingMode="EaseInOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-                    <VisualTransition GeneratedDuration="00:00:00.4000000" To="RestoreAngle">
                         <VisualTransition.GeneratedEasingFunction>
                             <CubicEase EasingMode="EaseInOut" />
                         </VisualTransition.GeneratedEasingFunction>
@@ -40,6 +35,16 @@
                         <Setter Target="AnimatedBlueTriangle.(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Value="10" />
                     </VisualState.Setters>
                 </VisualState>
+            </VisualStateGroup>
+
+            <VisualStateGroup x:Name="AngleStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="00:00:00.4000000">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CubicEase EasingMode="EaseIn" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
                 <VisualState x:Name="RestoreAngle">
                     <VisualState.Setters>
                         <Setter Target="GreyTriangle.(UIElement.Projection).(PlaneProjection.RotationX)" Value="0" />
@@ -85,7 +90,7 @@
               UseLayoutRounding="False"
               Visibility="Collapsed">
             <Path.Projection>
-                <PlaneProjection CenterOfRotationY="1" />
+                <PlaneProjection x:Name="GreyTriangleProjection" CenterOfRotationY="1" />
             </Path.Projection>
             <Path.RenderTransform>
                 <CompositeTransform TranslateX="10" />
@@ -101,7 +106,7 @@
               UseLayoutRounding="False"
               Visibility="Collapsed">
             <Path.Projection>
-                <PlaneProjection CenterOfRotationY="1" />
+                <PlaneProjection x:Name="BlueTriangleProjection" CenterOfRotationY="1" />
             </Path.Projection>
             <Path.RenderTransform>
                 <CompositeTransform ScaleY="-1"
