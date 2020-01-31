@@ -9,20 +9,6 @@ namespace DevDay2020KeynoteDemoUWP.Controls
         public Logo()
         {
             InitializeComponent();
-
-            //Test();
-        }
-
-        private async void Test()
-        {
-            await Task.Delay(4000);
-            GoToDualScreenState();
-            await Task.Delay(4000);
-            GoToSingleScreenState();
-            await Task.Delay(4000);
-            GoToDualScreenState();
-            await Task.Delay(4000);
-            GoToSingleScreenState();
         }
 
         public async void GoToSingleScreenState()
