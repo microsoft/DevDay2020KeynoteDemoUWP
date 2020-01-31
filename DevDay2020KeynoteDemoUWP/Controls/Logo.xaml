@@ -36,83 +36,45 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-
-            <VisualStateGroup x:Name="AngleStates">
-                <VisualStateGroup.Transitions>
-                    <VisualTransition GeneratedDuration="00:00:00.4000000">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CubicEase EasingMode="EaseIn" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-                </VisualStateGroup.Transitions>
-                <VisualState x:Name="RestoreAngle">
-                    <VisualState.Setters>
-                        <Setter Target="GreyTriangle.(UIElement.Projection).(PlaneProjection.RotationX)" Value="0" />
-                        <Setter Target="BlueTriangle.(UIElement.Projection).(PlaneProjection.RotationX)" Value="0" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Path x:Name="AnimatedGreyTriangle"
-              Width="40"
-              Height="20"
-              d:IsHidden="True"
-              Data="M0,20 40,0 40,20Z"
-              Fill="#FFCBCBCB"
-              RenderTransformOrigin="0.5,0.5"
-              UseLayoutRounding="False">
-            <Path.RenderTransform>
-                <CompositeTransform SkewX="-17" TranslateX="3" />
-            </Path.RenderTransform>
-        </Path>
-        <Path x:Name="AnimatedBlueTriangle"
-              Width="40"
-              Height="20"
-              d:IsHidden="True"
-              Data="M0,20 40,0 40,20Z"
-              Fill="#FF0477BF"
-              Opacity="0.9"
-              RenderTransformOrigin="0.5,0.5"
-              UseLayoutRounding="False">
-            <Path.Projection>
-                <PlaneProjection CenterOfRotationY="1" />
-            </Path.Projection>
-            <Path.RenderTransform>
-                <CompositeTransform />
-            </Path.RenderTransform>
-        </Path>
-        <Path x:Name="GreyTriangle"
-              Width="40"
-              Height="20"
-              Data="M0,20 40,0 40,20Z"
-              Fill="#FFCBCBCB"
-              RenderTransformOrigin="0.5,0.5"
-              UseLayoutRounding="False"
-              Visibility="Collapsed">
-            <Path.Projection>
+
+        <Border x:Name="AnimatedGreyTriangleWrapper">
+            <Border.Projection>
                 <PlaneProjection x:Name="GreyTriangleProjection" CenterOfRotationY="1" />
-            </Path.Projection>
-            <Path.RenderTransform>
-                <CompositeTransform TranslateX="10" />
-            </Path.RenderTransform>
-        </Path>
-        <Path x:Name="BlueTriangle"
-              Width="40"
-              Height="20"
-              Data="M0,20 40,0 40,20Z"
-              Fill="#FF0477BF"
-              Opacity="0.9"
-              RenderTransformOrigin="0.5,0.5"
-              UseLayoutRounding="False"
-              Visibility="Collapsed">
-            <Path.Projection>
+            </Border.Projection>
+
+            <Path x:Name="AnimatedGreyTriangle"
+                  Width="40"
+                  Height="20"
+                  Data="M0,20 40,0 40,20Z"
+                  Fill="#FFCBCBCB"
+                  RenderTransformOrigin="0.5,0.5"
+                  UseLayoutRounding="False">
+                <Path.RenderTransform>
+                    <CompositeTransform SkewX="-17" TranslateX="3" />
+                </Path.RenderTransform>
+            </Path>
+        </Border>
+        <Border x:Name="AnimatedBlueTriangleWrapper">
+            <Border.Projection>
                 <PlaneProjection x:Name="BlueTriangleProjection" CenterOfRotationY="1" />
-            </Path.Projection>
-            <Path.RenderTransform>
-                <CompositeTransform ScaleY="-1"
-                                    TranslateX="10"
-                                    TranslateY="20" />
-            </Path.RenderTransform>
-        </Path>
+            </Border.Projection>
+
+            <Path x:Name="AnimatedBlueTriangle"
+                  Width="40"
+                  Height="20"
+                  Data="M0,20 40,0 40,20Z"
+                  Fill="#FF0477BF"
+                  Opacity="0.9"
+                  RenderTransformOrigin="0.5,0.5"
+                  UseLayoutRounding="False">
+                <Path.Projection>
+                    <PlaneProjection CenterOfRotationY="1" />
+                </Path.Projection>
+                <Path.RenderTransform>
+                    <CompositeTransform />
+                </Path.RenderTransform>
+            </Path>
+        </Border>
     </Grid>
 </Page>
