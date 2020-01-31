@@ -2,6 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      xmlns:controls="using:DevDay2020KeynoteDemoUWP.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
@@ -79,10 +80,11 @@
             </winui:NavigationView.MenuItems>
 
             <winui:NavigationView.PaneHeader>
-                <Image x:Name="Logo"
+                <!--<Image x:Name="Logo"
                        Width="40"
                        Margin="63,0,24,0"
-                       Source="/Assets/Images/logo.png" />
+                       Source="/Assets/Images/logo.png" />-->
+                <controls:Logo x:Name="Logo" Margin="63,0,24,0" />
             </winui:NavigationView.PaneHeader>
 
             <winui:NavigationView.PaneCustomContent>

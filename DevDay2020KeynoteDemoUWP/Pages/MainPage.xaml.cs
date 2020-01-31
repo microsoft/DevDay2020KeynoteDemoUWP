@@ -11,6 +11,8 @@ using DevDay2020KeynoteDemoUWP.Model;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -32,6 +34,35 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 MainNav.SelectedItem = item;
                 NavigateToPage(item.Tag);
             }
+
+            Window.Current.SizeChanged += async (s, e) =>
+            {
+                await Task.Delay(1200);
+
+                var displayRegionCount = ApplicationView.GetForCurrentView().GetDisplayRegions().Count;
+                Debug.WriteLine($"GetDisplayRegions().Count: {displayRegionCount}");
+
+                var windowWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
+                Debug.WriteLine($"Window width: {windowWidth}");
+
+                if (windowWidth == 1440)
+                {
+                    Logo.GoToDualScreenState();
+                }
+                else
+                {
+                    Logo.GoToSingleScreenState();
+                }
+
+                //if (displayRegionCount == 2)
+                //{
+                //    Logo.GoToDualScreenState();
+                //}
+                //else
+                //{
+                //    Logo.GoToSingleScreenState();
+                //}
+            };
         }
 
         private void OnMainNavItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args) =>
