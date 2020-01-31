@@ -5,6 +5,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <Storyboard x:Name="StartAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AnimatedGreyTriangleWrapper" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:01.2000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="-120" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02.7000000" Value="-40" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.3000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.9000000" Value="-20" />
+                <EasingDoubleKeyFrame KeyTime="00:00:04.3000000" Value="-145" />
+                <EasingDoubleKeyFrame KeyTime="00:00:05.3000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AnimatedBlueTriangleWrapper" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:01.2000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="120" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02.7000000" Value="40" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.3000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.9000000" Value="20" />
+                <EasingDoubleKeyFrame KeyTime="00:00:04.3000000" Value="145" />
+                <EasingDoubleKeyFrame KeyTime="00:00:05.3000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
     <Grid x:Name="Root"
           Width="40"
           Height="20"

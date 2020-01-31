@@ -69,6 +69,8 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             Loaded += async (s, e) =>
             {
+                Logo.Start();
+
                 _sensor = await HingeAngleSensor.GetDefaultAsync();
 
                 if (_sensor != null)

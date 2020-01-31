@@ -10,6 +10,9 @@ namespace DevDay2020KeynoteDemoUWP.Controls
             InitializeComponent();
         }
 
+        public void Start() => 
+            StartAnimation.Begin();
+
         public void GoToSingleScreenState() =>
             VisualStateManager.GoToState(this, "SingleScreen", true);
 
