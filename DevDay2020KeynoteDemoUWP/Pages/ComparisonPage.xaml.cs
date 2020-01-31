@@ -102,7 +102,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             switch (sender.Mode)
             {
-                // Update layout for viewing on a Single display.
+                // Update layout for only viewing either Pane1 or Pane2.
                 case WinUI.TwoPaneViewMode.SinglePane:
                     ArrangeForSinglePane();
                     break;
