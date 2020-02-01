@@ -91,8 +91,7 @@
 
             <!--
                 STEP 2.1:
-                TwoPaneView that leverages ModeChanged event that updates the UI based on view modes
-                (Single, Double Portrait or Double Landscape diplay).
+                TwoPaneView that leverages ModeChanged event to render the UI.
             -->
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"

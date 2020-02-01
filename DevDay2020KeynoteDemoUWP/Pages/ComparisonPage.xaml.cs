@@ -1,6 +1,8 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -79,10 +81,30 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
         private void ArrangeForDoublePaneTall()
         {
+            // Double Portrait
+            if (ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.Spanning)
+            {
+                Debug.WriteLine("Double Portrait mode entered");
+            }
+            // Single Portrait
+            else
+            {
+                Debug.WriteLine("Single Portrait mode entered");
+            }
         }
 
         private void ArrangeForDoublePaneWide()
         {
+            // Double Landscape
+            if (ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.Spanning)
+            {
+                Debug.WriteLine("Double Landscape mode entered");
+            }
+            // Single Landscape
+            else
+            {
+                Debug.WriteLine("Single Landscape mode entered");
+            }
         }
 
         private void ArrangeForSinglePane()
@@ -98,7 +120,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         /// </summary>
         private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
         {
-            Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
+            //Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
 
             switch (sender.Mode)
             {
