@@ -98,7 +98,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         /// </summary>
         private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
         {
-            //Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
+            Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
 
             switch (sender.Mode)
             {

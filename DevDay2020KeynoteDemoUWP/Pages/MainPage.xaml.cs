@@ -42,13 +42,8 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             {
                 await Task.Delay(1200);
 
-                //var displayRegionCount = ApplicationView.GetForCurrentView().GetDisplayRegions().Count;
-                //Debug.WriteLine($"GetDisplayRegions().Count: {displayRegionCount}");
-
-                var windowWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
-                //Debug.WriteLine($"Window width: {windowWidth}");
-
-                if (windowWidth == 1440)
+                var isSpanned = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.Spanning;
+                if (isSpanned)
                 {
                     Logo.GoToDualScreenState();
                 }
@@ -56,15 +51,6 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 {
                     Logo.GoToSingleScreenState();
                 }
-
-                //if (displayRegionCount == 2)
-                //{
-                //    Logo.GoToDualScreenState();
-                //}
-                //else
-                //{
-                //    Logo.GoToSingleScreenState();
-                //}
             };
 
             Loaded += async (s, e) =>
