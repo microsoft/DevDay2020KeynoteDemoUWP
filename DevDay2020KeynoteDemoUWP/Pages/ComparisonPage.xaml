@@ -122,7 +122,7 @@
                                     Style="{StaticResource Style-Button-Icon-Circle}">
                                 <ContentControl Width="18"
                                                 Foreground="Black"
-                                                Style="{StaticResource Style-Icon-Arrow}" />
+                                                Style="{StaticResource Style-Icon-ArrowLeft}" />
                             </Button>
                             <TextBlock VerticalAlignment="Center"
                                        FontFamily="{StaticResource MontserratMedium}"

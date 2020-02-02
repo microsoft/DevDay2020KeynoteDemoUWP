@@ -45,6 +45,7 @@
             <winui:TwoPaneView x:Name="ContentView"
                                Margin="0,132,0,0"
                                MinWideModeWidth="960"
+                               ModeChanged="OnContentViewModeChanged"
                                Pane1Length="480"
                                Pane2Length="*">
                 <winui:TwoPaneView.Pane1>
@@ -109,7 +110,8 @@
                                 BorderBrush="#FF121111"
                                 Click="OnPlanTripClick"
                                 Content="Plan trip"
-                                Foreground="#FF121111" />
+                                Foreground="#FF121111"
+                                Tag="{StaticResource Style-Icon-PaperPlane}" />
 
                         <TextBlock FontFamily="{StaticResource MontserratSemiBold}"
                                    Opacity="0.4"
@@ -135,26 +137,50 @@
             </winui:TwoPaneView>
         </ScrollViewer>
 
-        <StackPanel x:Name="Header"
-                    Margin="56,40,0,40"
-                    VerticalAlignment="Top"
-                    Orientation="Horizontal"
-                    Spacing="16">
-            <Button x:Name="Back"
-                    Width="52"
-                    Height="52"
-                    Click="OnBackClick"
-                    Style="{StaticResource Style-Button-Icon-Circle}">
-                <ContentControl Width="18"
-                                Foreground="Black"
-                                Style="{StaticResource Style-Icon-Arrow}" />
-            </Button>
-            <TextBlock VerticalAlignment="Center"
-                       FontFamily="{StaticResource MontserratSemiBold}"
-                       FontSize="18"
-                       Opacity="0.8"
-                       Text="{x:Bind SelectedPlace.CountryName}"
-                       TextLineBounds="Tight" />
-        </StackPanel>
+        <Grid VerticalAlignment="Top">
+            <Rectangle Margin="0,0,0,40"
+                       Fill="White"
+                       Opacity="0.9" />
+            <Grid x:Name="Header"
+                  Margin="56,40"
+                  ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Back"
+                        Width="52"
+                        Height="52"
+                        Click="OnBackClick"
+                        Style="{StaticResource Style-Button-Icon-Circle}">
+                    <ContentControl Width="18"
+                                    Foreground="Black"
+                                    Style="{StaticResource Style-Icon-ArrowLeft}" />
+                </Button>
+                <TextBlock Grid.Column="1"
+                           Margin="0,12"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource MontserratSemiBold}"
+                           FontSize="18"
+                           Opacity="0.8"
+                           Text="{x:Bind SelectedPlace.CountryName}"
+                           TextLineBounds="Tight" />
+                <Button x:Name="PlanTripTop"
+                        Grid.Column="2"
+                        Width="52"
+                        Height="52"
+                        HorizontalAlignment="Right"
+                        Background="#FFF0F0F2"
+                        Click="OnPlanTripClick"
+                        Style="{StaticResource Style-Button-Icon-Circle}"
+                        Visibility="Collapsed">
+                    <ContentControl Width="18"
+                                    Foreground="#FF0477BF"
+                                    Style="{StaticResource Style-Icon-PaperPlane}" />
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

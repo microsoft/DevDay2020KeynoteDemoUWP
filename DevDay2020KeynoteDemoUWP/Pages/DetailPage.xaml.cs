@@ -98,5 +98,25 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             PlanTrip.IsEnabled = true;
         }
+
+        private void OnContentViewModeChanged(WinUI.TwoPaneView sender, object args)
+        {
+            switch (sender.Mode)
+            {
+                // Update layout when either Pane1 or Pane2 is shown.
+                case WinUI.TwoPaneViewMode.SinglePane:
+                    break;
+
+                // Update layout when two Panes are stacked horizontally.
+                case WinUI.TwoPaneViewMode.Wide:
+                    PlanTripTop.Visibility = Visibility.Collapsed;
+                    break;
+
+                // Update layout when two Panes are stacked vertically.
+                case WinUI.TwoPaneViewMode.Tall:
+                    PlanTripTop.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
     }
 }

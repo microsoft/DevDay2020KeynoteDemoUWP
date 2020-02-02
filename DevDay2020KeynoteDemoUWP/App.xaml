@@ -1,7 +1,6 @@
 ﻿<Application x:Class="DevDay2020KeynoteDemoUWP.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
              RequestedTheme="Light">
 
     <Application.Resources>
@@ -72,7 +71,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="Style-Icon-Arrow"
+            <Style x:Key="Style-Icon-ArrowLeft"
                    BasedOn="{StaticResource Style-Icon-Base}"
                    TargetType="ContentControl">
                 <Setter Property="Template">
@@ -88,6 +87,32 @@
                                   StrokeLineJoin="Round"
                                   StrokeStartLineCap="Round"
                                   StrokeThickness="2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="Style-Icon-ArrowRight"
+                   BasedOn="{StaticResource Style-Icon-Base}"
+                   TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Path Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Data="M15 4.99994H1M1 4.99994L4.58783 8.58777M1 4.99994L4.58783 1.41211"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeThickness="2">
+                                <Path.RenderTransform>
+                                    <CompositeTransform Rotation="180" />
+                                </Path.RenderTransform>
+                            </Path>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -166,6 +191,27 @@
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   Data="M11.9395 7.25684V11.2568M11.9395 15.2568H11.9495M21.9395 11.2568C21.9395 16.7797 17.4623 21.2568 11.9395 21.2568C6.41661 21.2568 1.93945 16.7797 1.93945 11.2568C1.93945 5.73399 6.41661 1.25684 11.9395 1.25684C17.4623 1.25684 21.9395 5.73399 21.9395 11.2568Z"
+                                  Stretch="Uniform"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeThickness="2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="Style-Icon-PaperPlane"
+                   BasedOn="{StaticResource Style-Icon-Base}"
+                   TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Path Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Data="M21.9824 1L10.9824 12M21.9824 1L14.9824 21L10.9824 12M21.9824 1L1.98242 8L10.9824 12"
                                   Stretch="Uniform"
                                   Stroke="{TemplateBinding Foreground}"
                                   StrokeEndLineCap="Round"
@@ -547,7 +593,7 @@
                 </Setter>
             </Style>
 
-            <Style TargetType="Button">
+            <Style x:Key="Style-Button-Base" TargetType="Button">
                 <Setter Property="Width" Value="180" />
                 <Setter Property="Height" Value="40" />
                 <Setter Property="Background" Value="#FF121111" />
@@ -564,6 +610,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
                 <Setter Property="FocusVisualMargin" Value="-3" />
+                <Setter Property="Tag" Value="{StaticResource Style-Icon-ArrowRight}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -634,17 +681,14 @@
                                                 Margin="0,0,24,0"
                                                 HorizontalAlignment="Right"
                                                 Foreground="#FF0477BF"
-                                                RenderTransformOrigin="0.5,0.5"
-                                                Style="{StaticResource Style-Icon-Arrow}">
-                                    <ContentControl.RenderTransform>
-                                        <CompositeTransform Rotation="180" />
-                                    </ContentControl.RenderTransform>
-                                </ContentControl>
+                                                Style="{TemplateBinding Tag}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <Style BasedOn="{StaticResource Style-Button-Base}" TargetType="Button" />
 
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
