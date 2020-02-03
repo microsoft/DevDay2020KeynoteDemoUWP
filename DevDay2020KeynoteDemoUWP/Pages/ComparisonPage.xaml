@@ -109,12 +109,6 @@
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
                         <Setter Target="Pane2Panel.Padding" Value="0,264,0,0" />
-                        <Setter Target="ImagePanel1.Visibility" Value="Collapsed" />
-                        <Setter Target="ImagePanel2.Visibility" Value="Collapsed" />
-                        <Setter Target="Place1FlipView.IsEnabled" Value="True" />
-                        <Setter Target="Place2FlipView.IsEnabled" Value="True" />
-                        <Setter Target="Place1FlipViewIndicator.Visibility" Value="Visible" />
-                        <Setter Target="Place2FlipViewIndicator.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -168,7 +162,7 @@
                         <Setter Target="MainScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
-                        <Setter Target="Pane2Panel.Padding" Value="0,300,0,0" />
+                        <Setter Target="Pane2Panel.Padding" Value="0,276,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Visible" />
                         <Setter Target="ImagePanel2.Visibility" Value="Visible" />
                         <Setter Target="Place1FlipView.IsEnabled" Value="False" />
