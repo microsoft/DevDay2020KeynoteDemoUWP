@@ -26,6 +26,8 @@
                         <Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Collapsed" />
                         <Setter Target="ImagePanel2.Visibility" Value="Collapsed" />
+                        <Setter Target="Place1FlipView.IsEnabled" Value="True" />
+                        <Setter Target="Place2FlipView.IsEnabled" Value="True" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -42,6 +44,8 @@
                         <Setter Target="Pane2Panel.Padding" Value="0,200,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Visible" />
                         <Setter Target="ImagePanel2.Visibility" Value="Visible" />
+                        <Setter Target="Place1FlipView.IsEnabled" Value="False" />
+                        <Setter Target="Place2FlipView.IsEnabled" Value="False" />
                         <Setter Target="ImagePanel1.Margin" Value="0,24,64,16" />
                         <Setter Target="ImagePanel2.Margin" Value="0,24,64,16" />
                         <Setter Target="ImagePanel1.(Grid.Column)" Value="1" />
@@ -54,10 +58,10 @@
                         <Setter Target="Place1Image.(RelativePanel.RightOf)" Value="" />
                         <Setter Target="Image2Desc.(RelativePanel.Below)" Value="Place2Image" />
                         <Setter Target="Place2Image.(RelativePanel.RightOf)" Value="" />
-                        <Setter Target="Place1DetailPane.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="Place2DetailPane.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="Place1DetailPane.(Grid.Row)" Value="2" />
-                        <Setter Target="Place2DetailPane.(Grid.Row)" Value="1" />
+                        <Setter Target="Place1FlipView.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="Place2FlipView.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="Place1FlipView.(Grid.Row)" Value="2" />
+                        <Setter Target="Place2FlipView.(Grid.Row)" Value="1" />
                         <Setter Target="Pane1Separator.Visibility" Value="Visible" />
                         <Setter Target="Pane2Separator.Visibility" Value="Visible" />
                         <Setter Target="CountryName1.Margin" Value="0,0,0,24" />
@@ -75,9 +79,11 @@
                         <Setter Target="MainScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
                         <Setter Target="TwoPaneView.Pane1Length" Value="*" />
                         <Setter Target="TwoPaneView.Pane2Length" Value="*" />
-                        <Setter Target="Pane2Panel.Padding" Value="0,288,0,0" />
+                        <Setter Target="Pane2Panel.Padding" Value="0,300,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Visible" />
                         <Setter Target="ImagePanel2.Visibility" Value="Visible" />
+                        <Setter Target="Place1FlipView.IsEnabled" Value="False" />
+                        <Setter Target="Place2FlipView.IsEnabled" Value="False" />
                         <Setter Target="CountryName1.Margin" Value="0" />
                         <Setter Target="CountryName2.Margin" Value="0" />
                     </VisualState.Setters>
@@ -88,7 +94,6 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       Margin="0,-144,0,0">
-
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
                                Pane2Length="Auto">
@@ -161,91 +166,116 @@
                                    Stretch="UniformToFill" />
                         </RelativePanel>
 
-                        <StackPanel x:Name="Place1DetailPane"
-                                    Grid.Row="3"
-                                    Grid.ColumnSpan="2">
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Opacity="0.6"
-                                           Text="Distance from home" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Text="4336 km" />
-                                <Ellipse Grid.Column="1"
-                                         Width="6"
-                                         Height="6"
-                                         Margin="32,0,0,0"
-                                         HorizontalAlignment="Left"
-                                         Fill="#FF3A8C46" />
-                            </Grid>
+                        <FlipView x:Name="Place1FlipView"
+                                  Grid.Row="3"
+                                  Grid.ColumnSpan="2"
+                                  Height="288"
+                                  Background="Transparent">
+                            <FlipViewItem>
+                                <StackPanel>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Opacity="0.6"
+                                                   Text="Distance from home" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Text="4336 km" />
+                                        <Ellipse Grid.Column="1"
+                                                 Width="6"
+                                                 Height="6"
+                                                 Margin="32,0,0,0"
+                                                 HorizontalAlignment="Left"
+                                                 Fill="#FF3A8C46" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Opacity="0.6"
-                                           Text="Estimated Cost" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Text="3,700 USD" />
-                            </Grid>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Opacity="0.6"
+                                                   Text="Estimated Cost" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Text="3,700 USD" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Opacity="0.6"
-                                           Text="Temperature" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Text="45 - 70 F°" />
-                            </Grid>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Opacity="0.6"
+                                                   Text="Temperature" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Text="45 - 70 F°" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Opacity="0.6"
-                                           Text="Estimated no. of visitors" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Text="300,000" />
-                            </Grid>
-                        </StackPanel>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Opacity="0.6"
+                                                   Text="Estimated no. of visitors" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Text="300,000" />
+                                    </Grid>
+                                </StackPanel>
+                            </FlipViewItem>
+                            <FlipViewItem>
+                                <StackPanel Margin="40,48,40,16"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            Spacing="102">
+                                    <TextBlock MaxWidth="220"
+                                               Margin="0,8,0,0"
+                                               LineHeight="24"
+                                               Opacity="0.6"
+                                               Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor mattis sit sed dolor diam laoreet tristique."
+                                               TextAlignment="Right"
+                                               TextWrapping="Wrap" />
+                                    <Image Width="206"
+                                           Height="144"
+                                           Source="{x:Bind Place1.ImageUri}"
+                                           Stretch="UniformToFill" />
+                                </StackPanel>
+                            </FlipViewItem>
+                        </FlipView>
 
                         <Line x:Name="Pane1Separator"
                               Grid.Row="2"
@@ -310,7 +340,7 @@
                                        Foreground="#FFF8F8F8"
                                        LineHeight="24"
                                        Opacity="0.6"
-                                       Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor  mattis sit sed dolor diam laoreet tristique."
+                                       Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor mattis sit sed dolor diam laoreet tristique."
                                        TextAlignment="Right"
                                        TextWrapping="Wrap" />
                             <Image x:Name="Place2Image"
@@ -323,111 +353,137 @@
                                    Stretch="UniformToFill" />
                         </RelativePanel>
 
-                        <StackPanel x:Name="Place2DetailPane"
-                                    Grid.Row="2"
-                                    Grid.ColumnSpan="2">
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Foreground="#FFF8F8F8"
-                                           Opacity="0.6"
-                                           Text="Distance from home" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Foreground="#FFF8F8F8"
-                                           Text="7684 km" />
-                            </Grid>
+                        <FlipView x:Name="Place2FlipView"
+                                  Grid.Row="2"
+                                  Grid.ColumnSpan="2"
+                                  Height="288"
+                                  Background="Transparent">
+                            <FlipViewItem>
+                                <StackPanel>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Foreground="#FFF8F8F8"
+                                                   Opacity="0.6"
+                                                   Text="Distance from home" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Foreground="#FFF8F8F8"
+                                                   Text="7684 km" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Foreground="#FFF8F8F8"
-                                           Opacity="0.6"
-                                           Text="Estimated Cost" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Foreground="#FFF8F8F8"
-                                           Text="2,900 USD" />
-                                <Ellipse Grid.Column="1"
-                                         Width="6"
-                                         Height="6"
-                                         Margin="32,0,0,0"
-                                         HorizontalAlignment="Left"
-                                         Fill="#FF3A8C46" />
-                            </Grid>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Foreground="#FFF8F8F8"
+                                                   Opacity="0.6"
+                                                   Text="Estimated Cost" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Foreground="#FFF8F8F8"
+                                                   Text="2,900 USD" />
+                                        <Ellipse Grid.Column="1"
+                                                 Width="6"
+                                                 Height="6"
+                                                 Margin="32,0,0,0"
+                                                 HorizontalAlignment="Left"
+                                                 Fill="#FF3A8C46" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Foreground="#FFF8F8F8"
-                                           Opacity="0.6"
-                                           Text="Temperature" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Foreground="#FFF8F8F8"
-                                           Text="33 - 48 F°" />
-                                <Ellipse Grid.Column="1"
-                                         Width="6"
-                                         Height="6"
-                                         Margin="32,0,0,0"
-                                         HorizontalAlignment="Left"
-                                         Fill="#FF3A8C46" />
-                            </Grid>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Foreground="#FFF8F8F8"
+                                                   Opacity="0.6"
+                                                   Text="Temperature" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Foreground="#FFF8F8F8"
+                                                   Text="33 - 48 F°" />
+                                        <Ellipse Grid.Column="1"
+                                                 Width="6"
+                                                 Height="6"
+                                                 Margin="32,0,0,0"
+                                                 HorizontalAlignment="Left"
+                                                 Fill="#FF3A8C46" />
+                                    </Grid>
 
-                            <Grid Height="72">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="0,0,51,0"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource MontserratMedium}"
-                                           Foreground="#FFF8F8F8"
-                                           Opacity="0.6"
-                                           Text="Estimated no. of visitors" />
-                                <TextBlock Grid.Column="1"
-                                           Margin="51,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{StaticResource RobotoMonoBold}"
-                                           FontSize="18"
-                                           Foreground="#FFF8F8F8"
-                                           Text="250,000" />
-                                <Ellipse Grid.Column="1"
-                                         Width="6"
-                                         Height="6"
-                                         Margin="32,0,0,0"
-                                         HorizontalAlignment="Left"
-                                         Fill="#FF3A8C46" />
-                            </Grid>
-                        </StackPanel>
+                                    <Grid Height="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="0,0,51,0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource MontserratMedium}"
+                                                   Foreground="#FFF8F8F8"
+                                                   Opacity="0.6"
+                                                   Text="Estimated no. of visitors" />
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="51,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource RobotoMonoBold}"
+                                                   FontSize="18"
+                                                   Foreground="#FFF8F8F8"
+                                                   Text="250,000" />
+                                        <Ellipse Grid.Column="1"
+                                                 Width="6"
+                                                 Height="6"
+                                                 Margin="32,0,0,0"
+                                                 HorizontalAlignment="Left"
+                                                 Fill="#FF3A8C46" />
+                                    </Grid>
+                                </StackPanel>
+                            </FlipViewItem>
+                            <FlipViewItem>
+                                <StackPanel Margin="40,48,40,16"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            Spacing="102">
+                                    <TextBlock MaxWidth="220"
+                                               Margin="0,8,0,0"
+                                               Foreground="#FFF8F8F8"
+                                               LineHeight="24"
+                                               Opacity="0.6"
+                                               Text="Lorem ipsum dolor sit amet, consectetur elit. Dolor mattis sit sed dolor diam laoreet tristique."
+                                               TextAlignment="Right"
+                                               TextWrapping="Wrap" />
+                                    <Image Width="206"
+                                           Height="144"
+                                           Source="{x:Bind Place2.ImageUri}"
+                                           Stretch="UniformToFill" />
+                                </StackPanel>
+                            </FlipViewItem>
+                        </FlipView>
 
                         <Line x:Name="Pane2Separator"
                               Grid.Row="1"
