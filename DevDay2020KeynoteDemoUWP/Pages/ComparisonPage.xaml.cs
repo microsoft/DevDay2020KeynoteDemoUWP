@@ -1,13 +1,10 @@
 ﻿using DevDay2020KeynoteDemoUWP.Model;
-using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
