@@ -112,33 +112,5 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             // In this particular case, we are not doing anything here
             // because we always displays both Panes.
         }
-
-        /// <summary>
-        /// STEP 2.2: 
-        /// Set the UI based on how Pane1 and/or Pane2 are stacked together.
-        /// Do this when you want a very customized experience.
-        /// </summary>
-        private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
-        {
-            //Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
-
-            switch (sender.Mode)
-            {
-                // Update layout for only viewing either Pane1 or Pane2.
-                case WinUI.TwoPaneViewMode.SinglePane:
-                    ArrangeForSinglePane();
-                    break;
-
-                // Update layout for viewing when two Panes are stacked horizontally.
-                case WinUI.TwoPaneViewMode.Wide:
-                    ArrangeForDoublePaneWide();
-                    break;
-
-                // Update layout for viewing when two Panes are stacked vertically.
-                case WinUI.TwoPaneViewMode.Tall:
-                    ArrangeForDoublePaneTall();
-                    break;
-            }
-        }
     }
 }

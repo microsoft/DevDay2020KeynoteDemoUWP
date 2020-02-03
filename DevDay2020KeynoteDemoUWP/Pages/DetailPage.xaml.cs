@@ -99,6 +99,11 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             PlanTrip.IsEnabled = true;
         }
 
+        /// <summary>
+        /// STEP 1.2: 
+        /// Set the UI based on how Pane1 and/or Pane2 are stacked together.
+        /// Do this when you want a customized experience.
+        /// </summary>
         private void OnContentViewModeChanged(WinUI.TwoPaneView sender, object args)
         {
             switch (sender.Mode)

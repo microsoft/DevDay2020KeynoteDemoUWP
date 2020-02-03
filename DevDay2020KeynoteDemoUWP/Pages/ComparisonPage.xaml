@@ -89,13 +89,8 @@
                       Grid.Row="1"
                       Margin="0,-144,0,0">
 
-            <!--
-                STEP 2.1:
-                TwoPaneView that leverages ModeChanged event to render the UI.
-            -->
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
-                               ModeChanged="OnTwoPaneViewModeChanged"
                                Pane2Length="Auto">
                 <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Margin="0,144,0,0">
