@@ -80,10 +80,6 @@
             </winui:NavigationView.MenuItems>
 
             <winui:NavigationView.PaneHeader>
-                <!--<Image x:Name="Logo"
-                       Width="40"
-                       Margin="63,0,24,0"
-                       Source="/Assets/Images/logo.png" />-->
                 <controls:Logo x:Name="Logo" Margin="63,0,24,0" />
             </winui:NavigationView.PaneHeader>
 
@@ -201,7 +197,10 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Place">
-                            <Grid>
+                            <Grid x:Name="Root"
+                                  Background="Transparent"
+                                  CanDrag="True"
+                                  DragStarting="OnRootDragStarting">
                                 <Grid HorizontalAlignment="Left">
                                     <Image x:Name="PlaceImage"
                                            Width="200"

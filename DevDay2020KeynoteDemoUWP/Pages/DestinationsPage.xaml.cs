@@ -10,6 +10,10 @@ using Windows.UI.Xaml.Media.Animation;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -147,7 +151,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             // 1. Create a new Window.
             var appWindow = await AppWindow.TryCreateAsync();
 
-            // 2. Create the pageand set the new window's content..
+            // 2. Create the page and set the new window's content..
             ElementCompositionPreview.SetAppWindowContent(appWindow, new WonderbarPage());
 
             // 3. Check if you can leverage the compact overlay APIs
@@ -159,6 +163,25 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 // 5. If so, change that window to be inside the compact overlay region.
                 appWindow.Presenter.RequestPresentation(AppWindowPresentationKind.CompactOverlay);
             }
+        }
+
+        private async void OnRootDragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            var deferal = args.GetDeferral();
+
+            if (((Grid)sender).DataContext is Place place)
+            {
+                args.Data.RequestedOperation = DataPackageOperation.Copy;
+
+                //args.Data.SetData(StandardDataFormats.Text, place.CityName);
+
+                var imageUri = new Uri($"ms-appx://{place.ImageUri}", UriKind.RelativeOrAbsolute);
+                var file = await StorageFile.GetFileFromApplicationUriAsync(imageUri);
+                args.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
+                args.DragUI.SetContentFromBitmapImage(new BitmapImage(imageUri) { DecodePixelWidth = 240 });
+            }
+
+            deferal.Complete();
         }
     }
 }
