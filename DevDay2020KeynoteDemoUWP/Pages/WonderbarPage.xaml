@@ -19,17 +19,17 @@
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />
 
-                        <Border Margin="40"
+                        <Border Margin="40,40,40,180"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom">
                             <toolkit:DropShadowPanel HorizontalAlignment="Center"
                                                      VerticalAlignment="Center"
                                                      BlurRadius="24"
                                                      IsMasked="True"
-                                                     ShadowOpacity="0.5"
+                                                     ShadowOpacity="0.4"
                                                      Color="Black">
                                 <TextBlock FontFamily="{StaticResource MontserratBold}"
-                                           FontSize="18"
+                                           FontSize="24"
                                            Foreground="White"
                                            Text="{x:Bind CountryName}" />
                             </toolkit:DropShadowPanel>
@@ -49,25 +49,7 @@
             <Rectangle Grid.ColumnSpan="3"
                        Fill="White"
                        Opacity="0.4" />
-            <controls:Logo x:Name="Logo" Margin="40,0,0,2" />
-            <Button x:Name="Wunderbar"
-                    Grid.Column="2"
-                    Width="56"
-                    Height="56"
-                    Margin="0,12,24,12"
-                    Padding="0"
-                    Click="OnWunderbarClick"
-                    RenderTransformOrigin="0.5,0.5"
-                    Style="{StaticResource Style-Button-Icon-Circle}"
-                    Tag="1">
-                <ContentControl.RenderTransform>
-                    <CompositeTransform Rotation="180" />
-                </ContentControl.RenderTransform>
-
-                <ContentControl Width="18"
-                                Foreground="#FF0477BF"
-                                Style="{StaticResource Style-Icon-Wunderbar}" />
-            </Button>
+            <controls:Logo x:Name="Logo" Margin="40,16,0,20" />
         </Grid>
     </Grid>
 </Page>
