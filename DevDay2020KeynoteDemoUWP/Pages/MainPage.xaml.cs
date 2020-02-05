@@ -143,23 +143,18 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
         }
 
-        private async void OnRootDragStarting(UIElement sender, DragStartingEventArgs args)
+        private async void OnPlacesListViewDragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
-            var deferal = args.GetDeferral();
-
-            if (((Grid)sender).DataContext is Place place)
+            if (e.Items.FirstOrDefault() is Place place)
             {
-                args.Data.RequestedOperation = DataPackageOperation.Copy;
+                e.Data.RequestedOperation = DataPackageOperation.Copy;
 
-                //args.Data.SetData(StandardDataFormats.Text, place.CityName);
+                //e.Data.SetData(StandardDataFormats.Text, place.CityName);
 
                 var imageUri = new Uri($"ms-appx://{place.ImageUri}", UriKind.RelativeOrAbsolute);
                 var file = await StorageFile.GetFileFromApplicationUriAsync(imageUri);
-                args.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
-                args.DragUI.SetContentFromBitmapImage(new BitmapImage(imageUri) { DecodePixelWidth = 240 });
+                e.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
             }
-
-            deferal.Complete();
         }
     }
 }

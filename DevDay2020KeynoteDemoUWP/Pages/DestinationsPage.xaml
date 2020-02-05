@@ -1046,6 +1046,8 @@
 
         <GridView x:Name="MainGridView"
                   animations:ReorderGridAnimation.Duration="300"
+                  CanDragItems="True"
+                  DragItemsStarting="OnMainGridViewDragItemsStarting"
                   IsItemClickEnabled="True"
                   ItemClick="OnMainGridViewItemClick"
                   ItemsSource="{x:Bind PlacesSource.View}"
@@ -1062,9 +1064,7 @@
                     <Grid x:Name="Root"
                           Width="256"
                           Height="172"
-                          Background="Transparent"
-                          CanDrag="False"
-                          DragStarting="OnRootDragStarting">
+                          Background="Transparent">
                         <Image x:Name="PlaceImage"
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />

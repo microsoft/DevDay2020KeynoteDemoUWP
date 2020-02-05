@@ -185,6 +185,8 @@
                           Grid.Row="1"
                           Margin="0,0,0,24"
                           Padding="64,0"
+                          CanDragItems="True"
+                          DragItemsStarting="OnPlacesListViewDragItemsStarting"
                           IsItemClickEnabled="True"
                           ItemsSource="{x:Bind PickedPlaces}"
                           ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -200,10 +202,7 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Place">
-                            <Grid x:Name="Root"
-                                  Background="Transparent"
-                                  CanDrag="True"
-                                  DragStarting="OnRootDragStarting">
+                            <Grid x:Name="Root" Background="Transparent">
                                 <Grid HorizontalAlignment="Left">
                                     <Image x:Name="PlaceImage"
                                            Width="240"
