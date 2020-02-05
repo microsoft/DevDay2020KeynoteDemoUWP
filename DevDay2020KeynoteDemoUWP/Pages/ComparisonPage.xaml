@@ -96,7 +96,6 @@
                       Margin="0,-144,0,0">
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
-                               ModeChanged="OnTwoPaneViewModeChanged"
                                Pane2Length="Auto">
                 <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Margin="0,144,0,0">
@@ -292,6 +291,7 @@
 
                         <ListBox x:Name="Place1FlipViewIndicator"
                                  Grid.Row="4"
+                                 Margin="0,0,0,24"
                                  SelectedIndex="{x:Bind Place1FlipView.SelectedIndex, Mode=TwoWay}"
                                  Style="{StaticResource Style-ListBox-Indicator}">
                             <ListBoxItem />
@@ -509,6 +509,7 @@
 
                         <ListBox x:Name="Place2FlipViewIndicator"
                                  Grid.Row="3"
+                                 Margin="0,0,0,24"
                                  SelectedIndex="{x:Bind Place2FlipView.SelectedIndex, Mode=TwoWay}"
                                  Style="{StaticResource Style-ListBox-Indicator}">
                             <ListBoxItem />

@@ -63,6 +63,9 @@
                         <Setter Target="ContentArea.VerticalAlignment" Value="Stretch" />
                         <Setter Target="ContentArea.(Grid.Row)" Value="0" />
                         <Setter Target="Header.Margin" Value="40,0" />
+                        <Setter Target="PlacesListView.Margin" Value="0,0,0,12" />
+                        <Setter Target="PlacesListView.Padding" Value="32,0" />
+                        <Setter Target="WunderbarToggle.Margin" Value="12,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -160,7 +163,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel x:Name="Header"
-                            Margin="103,40,103,24"
+                            Margin="103,40,103,12"
                             VerticalAlignment="Top"
                             Orientation="Horizontal"
                             Spacing="12">
@@ -203,13 +206,13 @@
                                   DragStarting="OnRootDragStarting">
                                 <Grid HorizontalAlignment="Left">
                                     <Image x:Name="PlaceImage"
-                                           Width="200"
+                                           Width="240"
                                            Source="{x:Bind ImageUri}"
                                            Stretch="UniformToFill" />
                                     <Rectangle Fill="#66000000" />
                                 </Grid>
 
-                                <StackPanel Margin="120,40,0,0" Spacing="8">
+                                <StackPanel Margin="148,40,0,0" Spacing="8">
                                     <TextBlock FontFamily="{StaticResource MontserratSemiBold}"
                                                FontSize="12"
                                                Foreground="White"
