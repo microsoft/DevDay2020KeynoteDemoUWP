@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -108,6 +109,29 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         {
             // In this particular case, we are not doing anything here
             // because we always displays both Panes.
+        }
+
+        private void OnTwoPaneViewModeChanged(WinUI.TwoPaneView sender, object args)
+        {
+            //Debug.WriteLine($"TwoPaneView.Mode: {sender.Mode}");
+
+            switch (sender.Mode)
+            {
+                // Update layout for only viewing either Pane1 or Pane2.
+                case WinUI.TwoPaneViewMode.SinglePane:
+                    ArrangeForSinglePane();
+                    break;
+
+                // Update layout for viewing when two Panes are stacked horizontally.
+                case WinUI.TwoPaneViewMode.Wide:
+                    ArrangeForDoublePaneWide();
+                    break;
+
+                // Update layout for viewing when two Panes are stacked vertically.
+                case WinUI.TwoPaneViewMode.Tall:
+                    ArrangeForDoublePaneTall();
+                    break;
+            }
         }
     }
 }

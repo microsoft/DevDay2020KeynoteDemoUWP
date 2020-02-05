@@ -10,91 +10,6 @@
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <Page.Resources>
-        <Style x:Key="Style-ListBoxItem-Indicator" TargetType="ListBoxItem">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Padding" Value="8,0" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border Background="{TemplateBinding Background}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal" />
-                                    <VisualState x:Name="PointerOver" />
-                                </VisualStateGroup>
-
-                                <VisualStateGroup x:Name="SelectionStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="00:00:0.25" />
-                                    </VisualStateGroup.Transitions>
-
-                                    <VisualState x:Name="Unselected" />
-                                    <VisualState x:Name="Selected">
-                                        <Storyboard>
-                                            <ColorAnimation BeginTime="00:00:00"
-                                                            Storyboard.TargetName="Indicator"
-                                                            Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
-                                                            To="#FF0477BF"
-                                                            Duration="0" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="SelectedUnfocused">
-                                        <Storyboard>
-                                            <ColorAnimation BeginTime="00:00:00"
-                                                            Storyboard.TargetName="Indicator"
-                                                            Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
-                                                            To="#FF0477BF"
-                                                            Duration="0" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="SelectedPressed">
-                                        <Storyboard>
-                                            <ColorAnimation BeginTime="00:00:00"
-                                                            Storyboard.TargetName="Indicator"
-                                                            Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
-                                                            To="#FF0477BF"
-                                                            Duration="0" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="SelectedPointerOver">
-                                        <Storyboard>
-                                            <ColorAnimation BeginTime="00:00:00"
-                                                            Storyboard.TargetName="Indicator"
-                                                            Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
-                                                            To="#FF0477BF"
-                                                            Duration="0" />
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-
-                            <Ellipse x:Name="Indicator"
-                                     Width="8"
-                                     Height="8"
-                                     Margin="{TemplateBinding Padding}"
-                                     Fill="#FFF0F0F2" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="Style-ListBox-Indicator" TargetType="ListBox">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="12,0" />
-            <Setter Property="ItemContainerStyle" Value="{StaticResource Style-ListBoxItem-Indicator}" />
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -181,6 +96,7 @@
                       Margin="0,-144,0,0">
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
+                               ModeChanged="OnTwoPaneViewModeChanged"
                                Pane2Length="Auto">
                 <winui:TwoPaneView.Pane1>
                     <Grid x:Name="Pane1Panel" Margin="0,144,0,0">

@@ -5,51 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:DevDay2020KeynoteDemoUWP.Model"
-      xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
       mc:Ignorable="d">
 
     <Grid>
-        <FlipView x:Name="MainGridView"
-                  Background="White"
+        <FlipView x:Name="MainFlipView"
+                  Background="#FFF0F0F2"
                   ItemsSource="{x:Bind _places}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="model:Place">
-                    <Grid>
+                    <Grid Background="#FFF0F0F2">
                         <Image x:Name="PlaceImage"
+                               Width="212"
+                               Margin="24,0,0,0"
+                               HorizontalAlignment="Right"
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />
 
-                        <Border Margin="40,40,40,180"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom">
-                            <toolkit:DropShadowPanel HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"
-                                                     BlurRadius="24"
-                                                     IsMasked="True"
-                                                     ShadowOpacity="0.4"
-                                                     Color="Black">
-                                <TextBlock FontFamily="{StaticResource MontserratBold}"
-                                           FontSize="24"
-                                           Foreground="White"
-                                           Text="{x:Bind CountryName}" />
-                            </toolkit:DropShadowPanel>
-                        </Border>
+                        <StackPanel Margin="48,0,0,40"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom">
+                            <TextBlock FontFamily="{StaticResource MontserratMedium}"
+                                       FontSize="12"
+                                       Foreground="#FF121111"
+                                       Opacity="0.5"
+                                       Text="{x:Bind CityName}" />
+                            <TextBlock FontFamily="{StaticResource MontserratBold}"
+                                       FontSize="20"
+                                       Foreground="#FF121111"
+                                       Text="{x:Bind CountryName}" />
+                            <TextBlock MaxWidth="160"
+                                       Margin="0,12,0,0"
+                                       HorizontalAlignment="Left"
+                                       FontFamily="{StaticResource MontserratRegular}"
+                                       FontSize="12"
+                                       Foreground="#FF121111"
+                                       LineHeight="18"
+                                       Text="{x:Bind PlaceDescription}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
 
-        <Grid x:Name="Header" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <controls:Logo Margin="8,16,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       RenderTransformOrigin="0.5,0.5">
+            <controls:Logo.RenderTransform>
+                <CompositeTransform ScaleX="0.7" ScaleY="0.7" />
+            </controls:Logo.RenderTransform>
+        </controls:Logo>
 
-            <Rectangle Grid.ColumnSpan="3"
-                       Fill="White"
-                       Opacity="0.4" />
-            <controls:Logo x:Name="Logo" Margin="40,16,0,20" />
-        </Grid>
+        <ListBox Margin="0,0,0,16"
+                 VerticalAlignment="Bottom"
+                 ItemContainerStyle="{StaticResource Style-ListBoxItem-Indicator-Small}"
+                 ItemsSource="{x:Bind MainFlipView.ItemsSource, Mode=OneWay}"
+                 SelectedItem="{x:Bind MainFlipView.SelectedItem, Mode=OneWay}"
+                 Style="{StaticResource Style-ListBox-Indicator}" />
     </Grid>
 </Page>
