@@ -87,7 +87,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                     }
 
                     MainGridView.IsItemClickEnabled = _placesToCompare.Count == 0;
-                    Wunderbar.Visibility = _placesToCompare.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                    Wonderbar.Visibility = _placesToCompare.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
                 };
 
             }
@@ -146,15 +146,15 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
         }
 
-        private async void OnWunderbarClick(object sender, RoutedEventArgs e)
+        private async void OnWonderbarClick(object sender, RoutedEventArgs e)
         {
             // 1. Create a new Window.
             var appWindow = await AppWindow.TryCreateAsync();
 
             // 2. Create the page and set the new window's content..
-            ElementCompositionPreview.SetAppWindowContent(appWindow, new WonderbarPage());
+            ElementCompositionPreview.SetAppWindowContent(appWindow, new WonderbarPage(appWindow));
 
-            // 3. Check if you can leverage the compact overlay APIs
+            // 3. Check if you can leverage the compact overlay APIs.
             if (appWindow.Presenter.IsPresentationSupported(AppWindowPresentationKind.CompactOverlay))
             {
                 // 4. Show the window.

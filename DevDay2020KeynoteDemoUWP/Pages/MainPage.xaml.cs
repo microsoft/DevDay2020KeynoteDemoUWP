@@ -123,7 +123,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 .Start();
         }
 
-        private async void OnWunderbarToggleChecked(object sender, RoutedEventArgs e)
+        private async void OnWonderbarToggleChecked(object sender, RoutedEventArgs e)
         {
             bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
 
@@ -133,7 +133,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
         }
 
-        private async void OnWunderbarToggleUnchecked(object sender, RoutedEventArgs e)
+        private async void OnWonderbarToggleUnchecked(object sender, RoutedEventArgs e)
         {
             bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
 

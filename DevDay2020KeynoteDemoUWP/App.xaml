@@ -139,7 +139,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="Style-Icon-Wunderbar"
+            <Style x:Key="Style-Icon-Wonderbar"
                    BasedOn="{StaticResource Style-Icon-Base}"
                    TargetType="ContentControl">
                 <Setter Property="Template">
@@ -447,7 +447,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="Style-ToggleButton-Icon-Circle-Wunderbar" TargetType="ToggleButton">
+            <Style x:Key="Style-ToggleButton-Icon-Circle-Wonderbar" TargetType="ToggleButton">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="#FF0477BF" />
                 <Setter Property="Width" Value="48" />
@@ -569,7 +569,7 @@
                                                 ContentTransitions="{TemplateBinding ContentTransitions}"
                                                 CornerRadius="{TemplateBinding CornerRadius}"
                                                 Foreground="{TemplateBinding Foreground}"
-                                                Style="{StaticResource Style-Icon-Wunderbar}" />
+                                                Style="{StaticResource Style-Icon-Wonderbar}" />
 
                                 <ContentControl x:Name="Minus"
                                                 Width="16"
@@ -581,7 +581,7 @@
                                                 CornerRadius="{TemplateBinding CornerRadius}"
                                                 Foreground="{TemplateBinding Foreground}"
                                                 RenderTransformOrigin="0.5,0.5"
-                                                Style="{StaticResource Style-Icon-Wunderbar}"
+                                                Style="{StaticResource Style-Icon-Wonderbar}"
                                                 Visibility="Collapsed">
                                     <ContentControl.RenderTransform>
                                         <CompositeTransform Rotation="180" />

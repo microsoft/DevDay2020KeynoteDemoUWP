@@ -7,7 +7,7 @@
       d:DesignHeight="1440"
       d:DesignWidth="960"
       Background="White"
-      NavigationCacheMode="Enabled"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Grid>

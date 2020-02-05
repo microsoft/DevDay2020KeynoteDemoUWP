@@ -65,7 +65,7 @@
                         <Setter Target="Header.Margin" Value="40,0" />
                         <Setter Target="PlacesListView.Margin" Value="0,0,0,12" />
                         <Setter Target="PlacesListView.Padding" Value="32,0" />
-                        <Setter Target="WunderbarToggle.Margin" Value="12,0" />
+                        <Setter Target="WonderbarToggle.Margin" Value="12,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -174,11 +174,11 @@
                                Foreground="White"
                                Text="My trips" />
 
-                    <ToggleButton x:Name="WunderbarToggle"
+                    <ToggleButton x:Name="WonderbarToggle"
                                   Margin="12"
-                                  Checked="OnWunderbarToggleChecked"
-                                  Style="{StaticResource Style-ToggleButton-Icon-Circle-Wunderbar}"
-                                  Unchecked="OnWunderbarToggleUnchecked" />
+                                  Checked="OnWonderbarToggleChecked"
+                                  Style="{StaticResource Style-ToggleButton-Icon-Circle-Wonderbar}"
+                                  Unchecked="OnWonderbarToggleUnchecked" />
                 </StackPanel>
 
                 <ListView x:Name="PlacesListView"
