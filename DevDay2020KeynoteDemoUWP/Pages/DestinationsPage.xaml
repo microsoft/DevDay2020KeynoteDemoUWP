@@ -1063,7 +1063,7 @@
                           Width="256"
                           Height="172"
                           Background="Transparent"
-                          CanDrag="True"
+                          CanDrag="False"
                           DragStarting="OnRootDragStarting">
                         <Image x:Name="PlaceImage"
                                Source="{x:Bind ImageUri}"
