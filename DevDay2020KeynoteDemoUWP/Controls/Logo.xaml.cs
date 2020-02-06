@@ -14,10 +14,10 @@ namespace DevDay2020KeynoteDemoUWP.Controls
             StartupAnimation.Begin();
 
         public void GoToSingleScreenState() =>
-            VisualStateManager.GoToState(this, "SingleScreen", true);
+            VisualStateManager.GoToState(this, nameof(SingleScreen), true);
 
         public void GoToDualScreenState() =>
-            VisualStateManager.GoToState(this, "DualScreen", true);
+            VisualStateManager.GoToState(this, nameof(DualScreen), true);
 
         public void SetAngle(double angle)
         {

@@ -129,7 +129,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             if (PickedPlaces.Any() && modeSwitched)
             {
-                VisualStateManager.GoToState(this, ApplicationViewMode.CompactOverlay.ToString(), false);
+                VisualStateManager.GoToState(this, nameof(ApplicationViewMode.CompactOverlay), false);
             }
         }
 
@@ -139,7 +139,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
 
             if (modeSwitched)
             {
-                VisualStateManager.GoToState(this, ApplicationViewMode.Default.ToString(), false);
+                VisualStateManager.GoToState(this, nameof(ApplicationViewMode.Default), false);
             }
         }
 

@@ -1069,6 +1069,20 @@
                         <Image x:Name="PlaceImage"
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />
+                        <!--<toolkit:DropShadowPanel Margin="20,24"
+                                                 VerticalAlignment="Bottom"
+                                                 BlurRadius="24"
+                                                 IsMasked="True"
+                                                 ShadowOpacity="0.8"
+                                                 Color="Black">
+                            <TextBlock FontFamily="{StaticResource MontserratSemiBold}"
+                                       FontSize="12"
+                                       Foreground="White"
+                                       Opacity="0.9"
+                                       OpticalMarginAlignment="TrimSideBearings"
+                                       Text="{x:Bind CountryName}"
+                                       TextWrapping="Wrap" />
+                        </toolkit:DropShadowPanel>-->
                         <ToggleButton x:Name="SelectionToggle"
                                       Margin="8"
                                       HorizontalAlignment="Right"
