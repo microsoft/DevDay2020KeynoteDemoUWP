@@ -1,7 +1,9 @@
 ﻿<Page x:Class="DevDay2020KeynoteDemoUWP.Pages.ComparisonPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       d:DesignHeight="1440"
@@ -40,6 +42,8 @@
                         <Setter Target="Pane2Panel.Padding" Value="0,200,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Visible" />
                         <Setter Target="ImagePanel2.Visibility" Value="Visible" />
+                        <Setter Target="Place1FlipView.SelectedIndex" Value="0" />
+                        <Setter Target="Place2FlipView.SelectedIndex" Value="0" />
                         <Setter Target="Place1FlipView.IsEnabled" Value="False" />
                         <Setter Target="Place2FlipView.IsEnabled" Value="False" />
                         <Setter Target="Place1FlipViewIndicator.Visibility" Value="Collapsed" />
@@ -80,6 +84,8 @@
                         <Setter Target="Pane2Panel.Padding" Value="0,276,0,0" />
                         <Setter Target="ImagePanel1.Visibility" Value="Visible" />
                         <Setter Target="ImagePanel2.Visibility" Value="Visible" />
+                        <Setter Target="Place1FlipView.SelectedIndex" Value="0" />
+                        <Setter Target="Place2FlipView.SelectedIndex" Value="0" />
                         <Setter Target="Place1FlipView.IsEnabled" Value="False" />
                         <Setter Target="Place2FlipView.IsEnabled" Value="False" />
                         <Setter Target="Place1FlipViewIndicator.Visibility" Value="Collapsed" />
@@ -171,7 +177,8 @@
                                   Grid.Row="3"
                                   Grid.ColumnSpan="2"
                                   Height="288"
-                                  Background="Transparent">
+                                  Background="Transparent"
+                                  SelectedIndex="{x:Bind Place2FlipView.SelectedIndex, Mode=TwoWay}">
                             <FlipViewItem>
                                 <StackPanel>
                                     <Grid Height="72">
@@ -343,7 +350,6 @@
                                        Margin="40,48,40,16"
                                        HorizontalAlignment="Center"
                                        Visibility="Collapsed">
-
                             <TextBlock x:Name="Image2Desc"
                                        MaxWidth="220"
                                        Margin="0,8,51,0"
@@ -368,7 +374,8 @@
                                   Grid.Row="2"
                                   Grid.ColumnSpan="2"
                                   Height="288"
-                                  Background="Transparent">
+                                  Background="Transparent"
+                                  SelectedIndex="{x:Bind Place1FlipView.SelectedIndex, Mode=TwoWay}">
                             <FlipViewItem>
                                 <StackPanel>
                                     <Grid Height="72">

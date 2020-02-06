@@ -37,7 +37,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place1Backward", Place1Image);
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("place2Backward", Place2Image);
             }
-            else if (e.NavigationMode == NavigationMode.New)
+            else if (e.NavigationMode == NavigationMode.New && _selectedPlaceImage != null)
             {
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("comparisonToDetail", _selectedPlaceImage);
             }
@@ -58,7 +58,7 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                 var aniamtion2 = ConnectedAnimationService.GetForCurrentView().GetAnimation("place2Forward");
                 aniamtion2?.TryStart(Place2Image);
             }
-            else if (e.NavigationMode == NavigationMode.Back)
+            else if (e.NavigationMode == NavigationMode.Back && _selectedPlaceImage != null)
             {
                 var aniamtion = ConnectedAnimationService.GetForCurrentView().GetAnimation("detailToComparison");
                 aniamtion?.TryStart(_selectedPlaceImage);

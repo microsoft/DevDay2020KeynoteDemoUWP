@@ -16,6 +16,7 @@
                               Source="{x:Bind _places}" />
 
         <x:Double x:Key="ListViewItemDisabledThemeOpacity">0.25</x:Double>
+
         <Style TargetType="GridViewItem">
             <Setter Property="Margin" Value="0,0,70,44" />
         </Style>
@@ -1069,7 +1070,7 @@
                                Source="{x:Bind ImageUri}"
                                Stretch="UniformToFill" />
                         <ToggleButton x:Name="SelectionToggle"
-                                      Margin="12"
+                                      Margin="8"
                                       HorizontalAlignment="Right"
                                       VerticalAlignment="Bottom"
                                       IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
