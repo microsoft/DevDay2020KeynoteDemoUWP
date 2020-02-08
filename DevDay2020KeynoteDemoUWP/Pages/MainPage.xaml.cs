@@ -77,15 +77,15 @@ namespace DevDay2020KeynoteDemoUWP.Pages
                     // Event is invoked from a different thread.
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
-                        // Range should be set between -80 and 80.
-                        var angle = args.Reading.AngleInDegrees / 2 - 90;
-                        if (angle < -80)
+                        double angle = 0.0;
+
+                        if (args.Reading.AngleInDegrees <= 180)
                         {
-                            angle = -80;
+                            angle = args.Reading.AngleInDegrees / 2 - 90;
                         }
-                        else if (angle > 80)
+                        else
                         {
-                            angle = 80;
+                            angle = (args.Reading.AngleInDegrees - 180) * 2;
                         }
 
                         Logo.SetAngle(angle);
