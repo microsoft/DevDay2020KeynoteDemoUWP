@@ -18,7 +18,7 @@
             <x:Boolean x:Key="UseSystemFocusVisuals">False</x:Boolean>
 
             <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
-                <animations:OffsetAnimation Duration="0:0:0.3" />
+                <animations:OffsetAnimation Duration="0:0:0.4" />
             </animations:AnimationCollection>
 
             <Style TargetType="TextBlock">

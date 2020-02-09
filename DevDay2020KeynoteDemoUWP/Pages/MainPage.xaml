@@ -36,6 +36,11 @@
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -72,8 +77,11 @@
         </VisualStateManager.VisualStateGroups>
 
         <winui:NavigationView x:Name="MainNav"
+                              Grid.Row="1"
+                              animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}"
                               IsBackButtonVisible="Collapsed"
                               IsSettingsVisible="False"
+                              IsTitleBarAutoPaddingEnabled="False"
                               ItemInvoked="OnMainNavItemInvoked"
                               PaneDisplayMode="Top">
             <winui:NavigationView.MenuItems>
@@ -124,7 +132,9 @@
             <Frame x:Name="ContentFrame" />
         </winui:NavigationView>
 
-        <Grid x:Name="PickedPlacesPane" Visibility="Collapsed">
+        <Grid x:Name="PickedPlacesPane"
+              Grid.Row="1"
+              Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
@@ -250,7 +260,9 @@
             </Grid>
         </Grid>
 
-        <Grid d:IsHidden="True" Visibility="Collapsed">
+        <Grid Grid.RowSpan="2"
+              d:IsHidden="True"
+              Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -346,5 +358,9 @@
                        Fill="Red"
                        Opacity="0.1" />
         </Grid>
+
+        <Rectangle x:Name="DraggableAppTitleBarArea"
+                   Height="32"
+                   Fill="Transparent" />
     </Grid>
 </Page>

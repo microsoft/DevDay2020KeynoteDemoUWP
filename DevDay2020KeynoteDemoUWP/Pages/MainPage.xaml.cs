@@ -1,7 +1,6 @@
 ﻿using System;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using Windows.UI.ViewManagement;
-using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 using Microsoft.Toolkit.Uwp.UI.Animations;
@@ -10,7 +9,6 @@ using System.Collections.ObjectModel;
 using DevDay2020KeynoteDemoUWP.Model;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using System.Linq;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.Sensors;
 using Windows.UI.Core;
@@ -18,7 +16,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Media.Imaging;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
 
 namespace DevDay2020KeynoteDemoUWP.Pages
 {
@@ -32,8 +31,36 @@ namespace DevDay2020KeynoteDemoUWP.Pages
         {
             InitializeComponent();
 
-            ApplicationView.PreferredLaunchViewSize = new Size(1440, 936);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //ApplicationView.PreferredLaunchViewSize = new Size(1440, 936);
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            CustomizeTitleBar();
+            void CustomizeTitleBar()
+            {
+                var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+                // Draw into the title bar.
+                coreTitleBar.ExtendViewIntoTitleBar = true;
+                DraggableAppTitleBarArea.Height = coreTitleBar.Height;
+
+                // Set a draggable region.
+                Window.Current.SetTitleBar(DraggableAppTitleBarArea);
+
+                coreTitleBar.LayoutMetricsChanged += (s, args) =>
+                {
+                    DraggableAppTitleBarArea.Height = s.Height;
+                };
+
+                coreTitleBar.IsVisibleChanged += (s, args) =>
+                {
+                    DraggableAppTitleBarArea.Visibility = s.IsVisible ? Visibility.Visible : Visibility.Collapsed;
+                };
+
+                // Remove the solid-colored backgrounds behind the caption controls and system back button.
+                var viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+                viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
+                viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                viewTitleBar.ButtonForegroundColor = Color.FromArgb(255, 4, 119, 191);
+            }
 
             ConnectedAnimationService.GetForCurrentView().DefaultDuration = TimeSpan.FromMilliseconds(400);
 
@@ -44,22 +71,25 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             }
 
             Window.Current.SizeChanged += async (s, e) =>
-            {
-                await Task.Delay(1200);
+                        {
+                            await Task.Delay(1200);
 
-                var isSpanned = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.Spanning;
-                if (isSpanned)
-                {
-                    Logo.GoToDualScreenState();
-                }
-                else
-                {
-                    Logo.GoToSingleScreenState();
-                }
-            };
+                            var isSpanned = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.Spanning;
+                            if (isSpanned)
+                            {
+                                Logo.GoToDualScreenState();
+                            }
+                            else
+                            {
+                                Logo.GoToSingleScreenState();
+                            }
+                        };
 
             Loaded += async (s, e) =>
             {
+                var titleBarHeight = CoreApplication.GetCurrentView().TitleBar.Height;
+                MainNav.Padding = new Thickness(0, titleBarHeight, 0, 0);
+
                 Logo.Start();
 
                 _sensor = await HingeAngleSensor.GetDefaultAsync();
