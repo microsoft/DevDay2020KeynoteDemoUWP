@@ -131,7 +131,10 @@ namespace DevDay2020KeynoteDemoUWP
             CustomizeTitleBar();
 
             void CustomizeTitleBar()
-            {
+            { 
+                // Draw into the title bar.
+                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
                 // Remove the solid-colored backgrounds behind the caption controls and system back button.
                 var viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
                 viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
