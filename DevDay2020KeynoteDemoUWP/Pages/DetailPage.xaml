@@ -40,9 +40,16 @@
         </VisualStateManager.VisualStateGroups>
 
         <ScrollViewer x:Name="DetailContent">
+
+
+
+
+
+
             <!--
-                STEP 1.1:
-                TwoPaneView that uses all the built-in responsiveness design.
+                STEP 2.1: Detail page XAML
+                A TwoPaneView control that demostrates Companion Pane design pattern.
+                It also monitors the ModeChanged event for further customization.
             -->
             <winui:TwoPaneView x:Name="ContentView"
                                Margin="0,132,0,0"

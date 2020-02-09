@@ -100,6 +100,19 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       Margin="0,-144,0,0">
+
+
+
+
+
+
+
+
+            <!--
+                STEP 1: Comparison page XAML
+                A TwoPaneView control that demostrates Dual View design pattern
+                by displaying two places left/right or top/bottom based on different postures.
+            -->
             <winui:TwoPaneView x:Name="TwoPaneView"
                                MinWideModeWidth="959"
                                Pane2Length="Auto">

@@ -99,10 +99,14 @@ namespace DevDay2020KeynoteDemoUWP.Pages
             PlanTrip.IsEnabled = true;
         }
 
+
+
         /// <summary>
-        /// STEP 1.2: 
-        /// Set the UI based on how Pane1 and/or Pane2 are stacked together.
-        /// Do this when you want a customized experience.
+        /// STEP 2.2: Detail page code-behind 
+        /// This fires when the TwoPaneViewMode (SinglePane, Wide & Tall) is changed.
+        /// 
+        /// Here we set the PlanTripTop button on the top right to be visible in Tall mode,
+        /// so users don't need to scroll down to the content to make the same action.
         /// </summary>
         private void OnContentViewModeChanged(WinUI.TwoPaneView sender, object args)
         {
