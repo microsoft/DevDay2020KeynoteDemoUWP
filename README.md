@@ -43,7 +43,9 @@ Explain how to prepare the sample once the user clones or downloads the reposito
 
 ## Running the sample
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+This sample contains a Contoso Travel app that is designed to work beautifully on a dual screen device as well as on desktop.
+
+If you have the Windows 10X emulator (or a dual-screen device), you can depoly the app to it and see how the UI adapts to different device postures. You can deploy the same app to your Windows desktop too.
 
 ## Key concepts
 
