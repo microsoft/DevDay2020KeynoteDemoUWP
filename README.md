@@ -15,7 +15,7 @@ If you have the Windows 10X emulator (or a dual-screen device), you can deploy t
 
 ## Prerequisites
 
-This requires Windows 10, Visual Studio 2019 and a recent version of the Windows 10 Insider SDK (19559+). It's also recommended to install the Windows 10X Emulator.
+This requires Windows 10, Visual Studio 2019 and a recent version of the Windows 10 Insider SDK (19559+). It's also recommended to install [the Windows 10X Emulator](https://docs.microsoft.com/en-au/dual-screen/windows/get-dev-tools).
 
 ## Setup
 
