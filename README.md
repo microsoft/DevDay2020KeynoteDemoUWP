@@ -3,7 +3,7 @@ page_type: sample
 languages:
 - csharp
 products:
-- dotnet
+- UWP, WinUI
 description: "A Contoso Travel app that's designed for dual screen devices"
 ---
 
