@@ -4,8 +4,7 @@ languages:
 - csharp
 products:
 - dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
+description: "A Contoso Travel app that's designed for dual screen devices"
 ---
 
 # Official Microsoft Sample
@@ -18,7 +17,7 @@ Guidance on onboarding samples to docs.microsoft.com/samples: https://review.doc
 Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
 -->
 
-Give a short description for your sample here. What does it do and why is it important?
+This sample contains a Contoso Travel app that is designed to work beautifully on a dual screen device as well as on desktop.
 
 ## Contents
 
@@ -42,8 +41,6 @@ Outline the required components and tools that a user might need to have on thei
 Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
 
 ## Running the sample
-
-This sample contains a Contoso Travel app that is designed to work beautifully on a dual screen device as well as on desktop.
 
 If you have the Windows 10X emulator (or a dual-screen device), you can depoly the app to it and see how the UI adapts to different device postures. You can deploy the same app to your Windows desktop too.
 
