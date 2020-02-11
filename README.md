@@ -35,15 +35,11 @@ Outline the file contents of the repository. It helps users navigate the codebas
 
 ## Prerequisites
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+This requires Windows 10, Visual Studio 2019 and a recent version of the Windows 10 Insider SDK. It's also recommended to install the Windows 10X Emulator.
 
 ## Setup
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
-
-## Key concepts
-
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
+Simply clone, compile and run the app on desktop or on the Windows 10X Emulator. 
 
 ## Contributing
 
