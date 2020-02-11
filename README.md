@@ -19,13 +19,14 @@ Taxonomies for products and languages: https://review.docs.microsoft.com/new-hop
 
 This sample contains a Contoso Travel app that is designed to work beautifully on a dual screen device as well as on desktop.
 
+If you have the Windows 10X emulator (or a dual-screen device), you can depoly the app to it and see how the UI adapts to different device postures. You can deploy the same app to your Windows desktop too.
+
 ## Contents
 
 Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
 | `.gitignore`      | Define what to ignore at commit time.      |
 | `CHANGELOG.md`    | List of changes to the sample.             |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
@@ -39,10 +40,6 @@ Outline the required components and tools that a user might need to have on thei
 ## Setup
 
 Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
-
-## Running the sample
-
-If you have the Windows 10X emulator (or a dual-screen device), you can depoly the app to it and see how the UI adapts to different device postures. You can deploy the same app to your Windows desktop too.
 
 ## Key concepts
 
